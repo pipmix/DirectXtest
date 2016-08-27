@@ -1,0 +1,46 @@
+#pragma once
+#include "Headers.h"
+
+
+struct ConstantBuffer
+{
+	XMMATRIX world;
+	XMMATRIX camera;
+	XMMATRIX screen;
+};
+
+struct VertexP {
+	XMFLOAT3 position;
+};
+
+
+static const D3D11_INPUT_ELEMENT_DESC VertexP_Layout[] ={
+	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+};
+
+struct VertexPU {
+	XMFLOAT3 position;
+	XMFLOAT2 uvcoord;
+};
+
+
+static const D3D11_INPUT_ELEMENT_DESC VertexPU_Layout[] = {
+
+	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+
+};
+
+struct VERTEXPNU {
+	XMFLOAT3 pos;
+	XMFLOAT3 normal;
+	XMFLOAT2 uv;
+};
+
+const D3D11_INPUT_ELEMENT_DESC layoutPNU[] = {
+	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+};
+
+
