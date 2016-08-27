@@ -1,34 +1,27 @@
+struct VS_IN {
 
-cbuffer ConstantBuffer : register(b0)
-{
-	matrix world;
-	matrix camera;
-	matrix screen;
+	float4 pos : POSITION;
 
-}
+};
 
+struct VS_OUT {
 
-
-
-
-struct VOut {
-
-	float4 p : SV_POSITION;
+	float4 pos : SV_POSITION;
 
 };
 
 
 
-VOut main( float4 pos : POSITION ) : SV_POSITION
+VS_OUT main(VS_IN vs_in)
 {
 
 
+	VS_OUT vs_out;
+	
 
-	VOut output;
+	vs_out.pos = vs_in.pos;
 
-	output.p = mul(world, pos);
-
-	return output;
+	return vs_out;
 
 
 }

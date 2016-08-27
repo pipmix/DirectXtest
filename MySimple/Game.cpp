@@ -3,17 +3,19 @@
 
 Game::Game() {
 
+
+
 	RECT rc = { 0,0,0,0 };
 	GetClientRect(hWnd, &rc);
-	mWindowWidth = rc.right;
-	mWidowHeight = rc.bottom;
+	mWindowWidth = rc.right - rc.left;
+	mWidowHeight = rc.bottom - rc.top;
 
-	// Device Resources
+
 	// Create Device and Swapchain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc = { 0 };
 	swapChainDesc.BufferCount = 1;
-	swapChainDesc.BufferDesc.Width = rc.right;
-	swapChainDesc.BufferDesc.Height = rc.bottom;
+	swapChainDesc.BufferDesc.Width = mWindowWidth;
+	swapChainDesc.BufferDesc.Height = mWidowHeight;
 	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;;
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	swapChainDesc.OutputWindow = hWnd;
@@ -28,8 +30,8 @@ Game::Game() {
 	device->CreateRenderTargetView(backBuffer.Get(), nullptr, backBuffer_RT.ReleaseAndGetAddressOf());
 
 
-	viewport.Width = rc.right;
-	viewport.Height = rc.bottom;
+	viewport.Width = mWindowWidth;
+	viewport.Height = mWidowHeight;
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 	viewport.TopLeftX = 0;
@@ -38,8 +40,8 @@ Game::Game() {
 
 	//ZBUFFER
 	D3D11_TEXTURE2D_DESC zBufferDesc = { 0 };
-	zBufferDesc.Width = rc.right;
-	zBufferDesc.Height = rc.bottom;
+	zBufferDesc.Width = mWindowWidth;
+	zBufferDesc.Height = mWidowHeight;
 	zBufferDesc.ArraySize = 1;
 	zBufferDesc.MipLevels = 1;
 	zBufferDesc.SampleDesc.Count = 1;
@@ -57,9 +59,21 @@ Game::Game() {
 	// End Zbuffer
 
 
+	// SAMPLER STATE
+	D3D11_SAMPLER_DESC samplerDesc;
+	ZeroMemory(&samplerDesc, sizeof(samplerDesc));
+	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	samplerDesc.MaxAnisotropy = 0;
+	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;;
+	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;;
+	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;;
+	samplerDesc.MinLOD = 0.0f;
+	samplerDesc.MaxLOD = 0.0f;
+	samplerDesc.MipLODBias = 0.0f;
 
-	CD3D11_BUFFER_DESC constantBufferDesc(sizeof(ConstantBuffer), D3D11_BIND_CONSTANT_BUFFER);
-	device->CreateBuffer(&constantBufferDesc, nullptr, &constantBuffer);
+	device->CreateSamplerState(&samplerDesc, &samplerState);
+
+
 
 
 	D3D11_RASTERIZER_DESC rd;
@@ -68,25 +82,24 @@ Game::Game() {
 	rd.FrontCounterClockwise = FALSE;
 	rd.DepthClipEnable = TRUE;
 	rd.ScissorEnable = FALSE;
-
-
-
 	device->CreateRasterizerState(&rd, &RS_default);
+
 
 	camera = new Camera();
 	shader = new Shader();
 	controller = new Controller();
-	rd1 = new RectData(0.0f, 0.0f, 4.0f, -4.0f);
-	rd2 = new RectData(0.0f, 0.0f, 8.0f, -8.0f);
+	rd1 = new RectData(-10.0f, 5.0f, 8.0f, -8.0f);
+	rd2 = new RectData(0.0f, 0.0f, 0.5f, -0.5f);
 }
 
 
 void Game::Update() {
 
 	controller->Update();
+	camera->Update();
 	rd1->Update();
 	rd2->Update();
-	//camera->Update();
+	
 
 }
 void Game::Draw() {
@@ -95,11 +108,15 @@ void Game::Draw() {
 
 	Clear();
 
+	//context->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 
-
+	
 	camera->Draw();
 	//shader->Draw();
-	rd1->Draw();
+
+
+
+	//rd1->Draw();
 	rd2->Draw();
 
 
@@ -118,15 +135,8 @@ void Game::Clear() {
 
 	context->OMSetRenderTargets(1, backBuffer_RT.GetAddressOf(), zbuffer.Get());
 
-	//context->RSSetViewports(1, &viewport);
+	context->RSSetViewports(1, &viewport);
 
-	RECT rc = { 0,0,0,0 };
-	GetClientRect(hWnd, &rc);
-
-	CD3D11_VIEWPORT viewport2(0.0f, 0.0f, static_cast<float>(mWindowWidth), static_cast<float>(mWidowHeight));
-	context->RSSetViewports(1, &viewport2);
 	//context->RSSetState(RS_default.Get());
-
-
 
 }

@@ -2,7 +2,7 @@
 
 RectData::RectData(float l, float t, float r, float b) {
 
-	vs = new VertexShader(L"VS_BasicMatrix");
+	vs = new VertexShader(L"VS_Basic");
 	ps = new PixelShader(L"PS_Basic");
 
 	left =l;
@@ -28,9 +28,8 @@ RectData::RectData(float l, float t, float r, float b) {
 		XMFLOAT3(l, t, zf),
 		XMFLOAT3(r, t, zf),
 
-		XMFLOAT3(r, b, zf),
 		XMFLOAT3(l, b, zf),
-		XMFLOAT3(t, l, zf)
+		XMFLOAT3(r, b, zf),
 
 
 	}; numElements = ARRAYSIZE(verts);
@@ -48,21 +47,25 @@ RectData::RectData(float l, float t, float r, float b) {
 	InitData.pSysMem = verts;
 	device->CreateBuffer(&bd, &InitData, &vertexBuffer);
 
+	
+
 
 }
 
 
 void RectData::Update() {
 
+	position.x += 0.001f;
 
-	//position.x += 0.1;
-	//position.y += 0.1;
-	//position.z += 0.1;
+	XMMATRIX matRotate = XMMatrixRotationY(0.0f) * XMMatrixTranslation(position.x, position.y, position.z);
+
+	XMStoreFloat4x4(&world, matRotate);
+
 
 }
 void RectData::Draw() {
 
-	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP);
+	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
 	UINT stride = sizeof(VertexP);
 	UINT offset = 0;
@@ -70,25 +73,11 @@ void RectData::Draw() {
 
 	context->VSSetShader(vs->vertexShader.Get(), 0, 0);
 	context->PSSetShader(ps->pixelShader.Get(), 0, 0);
+	
 
 	context->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
 	context->IASetInputLayout(vs->inputLayout.Get());
 
-
-	//XMMATRIX fm = (XMMatrixIdentity() * XMMatrixTranslation(position.x, position.y, position.z)) * cameraScreenMatrix;
-	XMMATRIX fm =  XMMatrixTranslation(position.x, position.y, position.z) * cameraScreenMatrix;
-
-	
-
-	ConstantBuffer cb;
-	cb.finalMatrix = fm;
-	cb.screen = fm;
-	cb.world = fm;
-
-
-
-
-	context->UpdateSubresource(constantBuffer.Get(), 0, 0, &cb, 0, 0);
 
 
 

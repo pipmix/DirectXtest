@@ -3,14 +3,12 @@
 
 ComPtr<ID3D11Device>			device = nullptr;
 ComPtr<ID3D11DeviceContext>		context = nullptr;
-ComPtr<ID3D11Buffer>			constantBuffer = nullptr;
+
 
 HWND hWnd = nullptr;
 HINSTANCE hInst = nullptr;
 
-XMMATRIX                cameraScreenMatrix;
-XMMATRIX                cameraMatrix;
-XMMATRIX                screenMatrix;
+
 
 bool LL = 0;
 bool RR = 0;

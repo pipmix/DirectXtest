@@ -4,15 +4,12 @@
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
-extern ComPtr<ID3D11Buffer>			constantBuffer;
+
 
 extern HWND hWnd;
 extern HINSTANCE hInst;
 
 
-extern XMMATRIX cameraScreenMatrix;;
-extern XMMATRIX cameraMatrix;
-extern XMMATRIX screenMatrix;
 
  class Camera {
 
@@ -23,15 +20,14 @@ extern XMMATRIX screenMatrix;
 		void Update();
 		void Draw();
 
+		void UpdateCameraMatrix();
+		void UpdateScreenMatrix();
 
 
-		//XMFLOAT3					lookAt;
-		//XMFLOAT3					up;
-		//XMFLOAT3					eye;
+		XMFLOAT3 Pos;
+		XMFLOAT3 At;
+		XMFLOAT3 Up;
 
-
-		long mWindowWidth;
-		long mWidowHeight;
 
 
 

@@ -27,9 +27,6 @@
     <ClInclude Include="DataTypes.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="Descriptions.h">
-      <Filter>headers</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>headers</Filter>
     </ClInclude>
@@ -39,9 +36,6 @@
     <ClInclude Include="Helpers.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="Primative.h">
-      <Filter>headers</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>headers</Filter>
     </ClInclude>
@@ -49,6 +43,9 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Controller.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleMap.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

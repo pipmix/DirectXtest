@@ -2,11 +2,11 @@
 #include "Headers.h"
 
 
-struct ConstantBuffer
+struct VS_C_BUFFER
 {
-	XMMATRIX finalMatrix;
-	XMMATRIX world;
-	XMMATRIX screen;
+	XMFLOAT4X4 wvp;
+
+
 };
 
 struct VertexP {

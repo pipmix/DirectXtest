@@ -109,6 +109,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <FxCompile>
+      <ObjectFileOutput>c:/shaders/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -146,6 +149,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <FxCompile>
+      <ObjectFileOutput>c:/shaders/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
@@ -160,13 +166,12 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DataTypes.h" />
-    <ClInclude Include="Descriptions.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="Helpers.h" />
-    <ClInclude Include="Primative.h" />
     <ClInclude Include="RectData.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="TitleMap.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PS_Basic.hlsl">

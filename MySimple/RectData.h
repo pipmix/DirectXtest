@@ -4,11 +4,8 @@
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
-extern ComPtr<ID3D11Buffer>			constantBuffer;
 
-extern XMMATRIX cameraScreenMatrix;;
-extern XMMATRIX cameraMatrix;
-extern XMMATRIX screenMatrix;
+
 
 extern bool LL;
 extern bool RR;
@@ -48,4 +45,5 @@ public:
 	void Draw();
 
 	XMFLOAT3 position;
+	XMFLOAT4X4 world;
 };

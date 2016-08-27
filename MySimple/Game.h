@@ -9,14 +9,11 @@
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
 
-extern ComPtr<ID3D11Buffer>			constantBuffer;
+
 
 extern HWND hWnd;
 extern HINSTANCE hInst;
 
-extern XMMATRIX cameraScreenMatrix;;
-extern XMMATRIX cameraMatrix;
-extern XMMATRIX screenMatrix;
 
 class Game {
 
@@ -41,7 +38,8 @@ private:
 	ComPtr<ID3D11RasterizerState>	RS_default;
 	ComPtr<ID3D11RasterizerState>	RS_wireframe;
 
-
+	ComPtr<ID3D11SamplerState>		samplerState;
+	ComPtr<ID3D11DepthStencilState> depthStencilState;
 
 
 
