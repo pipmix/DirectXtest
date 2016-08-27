@@ -11,6 +11,12 @@ extern HINSTANCE hInst;
 
 
 
+extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
+extern XMMATRIX cameraMatrix;
+extern XMMATRIX screenMatrix;
+extern XMMATRIX cameraScreenMatrix;
+
+
  class Camera {
 
 

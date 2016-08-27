@@ -49,6 +49,7 @@ private:
 	Camera* camera;
 	RectData* rd1;
 	RectData* rd2;
+	RectData* rd3;
 
 	Controller* controller;
 

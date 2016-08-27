@@ -75,6 +75,9 @@ Game::Game() {
 
 
 
+	CD3D11_BUFFER_DESC constantBufferDesc(sizeof(VS_C_BUFFER), D3D11_BIND_CONSTANT_BUFFER);
+	device->CreateBuffer(&constantBufferDesc, nullptr, &constantBuffer_finalMatrix);
+
 
 	D3D11_RASTERIZER_DESC rd;
 	rd.FillMode = D3D11_FILL_WIREFRAME;
@@ -88,8 +91,9 @@ Game::Game() {
 	camera = new Camera();
 	shader = new Shader();
 	controller = new Controller();
-	rd1 = new RectData(-10.0f, 5.0f, 8.0f, -8.0f);
-	rd2 = new RectData(0.0f, 0.0f, 0.5f, -0.5f);
+	rd1 = new RectData(1.0f, 0.0f, 2.0f, -1.0f);
+	rd2 = new RectData(0.0f, 0.0f, 1.0f, -1.0f);
+	rd3 = new RectData(2.0f, 0.0f, 3.0f, -1.0f);
 }
 
 
@@ -99,7 +103,7 @@ void Game::Update() {
 	camera->Update();
 	rd1->Update();
 	rd2->Update();
-	
+	rd3->Update();
 
 }
 void Game::Draw() {
@@ -116,9 +120,9 @@ void Game::Draw() {
 
 
 
-	//rd1->Draw();
+	rd1->Draw();
 	rd2->Draw();
-
+	rd3->Draw();
 
 
 
@@ -137,6 +141,6 @@ void Game::Clear() {
 
 	context->RSSetViewports(1, &viewport);
 
-	//context->RSSetState(RS_default.Get());
+	context->RSSetState(RS_default.Get());
 
 }
