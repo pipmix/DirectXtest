@@ -2,7 +2,7 @@
 
 RectData::RectData(float l, float t, float r, float b) {
 
-	vs = new VertexShader(L"VS_BasicMatrix");
+	vs = new VertexShader(L"VS_BasicMatrix", VT_P);
 	ps = new PixelShader(L"PS_Basic");
 
 	left =l;

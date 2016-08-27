@@ -10,6 +10,12 @@
     <FxCompile Include="PS_Basic.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="VS_PUV.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="PS_PUV.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
@@ -19,6 +25,9 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="RectData.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="DDSTextureLoader.cpp" />
+    <ClCompile Include="Particle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -46,6 +55,13 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="TitleMap.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DDSTextureLoader.h" />
+    <ClInclude Include="Particle.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

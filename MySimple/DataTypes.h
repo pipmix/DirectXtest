@@ -2,11 +2,31 @@
 #include "Headers.h"
 
 
+enum VertexType {
+
+	VT_P, VT_PU, VT_PNU
+};
+
 struct VS_C_BUFFER
 {
 	XMFLOAT4X4 wvp;
 
 
+};
+
+struct RectF {
+	float l;
+	float t;
+	float r;
+	float b;
+
+	void SetPWH(float x, float y, float w, float h) {
+		l = x;
+		t = y;
+		r = l + w;
+		b = t - h;
+
+	};
 };
 
 struct VertexP {

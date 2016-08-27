@@ -45,7 +45,7 @@ public:
 
 class VertexShader {
 public:
-	VertexShader(std::wstring fn);
+	VertexShader(std::wstring fn, VertexType vt);
 
 	ComPtr<ID3D11VertexShader>	vertexShader;
 	ComPtr<ID3D11InputLayout>	inputLayout;

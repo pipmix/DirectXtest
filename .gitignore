@@ -9,3 +9,5 @@ MySimple/x64/Debug/MySimple.log
 MySimple.VC.db
 *.opendb
 *.TMP
+MySimple/DDSTextureLoader.h
+MySimple/DDSTextureLoader.cpp

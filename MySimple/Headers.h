@@ -13,6 +13,7 @@
 #include <d3dcompiler.h>
 #include <DirectXCollision.h>
 #include <wrl\client.h>
+#include "DDSTextureLoader.h"
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "D3DCompiler.lib")
@@ -21,3 +22,4 @@ using namespace DirectX;
 using Microsoft::WRL::ComPtr;
 
 
+const std::wstring gPath = L"C:/Box/Box Sync/Data/";

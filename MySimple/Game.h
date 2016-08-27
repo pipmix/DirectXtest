@@ -4,7 +4,8 @@
 #include "Camera.h"
 #include "RectData.h"
 #include "Controller.h"
-
+#include "Texture.h"
+#include "Particle.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -50,6 +51,9 @@ private:
 	RectData* rd1;
 	RectData* rd2;
 	RectData* rd3;
+	Particle* particle;
+
+	Texture* tex;
 
 	Controller* controller;
 

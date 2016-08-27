@@ -89,7 +89,7 @@ void Shader::Update() {
 
 
 
-VertexShader::VertexShader(std::wstring fn){
+VertexShader::VertexShader(std::wstring fn, VertexType vt){
 
 
 	std::wstring fileName = L"C:/Shaders/" + fn + L".cso";
@@ -100,7 +100,22 @@ VertexShader::VertexShader(std::wstring fn){
 	ReadDataFromFile(fileName.c_str(), &vsData, &vsDataLength);
 
 	device->CreateVertexShader(vsData, vsDataLength, nullptr, &vertexShader);
-	device->CreateInputLayout(VertexP_Layout, ARRAYSIZE(VertexP_Layout), vsData, vsDataLength, &inputLayout);
+
+	switch (vt){
+
+	case VT_P:
+		device->CreateInputLayout(VertexP_Layout, ARRAYSIZE(VertexP_Layout), vsData, vsDataLength, &inputLayout);
+		break;
+	case VT_PU:
+		device->CreateInputLayout(VertexPU_Layout, ARRAYSIZE(VertexPU_Layout), vsData, vsDataLength, &inputLayout);
+		break;
+	case VT_PNU:
+		break;
+	default:
+		break;
+	};
+
+	
 
 };
 

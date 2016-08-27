@@ -94,6 +94,10 @@ Game::Game() {
 	rd1 = new RectData(1.0f, 0.0f, 2.0f, -1.0f);
 	rd2 = new RectData(0.0f, 0.0f, 1.0f, -1.0f);
 	rd3 = new RectData(2.0f, 0.0f, 3.0f, -1.0f);
+	tex = new Texture(L"Bricks2");
+
+	particle = new Particle;
+
 }
 
 
@@ -104,6 +108,7 @@ void Game::Update() {
 	rd1->Update();
 	rd2->Update();
 	rd3->Update();
+	particle->Update();
 
 }
 void Game::Draw() {
@@ -124,6 +129,8 @@ void Game::Draw() {
 	rd2->Draw();
 	rd3->Draw();
 
+	particle->Draw();
+
 
 
 	swapChain->Present(1, 0);
@@ -141,6 +148,6 @@ void Game::Clear() {
 
 	context->RSSetViewports(1, &viewport);
 
-	context->RSSetState(RS_default.Get());
+	//context->RSSetState(RS_default.Get());
 
 }
