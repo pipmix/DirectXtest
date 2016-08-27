@@ -3,6 +3,7 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "RectData.h"
+#include "Controller.h"
 
 
 extern ComPtr<ID3D11Device>			device;
@@ -50,6 +51,8 @@ private:
 	Camera* camera;
 	RectData* rd1;
 	RectData* rd2;
+
+	Controller* controller;
 
 	long mWindowWidth;
 	long mWidowHeight;

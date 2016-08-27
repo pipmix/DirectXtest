@@ -55,7 +55,9 @@ RectData::RectData(float l, float t, float r, float b) {
 void RectData::Update() {
 
 
-
+	//position.x += 0.1;
+	//position.y += 0.1;
+	//position.z += 0.1;
 
 }
 void RectData::Draw() {
@@ -73,8 +75,8 @@ void RectData::Draw() {
 	context->IASetInputLayout(vs->inputLayout.Get());
 
 
-	XMMATRIX fm = (XMMatrixIdentity() * XMMatrixTranslation(position.x, position.y, position.z)) * cameraScreenMatrix;
-
+	//XMMATRIX fm = (XMMatrixIdentity() * XMMatrixTranslation(position.x, position.y, position.z)) * cameraScreenMatrix;
+	XMMATRIX fm =  XMMatrixTranslation(position.x, position.y, position.z) * cameraScreenMatrix;
 
 	
 

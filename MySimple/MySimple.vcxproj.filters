@@ -18,6 +18,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="RectData.cpp" />
+    <ClCompile Include="Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -45,6 +46,9 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="RectData.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

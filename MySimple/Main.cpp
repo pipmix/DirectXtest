@@ -12,7 +12,9 @@ XMMATRIX                cameraScreenMatrix;
 XMMATRIX                cameraMatrix;
 XMMATRIX                screenMatrix;
 
-
+bool LL = 0;
+bool RR = 0;
+bool UU = 0;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 

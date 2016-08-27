@@ -10,6 +10,10 @@ extern XMMATRIX cameraScreenMatrix;;
 extern XMMATRIX cameraMatrix;
 extern XMMATRIX screenMatrix;
 
+extern bool LL;
+extern bool RR;
+extern bool UU;
+
 class RectData {
 
 public:
@@ -35,6 +39,7 @@ public:
 	float h;
 
 	UINT numElements;
+	
 
 	PixelShader* ps;
 	VertexShader* vs;

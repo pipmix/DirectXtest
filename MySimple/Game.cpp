@@ -75,6 +75,7 @@ Game::Game() {
 
 	camera = new Camera();
 	shader = new Shader();
+	controller = new Controller();
 	rd1 = new RectData(0.0f, 0.0f, 4.0f, -4.0f);
 	rd2 = new RectData(0.0f, 0.0f, 8.0f, -8.0f);
 }
@@ -82,6 +83,9 @@ Game::Game() {
 
 void Game::Update() {
 
+	controller->Update();
+	rd1->Update();
+	rd2->Update();
 	//camera->Update();
 
 }
