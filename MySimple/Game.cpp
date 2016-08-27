@@ -12,8 +12,8 @@ Game::Game() {
 	// Create Device and Swapchain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc = { 0 };
 	swapChainDesc.BufferCount = 1;
-	swapChainDesc.BufferDesc.Width = mWindowWidth;
-	swapChainDesc.BufferDesc.Height = mWidowHeight;
+	swapChainDesc.BufferDesc.Width = rc.right;
+	swapChainDesc.BufferDesc.Height = rc.bottom;
 	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;;
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	swapChainDesc.OutputWindow = hWnd;
@@ -28,8 +28,8 @@ Game::Game() {
 	device->CreateRenderTargetView(backBuffer.Get(), nullptr, backBuffer_RT.ReleaseAndGetAddressOf());
 
 
-	viewport.Width = (FLOAT)mWindowWidth;
-	viewport.Height = (FLOAT)mWidowHeight;
+	viewport.Width = rc.right;
+	viewport.Height = rc.bottom;
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 	viewport.TopLeftX = 0;
@@ -38,8 +38,8 @@ Game::Game() {
 
 	//ZBUFFER
 	D3D11_TEXTURE2D_DESC zBufferDesc = { 0 };
-	zBufferDesc.Width = mWindowWidth;
-	zBufferDesc.Height = mWidowHeight;
+	zBufferDesc.Width = rc.right;
+	zBufferDesc.Height = rc.bottom;
 	zBufferDesc.ArraySize = 1;
 	zBufferDesc.MipLevels = 1;
 	zBufferDesc.SampleDesc.Count = 1;
@@ -58,6 +58,9 @@ Game::Game() {
 
 
 
+	CD3D11_BUFFER_DESC constantBufferDesc(sizeof(ConstantBuffer), D3D11_BIND_CONSTANT_BUFFER);
+	device->CreateBuffer(&constantBufferDesc, nullptr, &constantBuffer);
+
 
 	D3D11_RASTERIZER_DESC rd;
 	rd.FillMode = D3D11_FILL_WIREFRAME;
@@ -72,15 +75,37 @@ Game::Game() {
 
 	camera = new Camera();
 	shader = new Shader();
+	rd1 = new RectData(0.0f, 0.0f, 4.0f, -4.0f);
+	rd2 = new RectData(0.0f, 0.0f, 8.0f, -8.0f);
 }
 
 
 void Game::Update() {
 
-	camera->Update();
+	//camera->Update();
 
 }
 void Game::Draw() {
+
+
+
+	Clear();
+
+
+
+	camera->Draw();
+	//shader->Draw();
+	rd1->Draw();
+	rd2->Draw();
+
+
+
+
+	swapChain->Present(1, 0);
+
+
+}
+void Game::Clear() {
 
 	float fill[4] = { 0.0f, 0.2f, 0.25f, 1.0f };
 
@@ -89,22 +114,15 @@ void Game::Draw() {
 
 	context->OMSetRenderTargets(1, backBuffer_RT.GetAddressOf(), zbuffer.Get());
 
-	context->RSSetViewports(1, &viewport);
+	//context->RSSetViewports(1, &viewport);
+
+	RECT rc = { 0,0,0,0 };
+	GetClientRect(hWnd, &rc);
+
+	CD3D11_VIEWPORT viewport2(0.0f, 0.0f, static_cast<float>(mWindowWidth), static_cast<float>(mWidowHeight));
+	context->RSSetViewports(1, &viewport2);
 	//context->RSSetState(RS_default.Get());
 
-
-
-
-
-	camera->Draw();
-	shader->Draw();
-
-
-
-
-
-
-	swapChain->Present(1, 0);
 
 
 }

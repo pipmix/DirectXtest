@@ -4,12 +4,13 @@
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
+extern ComPtr<ID3D11Buffer>			constantBuffer;
 
 extern HWND hWnd;
 extern HINSTANCE hInst;
 
 
-extern XMMATRIX worldMatrix;
+extern XMMATRIX cameraScreenMatrix;;
 extern XMMATRIX cameraMatrix;
 extern XMMATRIX screenMatrix;
 
@@ -32,9 +33,13 @@ extern XMMATRIX screenMatrix;
 		long mWindowWidth;
 		long mWidowHeight;
 
-		ComPtr<ID3D11Buffer>			constantBuffer;
 
 
+		float fov;
+		float aspectRatio;
+
+		float nearClip;
+		float farClip;
 };
 
 

@@ -34,3 +34,20 @@ public:
 
 
 };
+
+class PixelShader {
+public:
+
+	PixelShader(std::wstring fn);
+	ComPtr<ID3D11PixelShader>	pixelShader;
+
+};
+
+class VertexShader {
+public:
+	VertexShader(std::wstring fn);
+
+	ComPtr<ID3D11VertexShader>	vertexShader;
+	ComPtr<ID3D11InputLayout>	inputLayout;
+
+};

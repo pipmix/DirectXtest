@@ -4,8 +4,8 @@
 
 struct ConstantBuffer
 {
+	XMMATRIX finalMatrix;
 	XMMATRIX world;
-	XMMATRIX camera;
 	XMMATRIX screen;
 };
 

@@ -12,21 +12,25 @@ Camera::Camera() {
 
 
 
-	worldMatrix = XMMatrixIdentity();
+	//worldMatrix = XMMatrixIdentity();
 
-	XMVECTOR Eye = XMVectorSet(0.0f, 1.0f, -5.0f, 0.0f);
-	XMVECTOR At = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+	XMVECTOR Pos = XMVectorSet(0.0f, 0.0f, -5.0f, 0.0f);
+	XMVECTOR At = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
 	XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
-	cameraMatrix = XMMatrixLookAtLH(Eye, At, Up);
-	screenMatrix = XMMatrixPerspectiveFovLH(XM_PIDIV2, mWindowWidth / (FLOAT)mWidowHeight, 0.01f, 100.0f);
+	cameraMatrix = XMMatrixLookAtLH(Pos, At, Up);
 
+	fov = XMConvertToRadians(45);
+	aspectRatio = static_cast<float>(rc.right) / static_cast<float>(rc.bottom);
+	nearClip = 0.1f;
+	farClip = 1000.0f;
+	//screenMatrix = XMMatrixPerspectiveFovLH(XM_PIDIV2, mWindowWidth / (FLOAT)mWidowHeight, 0.01f, 100.0f);
+	screenMatrix = XMMatrixPerspectiveFovLH(fov, 1.15f, nearClip, farClip);
 	
 
 	
+	cameraScreenMatrix = cameraMatrix * screenMatrix;
 
-	CD3D11_BUFFER_DESC constantBufferDesc(sizeof(ConstantBuffer), D3D11_BIND_CONSTANT_BUFFER);
-	device->CreateBuffer(&constantBufferDesc, nullptr, &constantBuffer);
 
 
 }
@@ -34,15 +38,20 @@ Camera::Camera() {
 
 void Camera::Update() {
 
+	//cameraScreenMatrix = cameraMatrix * screenMatrix;
 
 
+	/*
 	ConstantBuffer cb;
-	cb.world = XMMatrixTranspose(worldMatrix);
-	cb.camera = XMMatrixTranspose(cameraMatrix);
-	cb.screen = XMMatrixTranspose(screenMatrix);
+	cb.world =			XMMatrixTranslation(0.0f, 0.0f, 0.0f);//XMMatrixTranspose(worldMatrix);
+	cb.cameraScreen =	XMMatrixTranspose(cameraMatrix);
+	//cb.cameraScreen =	cameraMatrix * screenMatrix;
+	cb.screen =			XMMatrixTranspose(screenMatrix);
+
+	cb.world = worldMatrix * cameraMatrix * screenMatrix;
 
 	context->UpdateSubresource(constantBuffer.Get(), 0, nullptr, &cb, 0, 0);
-
+	*/
 
 }
 void Camera::Draw() {

@@ -1,3 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <FxCompile Include="VS_BasicMatrix.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="VS_Basic.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="PS_Basic.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Helpers.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="RectData.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTypes.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Descriptions.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Primative.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="RectData.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{152395b2-2bf4-4e00-8373-f58b67e535a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers">
+      <UniqueIdentifier>{80165ec0-a0c5-42d5-a5c6-92d9697137b0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
 </Project>

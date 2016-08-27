@@ -6,6 +6,8 @@ Shader::Shader(){
 	LPCWSTR filenameVS = L"C:/Shaders/VS_BasicMatrix.cso";
 	LPCWSTR filenamePS = L"C:/Shaders/PS_Basic.cso";
 	
+
+
 	UINT8*	vsData;
 	UINT	vsDataLength;
 
@@ -86,3 +88,31 @@ void Shader::Update() {
 }
 
 
+
+VertexShader::VertexShader(std::wstring fn){
+
+
+	std::wstring fileName = L"C:/Shaders/" + fn + L".cso";
+
+	UINT8*	vsData;
+	UINT	vsDataLength;
+
+	ReadDataFromFile(fileName.c_str(), &vsData, &vsDataLength);
+
+	device->CreateVertexShader(vsData, vsDataLength, nullptr, &vertexShader);
+	device->CreateInputLayout(VertexP_Layout, ARRAYSIZE(VertexP_Layout), vsData, vsDataLength, &inputLayout);
+
+};
+
+PixelShader::PixelShader(std::wstring fn) {
+
+	std::wstring fileName = L"C:/Shaders/" + fn + L".cso";
+
+	UINT8*	psData;
+	UINT	psDataLength;
+
+	ReadDataFromFile(fileName.c_str(), &psData, &psDataLength);
+
+	device->CreatePixelShader(psData, psDataLength, nullptr, &pixelShader);
+
+}

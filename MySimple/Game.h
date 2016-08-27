@@ -2,14 +2,20 @@
 #include "Headers.h"
 #include "Shader.h"
 #include "Camera.h"
-
+#include "RectData.h"
 
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
 
+extern ComPtr<ID3D11Buffer>			constantBuffer;
+
 extern HWND hWnd;
 extern HINSTANCE hInst;
+
+extern XMMATRIX cameraScreenMatrix;;
+extern XMMATRIX cameraMatrix;
+extern XMMATRIX screenMatrix;
 
 class Game {
 
@@ -19,6 +25,8 @@ public:
 
 	void Update();
 	void Draw();
+
+	void Clear();
 
 
 
@@ -40,6 +48,8 @@ private:
 
 	Shader* shader;
 	Camera* camera;
+	RectData* rd1;
+	RectData* rd2;
 
 	long mWindowWidth;
 	long mWidowHeight;
