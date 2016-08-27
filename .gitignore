@@ -1,0 +1,10 @@
+*.cso
+*.exe
+*.tlog
+*.idb
+*.obj
+*.pdb
+MySimple/x64/Debug/MySimple.log
+*.ilk
+MySimple.VC.db
+*.opendb
