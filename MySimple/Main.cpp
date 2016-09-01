@@ -6,6 +6,7 @@ ComPtr<ID3D11DeviceContext>		context = nullptr;
 ComPtr<ID3D11Buffer>			constantBuffer_finalMatrix = nullptr;
 Timer timer;
 
+Controller* cont0;
 
 
 HWND hWnd = nullptr;
