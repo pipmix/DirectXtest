@@ -166,6 +166,7 @@
     <ClCompile Include="RectData.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TileBatch.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +183,7 @@
     <ClInclude Include="RectData.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="TileBatch.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TitleMap.h" />
   </ItemGroup>

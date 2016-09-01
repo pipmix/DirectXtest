@@ -8,8 +8,8 @@ Camera::Camera() {
 	GetClientRect(hWnd, &rc);
 
 
-	Pos =	XMFLOAT3(4.0f, 0.0f, -5.0f);
-	At =	XMFLOAT3(4.0f, 0.0f, 0.0f);
+	Pos =	XMFLOAT3(0.0f, 0.0f, -15.0f);
+	At =	XMFLOAT3(0.0f, 0.0f, 0.0f);
 	Up =	XMFLOAT3(0.0f, 1.0f, 0.0f);
 
 	fov = XMConvertToRadians(45);

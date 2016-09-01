@@ -14,7 +14,7 @@ public:
 
 	Particle();
 	void SetResources();
-	void Draw();
+	void Draw(float x, float y, float z);
 	void Update();
 
 	XMFLOAT3 OriginPos;

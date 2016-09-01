@@ -6,6 +6,10 @@
 #include "Controller.h"
 #include "Texture.h"
 #include "Particle.h"
+#include "Timer.h"
+#include "Input.h"
+#include "Object.h"
+#include "TileBatch.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -20,6 +24,7 @@ class Game {
 
 public:
 		Game();
+		~Game();
 
 
 	void Update();
@@ -49,11 +54,15 @@ private:
 	Shader* shader;
 	Camera* camera;
 	RectData* rd1;
-	RectData* rd2;
-	RectData* rd3;
-	Particle* particle;
+	//RectData* rd2;
+	//RectData* rd3;
+	//Particle* particle;
+
+
+	Object* player;
 
 	Texture* tex;
+	TileBatch* tileBatch;
 
 	Controller* controller;
 

@@ -3,7 +3,7 @@
 #include "DataTypes.h"
 #include "Input.h"
 #include "Timer.h"
-
+#include "Particle.h"
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
 extern Timer timer;
@@ -22,6 +22,8 @@ public:
 	RectI sourceRect = { 0 };
 
 	bool hasGravity = 0;
+
+	Particle* p;
 
 
 

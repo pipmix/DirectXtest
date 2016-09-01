@@ -20,16 +20,17 @@ Shader::Shader(){
 	device->CreateVertexShader(vsData, vsDataLength, nullptr, &vertexShader);
 	device->CreatePixelShader(psData, psDataLength, nullptr, &pixelShader);
 
+	float l = 0.0f, t = 0.0f, r = 1.0f, b = -1.0f, zz = -0.001f;
 
 
 	VertexP verts[] ={
 
-		XMFLOAT3(-0.5f, 0.5f, 0.0f),
-		XMFLOAT3(0.5f, 0.5f, 0.0f),
+		XMFLOAT3(l,t,zz),
+		XMFLOAT3(r,t,zz),
 		
-		XMFLOAT3(0.5f, -0.5f, 0.0f),
-		XMFLOAT3(-0.5f, -0.5f, 0.0f),
-		XMFLOAT3(-0.5f, 0.5f, 0.0f)
+		XMFLOAT3(r,b,zz),
+		XMFLOAT3(l,b,zz),
+		XMFLOAT3(l,t,zz)
 
 
 	}; numElements = ARRAYSIZE(verts);
@@ -66,10 +67,20 @@ void Shader::Draw() {
 
 	
 	context->VSSetShader(vertexShader.Get(), 0, 0);
+	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
 	context->PSSetShader(pixelShader.Get(), 0, 0);
 
 	context->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
 	context->IASetInputLayout(inputLayout.Get());
+
+
+
+
+	XMMATRIX fMat = XMMatrixTranslation(0, 0, 0) * cameraScreenMatrix;
+	VS_C_BUFFER cb;
+	XMStoreFloat4x4(&cb.wvp, fMat);
+
+	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
 
 	
 

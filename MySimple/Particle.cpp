@@ -70,21 +70,21 @@ void Particle::Update() {
 
 
 
-	position.x += 0.002f;
+	//position.x += 0.002f;
 	//position.y += 0.002f;
-	XMMATRIX matRotate = XMMatrixRotationY(0.0f) * XMMatrixTranslation(position.x, position.y, position.z);
+	//XMMATRIX matRotate = XMMatrixRotationY(0.0f) * XMMatrixTranslation(position.x, position.y, position.z);
 
-	XMStoreFloat4x4(&world, matRotate);
+	//XMStoreFloat4x4(&world, matRotate);
 
 
 }
 
-void Particle::Draw() {
+void Particle::Draw(float x, float y, float z) {
 
 	SetResources();
 
-	
-	XMMATRIX fMat = XMLoadFloat4x4(&world) * cameraScreenMatrix;
+	XMMATRIX fMat = XMMatrixTranslation(x, y, z) * cameraScreenMatrix;
+	//XMMATRIX fMat = XMLoadFloat4x4(&world) * cameraScreenMatrix;
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);
 

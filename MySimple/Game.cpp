@@ -90,25 +90,42 @@ Game::Game() {
 
 	camera = new Camera();
 	shader = new Shader();
-	controller = new Controller();
-	rd1 = new RectData(1.0f, 0.0f, 2.0f, -1.0f);
-	rd2 = new RectData(0.0f, 0.0f, 1.0f, -1.0f);
-	rd3 = new RectData(2.0f, 0.0f, 3.0f, -1.0f);
-	tex = new Texture(L"Bricks2");
+	//controller = new Controller();
+	//rd1 = new RectData(0.0f, 0.0f, 4.0f, -4.0f);
+	//rd2 = new RectData(0.0f, 0.0f, 1.0f, -1.0f);
+	//rd3 = new RectData(2.0f, 0.0f, 3.0f, -1.0f);
+	//tex = new Texture(L"Bricks2");
 
-	particle = new Particle;
+	player = new Object;
+	tileBatch = new TileBatch;
+	tileBatch->LoadMap();
 
+}
+
+Game::~Game()
+{
+
+	//delete shader;
+	delete camera;
+	//delete rd1;
+	//delete rd2;
+	//delete  rd3;
+	delete player;
+
+	//delete tex;
+
+	//delete controller;
 }
 
 
 void Game::Update() {
 
-	controller->Update();
+	//controller->Update();
 	camera->Update();
-	rd1->Update();
-	rd2->Update();
-	rd3->Update();
-	particle->Update();
+	//rd1->Update();
+	//rd2->Update();
+	//rd3->Update();
+	player->Update();
 
 }
 void Game::Draw() {
@@ -121,16 +138,19 @@ void Game::Draw() {
 
 	
 	camera->Draw();
-	//shader->Draw();
+	
 
 
 
-	rd1->Draw();
-	rd2->Draw();
-	rd3->Draw();
+	//rd1->Draw();
+	//rd2->Draw();
+	//rd3->Draw();
 
-	particle->Draw();
+	tileBatch->Draw();
+	//player->Draw();
 
+	//rd1->Draw();
+	shader->Draw();
 
 
 	swapChain->Present(1, 0);
