@@ -62,7 +62,7 @@ Game::Game() {
 	// SAMPLER STATE
 	D3D11_SAMPLER_DESC samplerDesc;
 	ZeroMemory(&samplerDesc, sizeof(samplerDesc));
-	samplerDesc.Filter = D3D11_FILTER_MAXIMUM_MIN_MAG_MIP_POINT;
+	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 	samplerDesc.MaxAnisotropy = 0;
 	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
@@ -103,6 +103,10 @@ Game::Game() {
 	tileBatch = new TileBatch;
 	tileBatch->LoadMap();
 
+	timer.Init();
+
+	cont0 = new Controller;
+
 }
 
 Game::~Game()
@@ -123,6 +127,8 @@ Game::~Game()
 
 void Game::Update() {
 
+	timer.Update();
+	cont0->Update();
 	//controller->Update();
 	camera->Update();
 	//rd1->Update();
@@ -153,6 +159,7 @@ void Game::Draw() {
 	//player->Draw();
 
 	//rd1->Draw();
+	player->Draw();
 	shader->Draw();
 
 

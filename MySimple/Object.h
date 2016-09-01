@@ -4,10 +4,11 @@
 #include "Input.h"
 #include "Timer.h"
 #include "Particle.h"
+#include "Controller.h"
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
 extern Timer timer;
-extern Input input;
+extern Controller* cont0;
 
 class Object {
 
@@ -17,7 +18,8 @@ public:
 	void Update();
 	void Draw();
 
-	float x = 0.0f, y = 0.0f, dx = 0.0f, dy = 0.0f;
+	float x = 0, y = 0;
+	float  dx = 0.0f, dy = 0.0f;
 	RectF collision = { 0 };
 	RectI sourceRect = { 0 };
 

@@ -7,6 +7,9 @@ Timer::Timer() {
 	QueryPerformanceCounter((LARGE_INTEGER*)&m_startTime);
 }
 Timer::~Timer() {}
+void Timer::Init()
+{
+}
 void Timer::Update() {
 	INT64 currentTime;
 	float timeDifference;
