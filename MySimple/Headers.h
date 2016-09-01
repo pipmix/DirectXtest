@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <wrl.h>
 #include <string>
+#include <memory>
 
 #include <d3d11_1.h>
 #include <DirectXMath.h>
@@ -23,3 +24,4 @@ using Microsoft::WRL::ComPtr;
 
 
 const std::wstring gPath = L"C:/Box/Box Sync/Data/";
+const float GRAV = 0.2;

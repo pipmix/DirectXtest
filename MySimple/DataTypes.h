@@ -29,6 +29,21 @@ struct RectF {
 	};
 };
 
+struct RectI {
+	int l;
+	int t;
+	int r;
+	int b;
+
+	void SetPWH(int x, int y, int w, int h) {
+		l = x;
+		t = y;
+		r = l + w;
+		b = t - h;
+
+	};
+};
+
 struct VertexP {
 	XMFLOAT3 position;
 };

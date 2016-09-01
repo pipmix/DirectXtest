@@ -28,6 +28,9 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="DDSTextureLoader.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Input.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -62,6 +65,15 @@
     </ClInclude>
     <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="Particle.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
