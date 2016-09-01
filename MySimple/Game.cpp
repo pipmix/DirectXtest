@@ -62,16 +62,19 @@ Game::Game() {
 	// SAMPLER STATE
 	D3D11_SAMPLER_DESC samplerDesc;
 	ZeroMemory(&samplerDesc, sizeof(samplerDesc));
-	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	samplerDesc.Filter = D3D11_FILTER_MAXIMUM_MIN_MAG_MIP_POINT;
 	samplerDesc.MaxAnisotropy = 0;
-	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;;
-	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;;
-	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;;
+	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
+	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
 	samplerDesc.MinLOD = 0.0f;
 	samplerDesc.MaxLOD = 0.0f;
 	samplerDesc.MipLODBias = 0.0f;
 
 	device->CreateSamplerState(&samplerDesc, &samplerState);
+
+
+
 
 
 
@@ -135,7 +138,7 @@ void Game::Draw() {
 	Clear();
 
 	//context->PSSetSamplers(0, 1, samplerState.GetAddressOf());
-
+	context->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 	
 	camera->Draw();
 	
