@@ -60,12 +60,71 @@ void Controller::Update(){
 	}
 
 
+
+
+
+	float deadZone = 0.1f;
+	if ((state.Gamepad.sThumbLX < deadZone && state.Gamepad.sThumbLX > -deadZone) &&
+		(state.Gamepad.sThumbLY < deadZone && state.Gamepad.sThumbLY > -deadZone)){
+		b.leftX = 0;
+		b.leftY = 0;
+	}
+	else {
+		b.leftX = state.Gamepad.sThumbLY;
+		b.leftY = state.Gamepad.sThumbLY;
+	}
+
+
+	
+
+
+
+
+
 	if (b.a && prev_b.a) bs_A = held_;
 	else if (b.a && !prev_b.a) bs_A = down_;
 	else if (!b.a && prev_b.a) bs_A = released_;
 	else bs_A = up_;
 
-	//prev_b = b;
+	prev_b = b;
+
+
+
+
+
+
+	
+
+	float LX = state.Gamepad.sThumbLX;
+	float LY = state.Gamepad.sThumbLY;
+	float magnitude = sqrt(LX*LX + LY*LY);
+	float normalizedLX = LX / magnitude;
+	float normalizedLY = LY / magnitude;
+
+	float normalizedMagnitude = 0;
+
+	
+	if (magnitude > XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE){
+		
+		if (magnitude > 32767) magnitude = 32767;
+		magnitude -= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE;
+
+		normalizedMagnitude = magnitude / (32767 - XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE);
+		b.lStick = 1;
+	}
+	else {
+		magnitude = 0.0;
+		normalizedMagnitude = 0.0;
+		b.lStick = 0;
+	}
+
+	b.leftX = normalizedLX;
+	b.leftY = normalizedLY;
+
+
+
+
+
 
 		
 

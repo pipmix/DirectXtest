@@ -27,6 +27,10 @@ public:
 
 	Particle* p;
 
+	bool onGround = 0;
+	float timeSinceLastFrame;
 
 
+	float cMoveSpeedX = 0.2;
+	float cFallSpeedY = -0.0005;
 };

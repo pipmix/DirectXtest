@@ -8,6 +8,7 @@ extern bool LL;
 extern bool RR;
 extern bool UU;
 
+#define INPUT_DEADZONE  ( 0.24f * FLOAT(0x7FFF) );
 
 enum bState{
 	down_, up_, released_, held_

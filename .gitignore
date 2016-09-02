@@ -11,3 +11,6 @@ MySimple.VC.db
 *.TMP
 MySimple/DDSTextureLoader.h
 MySimple/DDSTextureLoader.cpp
+*.log
+x64/
+Report20160901-1824.vspx
