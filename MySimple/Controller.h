@@ -35,13 +35,16 @@ struct ControllerButtons {
 		float rightStickFloatX;
 		float rightStickFloatY;
 
-		bool leftStickPressed;
-		bool rightStickPressed;
 
-		float leftTrigger;
+		float leftTriggerFloat;
+		float rightTriggerFloat;
+		bool leftTrigger;
+		bool rightTrigger;
+
+
 		bool leftShoulder;
 
-		float rightTrigger;
+
 		bool rightShoulder;
 
 		bool select;

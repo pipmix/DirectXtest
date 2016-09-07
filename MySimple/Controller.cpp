@@ -40,38 +40,42 @@ void Controller::Update(){
 	if (state.Gamepad.wButtons & XINPUT_GAMEPAD_START)b.start = 1; else b.start = 0;
 
 
-	if (state.Gamepad.bLeftTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD) b.leftTrigger = state.Gamepad.bLeftTrigger / 255.0f;
-	else b.leftTrigger = 0.0f;
+	if (state.Gamepad.bLeftTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD) {
+		b.leftTriggerFloat = state.Gamepad.bLeftTrigger / 255.0f;
+		b.leftTrigger = 1;
+	}
+
+	if (state.Gamepad.bRightTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD) {
+		b.rightTriggerFloat = state.Gamepad.bRightTrigger / 255.0f;
+		b.rightTrigger = 1;
+	}
 
 
-	if (state.Gamepad.bRightTrigger > XINPUT_GAMEPAD_TRIGGER_THRESHOLD) b.leftTrigger = state.Gamepad.bLeftTrigger / 255.0f;
-	else b.leftTrigger = 0.0f;
-
-	short leftDead = 1000;
+	short leftDead = 5000;
 
 	// Left Stick
 		// Left X
-		if (abs(state.Gamepad.sThumbLX) >= 8000) {
+		if (abs(state.Gamepad.sThumbLX) >= leftDead) {
 			b.leftStickFloatX = (float)state.Gamepad.sThumbLX / (float)32767;
 			if (b.leftStickFloatX > 0)b.leftStickIntX = 1;
 			else b.leftStickIntX = -1;
 		}
 		// Left Y
-		if (abs(state.Gamepad.sThumbLY) >= XINPUT_GAMEPAD_LEFT_THUMB_DEADZONE) {
-			b.leftStickFloatY = state.Gamepad.sThumbLY / 32767;
+		if (abs(state.Gamepad.sThumbLY) >= leftDead) {
+			b.leftStickFloatY = (float)state.Gamepad.sThumbLY / (float)32767;
 			if (b.leftStickFloatY > 0)b.leftStickIntY= 1;
 			else b.leftStickIntY = -1;
 		}
 	// Right Stick
 		// Right X
-		if (abs(state.Gamepad.sThumbRX) >= XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE) {
-			b.rightStickFloatX = state.Gamepad.sThumbRX / 32767;
+		if (abs(state.Gamepad.sThumbRX) >= leftDead) {
+			b.rightStickFloatX = (float)state.Gamepad.sThumbRX / (float)32767;
 			if (b.rightStickFloatX > 0)b.rightStickIntX = 1;
 			else b.rightStickIntX = -1;
 		}
 		// Right Y
-		if (abs(state.Gamepad.sThumbRY) >= XINPUT_GAMEPAD_RIGHT_THUMB_DEADZONE) {
-			b.rightStickFloatY = state.Gamepad.sThumbRY / 32767;
+		if (abs(state.Gamepad.sThumbRY) >= leftDead) {
+			b.rightStickFloatY = (float)state.Gamepad.sThumbRY / (float)32767;
 			if (b.rightStickFloatY > 0)b.rightStickIntY = 1;
 			else b.rightStickIntY = -1;
 		}

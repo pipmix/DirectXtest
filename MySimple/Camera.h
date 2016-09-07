@@ -3,6 +3,7 @@
 
 #include "Headers.h"
 #include "DataTypes.h"
+#include "Controller.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -10,6 +11,8 @@ extern ComPtr<ID3D11DeviceContext>	context;
 
 extern HWND hWnd;
 extern HINSTANCE hInst;
+
+extern Controller* cont0;
 
 
 
@@ -27,6 +30,10 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 						Camera();
 		void			Update();
 		void			Draw();
+
+		void			MoveTo(float posX, float posY, float posZ);
+		void			MoveBy(float vecX, float vecY, float vecZ);
+
 
 		void			UpdateCameraMatrix();
 		void			UpdateScreenMatrix();

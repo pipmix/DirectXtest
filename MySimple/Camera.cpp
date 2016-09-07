@@ -9,8 +9,8 @@ Camera::Camera() {
 
 	_IsCamPerspective	= true;
 	_IsCamLookAt		= true;
-	_CamPosition		= XMFLOAT3(3.0f, -3.0f, -10.0f);
-	_CamLookAt			= XMFLOAT3(3.0f, -3.0f, 0.0f);
+	_CamPosition		= XMFLOAT3(0.0f, 0.0f, -10.0f);
+	_CamLookAt			= XMFLOAT3(0.0f, 0.0f, 0.0f);
 	_CamUpVector		= XMFLOAT3(0.0f, 1.0f, 0.0f);
 	_CamFOVangle		= XMConvertToRadians(45);
 	_CamAspectRatio		= static_cast<float>(rc.right) / static_cast<float>(rc.bottom);
@@ -64,9 +64,9 @@ const XMMATRIX Camera::GetScreenMatrix(){
 
 void Camera::Update() {
 
-	
 
-
+	float moveZ = (-cont0->b.leftTriggerFloat) + cont0->b.rightTriggerFloat;
+	MoveBy(cont0->b.rightStickFloatX, cont0->b.rightStickFloatY, moveZ);
 
 
 }
@@ -74,3 +74,23 @@ void Camera::Draw() {
 
 
 }
+
+void Camera::MoveTo(float posX, float posY, float posZ)
+{
+
+
+}
+
+void Camera::MoveBy(float vecX, float vecY, float vecZ)
+{
+
+	_CamPosition.x += vecX;
+	_CamPosition.y += vecY;
+	_CamPosition.z += vecZ;
+
+	_CamLookAt.x += vecX;
+	_CamLookAt.y += vecY;
+
+	UpdateAllMatrices();
+}
+
