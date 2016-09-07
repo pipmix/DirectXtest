@@ -32,6 +32,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="TileBatch.cpp" />
+    <ClCompile Include="Shape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h">
@@ -76,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>headers\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

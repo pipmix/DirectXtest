@@ -1,22 +1,24 @@
 #include "RectData.h"
 
-RectData::RectData(float l, float t, float r, float b) {
+RectData::RectData(float posX, float posY, float w, float h) {
 
 	vs = new VertexShader(L"VS_BasicMatrix", VT_P);
 	ps = new PixelShader(L"PS_Basic");
 
-	left =l;
-	top = t;
-	right = r;
-	bottom = b;
+	_data.l = posX;
+	_data.t = posY;
+	_data.r = posX + w;
+	_data.b = posY - h;
 
-	draw_X = 0.0f;
-	draw_Y = 0.0f;
+	//left =l;
+	//top = t;
+	//right = r;
+	//bottom = b;
+
+	_draw_X = posX;
+	_draw_Y = posY;
 
 	position = { 0.0f, 0.0f, 0.0f };
-
-	w = r-l;
-	h = t-b;
 
 	origin_X = w/2;
 	origin_Y = h/2;
@@ -26,22 +28,22 @@ RectData::RectData(float l, float t, float r, float b) {
 
 	VertexP verts[] = {
 
-		XMFLOAT3(l, t, zf),
-		XMFLOAT3(r, t, zf),
-		XMFLOAT3(l, b, zf),
+		XMFLOAT3(_data.l, _data.t, zf),
+		XMFLOAT3(_data.r, _data.t, zf),
+		XMFLOAT3(_data.l, _data.b, zf),
 
-		XMFLOAT3(r, t, zf),
-		XMFLOAT3(r, b, zf),
-		XMFLOAT3(l, b, zf),
+		XMFLOAT3(_data.r, _data.t, zf),
+		XMFLOAT3(_data.r, _data.b, zf),
+		XMFLOAT3(_data.l, _data.b, zf),
 
 
-		XMFLOAT3(l, t, zd),
-		XMFLOAT3(r, t, zd),
-		XMFLOAT3(l, b, zd),
+		XMFLOAT3(_data.l, _data.t, zd),
+		XMFLOAT3(_data.r, _data.t, zd),
+		XMFLOAT3(_data.l, _data.b, zd),
 
-		XMFLOAT3(r, t, zd),
-		XMFLOAT3(r, b, zd),
-		XMFLOAT3(l, b, zd),
+		XMFLOAT3(_data.r, _data.t, zd),
+		XMFLOAT3(_data.r, _data.b, zd),
+		XMFLOAT3(_data.l, _data.b, zd),
 
 
 	}; numElements = ARRAYSIZE(verts);
@@ -64,6 +66,22 @@ RectData::RectData(float l, float t, float r, float b) {
 
 }
 
+
+void RectData::SetDim(float left, float top, float right, float bottom)
+{
+}
+
+void RectData::SetPosition(float x, float y, float z)
+{
+}
+
+void RectData::SetWH()
+{
+}
+
+void RectData::SetRect(float x, float y, float w, float h)
+{
+}
 
 void RectData::Update() {
 

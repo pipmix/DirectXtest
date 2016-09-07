@@ -20,6 +20,18 @@ struct RectF {
 	float r;
 	float b;
 
+	RectF() {
+		l = t = r = b = 0.0f;
+	}
+
+	RectF(float left, float top, float right, float bottom) {
+		l = left;
+		t = top;
+		r = right;
+		b = bottom;
+
+	}
+
 	void SetPWH(float x, float y, float w, float h) {
 		l = x;
 		t = y;

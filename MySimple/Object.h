@@ -20,7 +20,7 @@ public:
 
 	float x = 0, y = 0;
 	float  dx = 0.0f, dy = 0.0f;
-	RectF collision = { 0 };
+	RectF collision;
 	RectI sourceRect = { 0 };
 
 	bool hasGravity = 0;

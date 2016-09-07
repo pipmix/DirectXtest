@@ -95,6 +95,8 @@ Game::Game() {
 
 	camera = new Camera();
 	shader = new Shader();
+
+
 	//controller = new Controller();
 	//rd1 = new RectData(0.0f, 0.0f, 4.0f, -4.0f);
 	//rd2 = new RectData(0.0f, 0.0f, 1.0f, -1.0f);
@@ -105,6 +107,9 @@ Game::Game() {
 	tileBatch = new TileBatch;
 	tileBatch->LoadMap();
 
+	rd1 = new RectData(0, 0, 4, 4);
+	shape01 = new ShapeRectangle(RectF{ 0.0f, 0.0f, 4.0f, -4.0f });
+	shape02 = new ShapeRectangle(RectF{ 1.0f, -1.0f, 4.0f, -8.0f });
 	timer.Init();
 
 	cont0 = new Controller;
@@ -115,12 +120,16 @@ Game::~Game()
 {
 
 	//delete shader;
-	delete camera;
+	
 	//delete rd1;
 	//delete rd2;
 	//delete  rd3;
 	delete player;
-
+	delete shape01;
+	delete shape02;
+	delete rd1;
+	delete camera;
+	delete cont0;
 	//delete tex;
 
 	//delete controller;
@@ -133,6 +142,9 @@ void Game::Update() {
 	cont0->Update();
 	//controller->Update();
 	camera->Update();
+	rd1->Update();
+	shape01->Update();
+	shape02->Update();
 	//rd1->Update();
 	//rd2->Update();
 	//rd3->Update();
@@ -162,8 +174,11 @@ void Game::Draw() {
 
 	//rd1->Draw();
 	player->Draw();
-	shader->Draw();
+	//shader->Draw();
 
+	rd1->Draw();
+	shape01->Draw();
+	shape02->Draw();
 
 	swapChain->Present(1, 0);
 

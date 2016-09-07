@@ -7,15 +7,7 @@ extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
 
 
-
-extern bool LL;
-extern bool RR;
-extern bool UU;
-
 extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
-//extern XMMATRIX cameraMatrix;
-//extern XMMATRIX screenMatrix;
-//extern XMMATRIX cameraScreenMatrix;
 extern Camera* camera;
 
 class RectData {
@@ -23,24 +15,32 @@ class RectData {
 public:
 
 
-	RectData(float l, float t, float r, float b);
+	RectData(float posX, float posY, float w, float h);
+
+	void SetDim(float left, float top, float right, float bottom);
+	//void SetDim(RectF floatRect);
+	void SetPosition(float x, float y, float z);
+	void SetWH();
+	void SetRect(float x, float y, float w, float h);
 
 
 	ComPtr<ID3D11Buffer>		vertexBuffer;
 
-	float left;
-	float top;
-	float right;
-	float bottom;
+	RectF _data;
 
-	float draw_X;
-	float draw_Y;
+	float _left;
+	float _top;
+	float _right;
+	float _bottom;
+
+	float _draw_X;
+	float _draw_Y;
 
 	float origin_X;
 	float origin_Y;
 
-	float w;
-	float h;
+	float _width;
+	float _height;
 
 	UINT numElements;
 	
