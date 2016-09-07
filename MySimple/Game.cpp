@@ -108,11 +108,14 @@ Game::Game() {
 	tileBatch->LoadMap();
 
 	rd1 = new RectData(0, 0, 4, 4);
-	shape01 = new ShapeRectangle(RectF{ 0.0f, 0.0f, 4.0f, -4.0f });
-	shape02 = new ShapeRectangle(RectF{ 1.0f, -1.0f, 4.0f, -8.0f });
+	//shape01 = new ShapeRectangle(RectF{ 0.0f, 0.0f, 4.0f, -4.0f });
+	//shape02 = new ShapeRectangle(RectF{ 1.0f, -1.0f, 4.0f, -8.0f });
 	timer.Init();
 
 	cont0 = new Controller;
+
+	map01 = new Map();
+	map01->LoadMap();
 
 }
 
@@ -129,7 +132,7 @@ Game::~Game()
 	delete shape02;
 	delete rd1;
 	delete camera;
-	delete cont0;
+	delete cont0, map01;
 	//delete tex;
 
 	//delete controller;
@@ -177,9 +180,9 @@ void Game::Draw() {
 	//shader->Draw();
 
 	rd1->Draw();
-	shape01->Draw();
-	shape02->Draw();
-
+	//shape01->Draw();
+	//shape02->Draw();
+	map01->Draw();
 	swapChain->Present(1, 0);
 
 

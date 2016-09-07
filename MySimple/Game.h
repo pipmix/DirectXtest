@@ -10,7 +10,7 @@
 #include "Input.h"
 #include "Object.h"
 #include "TileBatch.h"
-#include "Shape.h"
+#include "Map.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -66,6 +66,8 @@ private:
 
 	Shape* shape01;
 	Shape* shape02;
+
+	Map* map01;
 
 
 	Object* player;

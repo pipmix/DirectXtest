@@ -33,6 +33,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="TileBatch.cpp" />
     <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h">
@@ -56,9 +57,6 @@
     <ClInclude Include="Controller.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>headers</Filter>
-    </ClInclude>
     <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="Particle.h">
       <Filter>headers</Filter>
@@ -79,6 +77,12 @@
       <Filter>headers\system</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>headers\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

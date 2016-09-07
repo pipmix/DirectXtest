@@ -39,6 +39,7 @@ class ShapeRectangle : public Shape {
 public:
 
 			ShapeRectangle	(RectF rectF);
+			ShapeRectangle(int x, int y);
 
 
 private:
