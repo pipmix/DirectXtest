@@ -22,8 +22,16 @@ void Map::Update()
 
 void Map::LoadMap() {
 
-r1 = new ShapeRectangle(RectF{ 1.0f, 2, 6.0f, -6 });
-r2 = new ShapeRectangle(RectF{ 2, 1, 10, 7 });
-r3 = new ShapeRectangle(RectF{ 3, -1, 12, -10 });
+	r1 = new ShapeRectangle();
+	r2 = new ShapeRectangle();
+	r3 = new ShapeRectangle();
+
+	r1->SetDepth(-0.1f);
+	r2->SetDepth(-0.1f);
+	r3->SetDepth(-0.1f);
+
+	r1->Create(1.0f, 2.0f, 6.0f, -6);
+	r2->Create(2.0f, 3.0f, 6.0f, -6);
+	r3->Create(-1.0f, -2, 4.0f, -7);
 
 }

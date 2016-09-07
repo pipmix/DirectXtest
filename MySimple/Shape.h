@@ -29,7 +29,7 @@ protected:
 	ComPtr<ID3D11Buffer>		_vertexBuffer;
 	ComPtr<ID3D11InputLayout>	_inputLayout;
 	UINT						_numElements;
-
+	bool _Init = 0;
 
 
 };
@@ -37,13 +37,12 @@ protected:
 class ShapeRectangle : public Shape {
 
 public:
-
-			ShapeRectangle	(RectF rectF);
-			ShapeRectangle(int x, int y);
-
+			ShapeRectangle();
+			void Create(float left, float top, float right, float bottom);
+			void SetDepth(float z);
 
 private:
-
+			float _left, _top, _right, _bottom, _depth;
 
 
 };

@@ -10,8 +10,6 @@ extern Camera* camera;
 class TileBatch {
 
 
-
-
 public:
 	TileBatch();
 	void LoadMap();

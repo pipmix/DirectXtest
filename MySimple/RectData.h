@@ -17,6 +17,7 @@ public:
 
 	RectData(float posX, float posY, float w, float h);
 
+
 	void SetDim(float left, float top, float right, float bottom);
 	//void SetDim(RectF floatRect);
 	void SetPosition(float x, float y, float z);

@@ -1,15 +1,21 @@
 #include "Shape.h"
 
-ShapeRectangle::ShapeRectangle(RectF rectf)
-{
+ShapeRectangle::ShapeRectangle() :_depth(0.0f){
+
+}
+
+void ShapeRectangle::Create(float left, float top, float right, float bottom){
 
 
-
+	_left = left;
+	_top = top;
+	_right = right;
+	_bottom = bottom;
+	_Init = true;
+	
 
 	LPCWSTR filenameVS = L"C:/Shaders/VS_BasicMatrix.cso";
 	LPCWSTR filenamePS = L"C:/Shaders/PS_Basic.cso";
-
-
 
 	UINT8*	vsData;
 	UINT	vsDataLength;
@@ -23,17 +29,17 @@ ShapeRectangle::ShapeRectangle(RectF rectf)
 	device->CreateVertexShader(vsData, vsDataLength, nullptr, &_vertexShader);
 	device->CreatePixelShader(psData, psDataLength, nullptr, &_pixelShader);
 
-	float l = rectf.l, t = rectf.t, r = rectf.r, b = rectf.b, zz = -0.001f;
+
 
 
 	VertexP verts[] = {
 
-		XMFLOAT3(l,t,zz),
-		XMFLOAT3(r,t,zz),
+		XMFLOAT3(left,top,_depth),
+		XMFLOAT3(right,top,_depth),
 
-		XMFLOAT3(r,b,zz),
-		XMFLOAT3(l,b,zz),
-		XMFLOAT3(l,t,zz)
+		XMFLOAT3(right,bottom,_depth),
+		XMFLOAT3(left,bottom,_depth),
+		XMFLOAT3(left,top,_depth)
 
 
 	}; _numElements = ARRAYSIZE(verts);
@@ -59,6 +65,11 @@ ShapeRectangle::ShapeRectangle(RectF rectf)
 	device->CreateInputLayout(VertexP_Layout, ARRAYSIZE(VertexP_Layout), vsData, vsDataLength, &_inputLayout);
 
 
+}
+
+void ShapeRectangle::SetDepth(float z)
+{
+	_depth = z;
 }
 
 void Shape::Draw(){

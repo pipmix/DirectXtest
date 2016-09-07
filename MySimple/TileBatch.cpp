@@ -46,57 +46,6 @@ void TileBatch::LoadMap(){
 	int s = 0;
 	zz = 0.0f;
 
-	/*
-	//curCol = 0; curRow = 0;
-	for (int i = 0; i < arrSize; i++) {
-
-		s = i * 6;
-
-		//RectI rectI = GetRect(curCol, curRow);
-
-		int tLocX = (mapArr[i] % arrNoColumns) - 1; // 2
-		int tLocY = (mapArr[i] / arrNoColumns); //12
-
-		float sz = 1.0f;
-		l = curCol * sz;
-		t = (-curRow) * sz;
-		r = l + sz;
-		b = t - sz;
-		zz = 0;
-
-		uvL = tLocX * cPiece;
-		uvT = tLocY * rPiece;;
-		uvR = uvL + cPiece;
-		uvB = uvT + rPiece;
-
-
-
-		verts[s] = { XMFLOAT3(l, t, zz), XMFLOAT2(uvL, uvT) };
-		verts[s+1] = { XMFLOAT3(r, t, zz), XMFLOAT2(uvR, uvT) };
-		verts[s+2] = { XMFLOAT3(l, b, 0), XMFLOAT2(uvL, uvB) };
-
-		verts[s+3] = { XMFLOAT3(l, b , zz), XMFLOAT2(uvL, uvB) };
-		verts[s+4] = { XMFLOAT3(r, t, zz), XMFLOAT2(uvR, uvT) };
-		verts[s+5] = { XMFLOAT3(r, b, zz), XMFLOAT2(uvR, uvB) };
-
-		if (curCol < (arrNoColumns - 1)) curCol++;
-		else {
-			curCol = 0;
-			curRow++;
-		}
-
-		//sourceRect.left = (tLocX * texTileW);
-		//sourceRect.top = (tLocY * texTileH);
-		//sourceRect.right = sourceRect.left + texTileW;
-		//sourceRect.bottom = sourceRect.top + texTileH;
-
-
-
-	}
-
-	*/
-
-
 
 	RectF sR;
 	curCol = 0;
@@ -128,16 +77,11 @@ void TileBatch::LoadMap(){
 		verts[s + 5] = { XMFLOAT3(r, b, zz), XMFLOAT2(sR.r, sR.b) };
 		
 
-
-
-		//spriteBatch->Draw(texture->ReturnTexture(), Vector2((float)(curCol*texture->ReturnTextureTileSizeX() + orginX), (float)(curRow*texture->ReturnTextureTileSizeY() + orginY)), &sourceRect, Colors::White);
 		if (curCol < arrNoColumns - 1) curCol++;
 		else {
 			curCol = 0;
 			curRow++;
 		}
-
-
 
 	}
 
@@ -204,4 +148,8 @@ void TileBatch::Draw() {
 	context->Draw(numElements, 0);
 
 
+}
+
+void TileBatch::Update()
+{
 }
