@@ -4,6 +4,7 @@
 #include "Texture.h"
 
 
+extern Camera* camera;
 
 
 class TileBatch {

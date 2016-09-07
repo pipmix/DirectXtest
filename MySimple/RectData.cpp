@@ -92,7 +92,7 @@ void RectData::Draw() {
 	context->IASetInputLayout(vs->inputLayout.Get());
 
 
-	XMMATRIX fMat = XMLoadFloat4x4(&world) * cameraScreenMatrix;
+	XMMATRIX fMat = XMLoadFloat4x4(&world) * camera->GetCameraScreenMatrix();
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);
 	

@@ -1,6 +1,7 @@
 #pragma once
 #include "DataTypes.h"
 #include "Shader.h"
+#include "Camera.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -12,9 +13,10 @@ extern bool RR;
 extern bool UU;
 
 extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
-extern XMMATRIX cameraMatrix;
-extern XMMATRIX screenMatrix;
-extern XMMATRIX cameraScreenMatrix;
+//extern XMMATRIX cameraMatrix;
+//extern XMMATRIX screenMatrix;
+//extern XMMATRIX cameraScreenMatrix;
+extern Camera* camera;
 
 class RectData {
 

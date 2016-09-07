@@ -24,4 +24,4 @@ using Microsoft::WRL::ComPtr;
 
 
 const std::wstring gPath = L"C:/Box/Box Sync/Data/";
-const float GRAV = 0.2;
+const float GRAV = 0.2f;

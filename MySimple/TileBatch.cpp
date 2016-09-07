@@ -194,7 +194,7 @@ void TileBatch::Draw() {
 	y = 0;
 	x = 0;
 
-	XMMATRIX fMat = XMMatrixTranslation(x, y, z) * cameraScreenMatrix;
+	XMMATRIX fMat = XMMatrixTranslation(x, y, z) * camera->GetCameraScreenMatrix();
 	//XMMATRIX fMat = XMLoadFloat4x4(&world) * cameraScreenMatrix;
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);

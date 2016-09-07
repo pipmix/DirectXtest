@@ -185,7 +185,6 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileBatch.h" />
     <ClInclude Include="Timer.h" />
-    <ClInclude Include="TitleMap.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PS_Basic.hlsl">

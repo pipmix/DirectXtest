@@ -71,6 +71,8 @@ Game::Game() {
 	samplerDesc.MaxLOD = 0.0f;
 	samplerDesc.MipLODBias = 0.0f;
 
+	samplerDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+
 	device->CreateSamplerState(&samplerDesc, &samplerState);
 
 
@@ -181,3 +183,9 @@ void Game::Clear() {
 	//context->RSSetState(RS_default.Get());
 
 }
+
+void Game::Close()
+{
+
+}
+

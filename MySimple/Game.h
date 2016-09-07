@@ -20,6 +20,7 @@ extern Controller* cont0;
 
 extern HWND hWnd;
 extern HINSTANCE hInst;
+extern Camera* camera;
 
 
 class Game {
@@ -33,6 +34,8 @@ public:
 	void Draw();
 
 	void Clear();
+
+	void Close();
 
 
 
@@ -54,7 +57,6 @@ private:
 	D3D11_VIEWPORT viewport;
 
 	Shader* shader;
-	Camera* camera;
 	RectData* rd1;
 	//RectData* rd2;
 	//RectData* rd3;

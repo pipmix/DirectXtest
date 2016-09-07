@@ -76,7 +76,7 @@ void Shader::Draw() {
 
 
 
-	XMMATRIX fMat = XMMatrixTranslation(0, 0, 0) * cameraScreenMatrix;
+	XMMATRIX fMat = XMMatrixTranslation(0, 0, 0) * camera->GetCameraScreenMatrix();
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);
 

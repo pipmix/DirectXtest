@@ -31,6 +31,6 @@ public:
 	float timeSinceLastFrame;
 
 
-	float cMoveSpeedX = 0.2;
-	float cFallSpeedY = -0.0005;
+	float cMoveSpeedX = 0.2f;
+	float cFallSpeedY = -0.0005f;
 };

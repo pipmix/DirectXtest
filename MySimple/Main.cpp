@@ -12,9 +12,10 @@ Controller* cont0;
 HWND hWnd = nullptr;
 HINSTANCE hInst = nullptr;
 
-XMMATRIX cameraMatrix;
-XMMATRIX screenMatrix;
-XMMATRIX cameraScreenMatrix;
+Camera* camera;
+//XMMATRIX cameraMatrix;
+//XMMATRIX screenMatrix;
+//XMMATRIX cameraScreenMatrix;
 
 bool LL = 0;
 bool RR = 0;

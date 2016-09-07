@@ -3,7 +3,7 @@
 
 Particle::Particle() {
 
-	texture = new Texture(L"Bricks2");
+	texture = new Texture(L"box1");
 
 	vs = new VertexShader(L"VS_PUV", VT_PU);
 	ps = new PixelShader(L"PS_PUV");
@@ -83,7 +83,7 @@ void Particle::Draw(float x, float y, float z) {
 
 	SetResources();
 
-	XMMATRIX fMat = XMMatrixTranslation(x, y, z) * cameraScreenMatrix;
+	XMMATRIX fMat = XMMatrixTranslation(x, y, z) * camera->GetCameraScreenMatrix();
 	//XMMATRIX fMat = XMLoadFloat4x4(&world) * cameraScreenMatrix;
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);

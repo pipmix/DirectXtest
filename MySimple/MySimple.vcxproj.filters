@@ -34,9 +34,6 @@
     <ClCompile Include="TileBatch.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h">
-      <Filter>headers</Filter>
-    </ClInclude>
     <ClInclude Include="DataTypes.h">
       <Filter>headers</Filter>
     </ClInclude>
@@ -58,9 +55,6 @@
     <ClInclude Include="Controller.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="TitleMap.h">
-      <Filter>headers</Filter>
-    </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>headers</Filter>
     </ClInclude>
@@ -74,11 +68,14 @@
     <ClInclude Include="Input.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>headers</Filter>
-    </ClInclude>
     <ClInclude Include="TileBatch.h">
       <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>headers\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>headers\system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +84,9 @@
     </Filter>
     <Filter Include="headers">
       <UniqueIdentifier>{80165ec0-a0c5-42d5-a5c6-92d9697137b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers\system">
+      <UniqueIdentifier>{8e450389-24f8-4af9-ba48-7b0c47a5810d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
