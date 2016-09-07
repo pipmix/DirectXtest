@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Headers.h"
+#include "Helpers.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;

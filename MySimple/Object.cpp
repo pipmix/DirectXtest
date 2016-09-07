@@ -12,11 +12,21 @@ void Object::Update(){
 	//timeSinceLastFrame += timer.GetDelta();
 	//dx += cont0->LX;
 	//float t = 0.0f;
-	if (cont0->b.left)dx -= (cMoveSpeedX * time);
-	
-	if (cont0->b.right)dx += (cMoveSpeedX * time);
+	if (cont0->isConnected) {
 
-	if (cont0->b.lStick)dx += (cMoveSpeedX * time * cont0->b.leftX);
+
+		//if (cont0->b.left)dx *= (1 * cMoveSpeedX * time);
+		//if (cont0->b.right)dx *= (1.0f * cMoveSpeedX * time);
+		//if (cont0->b.leftStickIntX != 0)
+		//dx += (cMoveSpeedX * time * cont0->b.leftStickIntX);
+		dx += (cMoveSpeedX * time * cont0->b.leftStickFloatX);
+
+		if (cont0->b.x)dx *= cRunSpeed;
+
+	}
+
+
+
 	
 	dx *= 0.02;
 

@@ -64,6 +64,8 @@ const XMMATRIX Camera::GetScreenMatrix(){
 
 void Camera::Update() {
 
+	
+
 
 
 

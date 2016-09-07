@@ -25,8 +25,18 @@ struct ControllerButtons {
 		bool l3;
 		bool r3;
 
-		bool lStick;
-		bool rStick;
+		int leftStickIntX;
+		int leftStickIntY;
+		float leftStickFloatX;
+		float leftStickFloatY;
+
+		int rightStickIntX;
+		int rightStickIntY;
+		float rightStickFloatX;
+		float rightStickFloatY;
+
+		bool leftStickPressed;
+		bool rightStickPressed;
 
 		float leftTrigger;
 		bool leftShoulder;

@@ -33,4 +33,5 @@ public:
 
 	float cMoveSpeedX = 0.2f;
 	float cFallSpeedY = -0.0005f;
+	float cRunSpeed = 1.8f;
 };
