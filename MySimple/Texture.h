@@ -18,8 +18,11 @@ class Texture {
 public:
 
 	Texture(std::wstring fn);
+	void SetInfo(int columns, int rows, int width, int height);
 
 	ComPtr<ID3D11ShaderResourceView>	textureResource;
+	int _columns, _rows, _width, _height;
+	bool _IsTileMap;
 
 };
 

@@ -9,6 +9,9 @@ Timer timer;
 Controller* cont0;
 
 
+Data* dat ;
+
+
 HWND hWnd = nullptr;
 HINSTANCE hInst = nullptr;
 
@@ -81,5 +84,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		return DefWindowProc(hWnd, message, wParam, lParam);
 		break;
 	}
+	delete dat;
 	return 0;
 }

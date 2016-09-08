@@ -90,10 +90,17 @@ const D3D11_INPUT_ELEMENT_DESC layoutPNU[] = {
 	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 };
 
-#define TEX_ELEMENTS 3
-#define TEX_DIFFUSE 0
-#define TEX_SPECULAR 1
-#define TEX_NORMAL 2
+#define D_TEX_ELEMENTS 3
+#define D_TEX_DIFFUSE 0
+#define D_TEX_SPECULAR 1
+#define D_TEX_NORMAL 2
 
-#define TEX_BRICK 0
-#define TEX_TILE 1
+#define D_TEX_BRICK 0
+#define D_TEX_TILE 1
+
+#define D_VS_PUV 0
+#define D_VS_BASIC 1
+#define D_VS_BASICMATRIX 2
+
+#define D_PS_PUV 0
+#define D_PS_BASIC 1

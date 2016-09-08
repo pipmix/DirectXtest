@@ -49,13 +49,7 @@
     <ClInclude Include="Helpers.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>headers</Filter>
-    </ClInclude>
     <ClInclude Include="RectData.h">
-      <Filter>headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Controller.h">
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="DDSTextureLoader.h" />
@@ -88,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="Data.h">
       <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>headers\system</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>headers\system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,17 +1,15 @@
 #include "Object.h"
 
-Object::Object()
-{
+Object::Object(){
+
 	p = new Particle();
-	//y = -3;
+	canJump, dblJump, wallJump, wallslide = 1;
 }
 
 void Object::Update(){
 
 	float time = timer.GetDelta();
-	//timeSinceLastFrame += timer.GetDelta();
-	//dx += cont0->LX;
-	//float t = 0.0f;
+
 	if (cont0->isConnected) {
 
 
@@ -55,6 +53,12 @@ void Object::Update(){
 
 	x += dx;
 	y += dy;
+
+
+	float moveZ = (-cont0->b.leftTriggerFloat) + cont0->b.rightTriggerFloat;
+	camera->MoveBy(cont0->b.rightStickFloatX, cont0->b.rightStickFloatY, moveZ);
+
+
 }
 
 void Object::Draw()
@@ -66,6 +70,6 @@ void Object::Draw()
 	//p->Draw(3, -1, 0.0f);
 	//p->Draw(4, -2, 0.0f);
 
-	p->Draw(x-2, y, 0.0f);
+	//p->Draw(x-2, y, 0.0f);
 
 }

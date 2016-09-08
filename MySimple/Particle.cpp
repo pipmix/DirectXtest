@@ -16,6 +16,11 @@ Particle::Particle() {
 	dim.r = 1.0f;
 	dim.b = 0.0f;
 
+	collision.x = 0.0f;
+	collision.y = 1.0f;
+	collision.z = 1.0f;
+	collision.w = 0.0f;
+
 	float zd = 0.0f;
 
 	VertexPU verts[] = {

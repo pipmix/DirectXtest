@@ -65,9 +65,6 @@ const XMMATRIX Camera::GetScreenMatrix(){
 void Camera::Update() {
 
 
-	float moveZ = (-cont0->b.leftTriggerFloat) + cont0->b.rightTriggerFloat;
-	MoveBy(cont0->b.rightStickFloatX, cont0->b.rightStickFloatY, moveZ);
-
 
 }
 void Camera::Draw() {

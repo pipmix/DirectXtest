@@ -11,9 +11,11 @@
 #include "Object.h"
 #include "TileBatch.h"
 #include "Map.h"
+#include "Data.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
+extern Data* dat;
 
 extern Timer timer;
 extern Controller* cont0;
@@ -53,11 +55,11 @@ private:
 	ComPtr<ID3D11SamplerState>		samplerState;
 	ComPtr<ID3D11DepthStencilState> depthStencilState;
 
-
+	
 
 	D3D11_VIEWPORT viewport;
 
-	Shader* shader;
+
 	RectData* rd1;
 	//RectData* rd2;
 	//RectData* rd3;

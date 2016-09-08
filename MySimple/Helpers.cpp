@@ -14,15 +14,15 @@ void ReadDataFromFile(LPCWSTR filename, byte** data, UINT* size) {
 	extendedParams.hTemplateFile = nullptr;
 
 	Wrappers::FileHandle file(CreateFile2(filename, GENERIC_READ, FILE_SHARE_READ, OPEN_EXISTING, &extendedParams));
-	if (file.Get() == INVALID_HANDLE_VALUE) throw std::exception();
+	if (file.Get() == INVALID_HANDLE_VALUE) Error(L"Shader Load Error", filename);
 
 	FILE_STANDARD_INFO fileInfo = {};
-	if (!GetFileInformationByHandleEx(file.Get(), FileStandardInfo, &fileInfo, sizeof(fileInfo))) throw std::exception();
+	if (!GetFileInformationByHandleEx(file.Get(), FileStandardInfo, &fileInfo, sizeof(fileInfo))) Error(L"Shader Load Error", filename);
 
 	if (fileInfo.EndOfFile.HighPart != 0) throw std::exception();
 	*data = reinterpret_cast<byte*>(malloc(fileInfo.EndOfFile.LowPart));
 	*size = fileInfo.EndOfFile.LowPart;
-	if (!ReadFile(file.Get(), *data, fileInfo.EndOfFile.LowPart, nullptr, nullptr)) throw std::exception();
+	if (!ReadFile(file.Get(), *data, fileInfo.EndOfFile.LowPart, nullptr, nullptr)) Error(L"Shader Load Error", filename);
 
 
 

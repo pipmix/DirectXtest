@@ -30,8 +30,8 @@ void Map::LoadMap() {
 	r2->SetDepth(-0.1f);
 	r3->SetDepth(-0.1f);
 
-	r1->Create(1.0f, 2.0f, 6.0f, -6);
-	r2->Create(2.0f, 3.0f, 6.0f, -6);
-	r3->Create(-1.0f, -2, 4.0f, -7);
+	r1->Create(0.0f, -5.0f, 6.0f, -10);
+	r2->Create(6.0f, -3.0f, 9.0f, -10);
+	r3->Create(10.0f, -6.0, 14.0f, -10);
 
 }

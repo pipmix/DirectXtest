@@ -2,6 +2,7 @@
 #include "DataTypes.h"
 #include "Shader.h"
 #include "Texture.h"
+#include "Camera.h"
 
 
 extern Camera* camera;
@@ -13,6 +14,7 @@ class TileBatch {
 public:
 	TileBatch();
 	void LoadMap();
+	void Create(int* dataArray, int columns, int rows);
 
 	void SetResources();
 	void Draw();

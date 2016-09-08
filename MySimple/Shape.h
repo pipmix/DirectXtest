@@ -43,6 +43,7 @@ public:
 
 private:
 			float _left, _top, _right, _bottom, _depth;
+			XMFLOAT4 _collision;
 
 
 };
@@ -63,6 +64,14 @@ public:
 
 
 
+};
+
+class ShapePoint {
+public:
+	ShapePoint();
+	void Create(float x, float y, float z);
+private:
+	XMFLOAT3 _position;
 };
 
 

@@ -64,7 +64,7 @@ void ShapeRectangle::Create(float left, float top, float right, float bottom){
 
 	device->CreateInputLayout(VertexP_Layout, ARRAYSIZE(VertexP_Layout), vsData, vsDataLength, &_inputLayout);
 
-
+	_collision = { left, top, right, bottom };
 }
 
 void ShapeRectangle::SetDepth(float z)
@@ -104,5 +104,13 @@ ShapeCircle::ShapeCircle()
 }
 
 ShapeLine::ShapeLine()
+{
+}
+
+ShapePoint::ShapePoint()
+{
+}
+
+void ShapePoint::Create(float x, float y, float z)
 {
 }

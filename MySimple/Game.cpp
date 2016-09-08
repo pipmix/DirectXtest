@@ -94,22 +94,17 @@ Game::Game() {
 
 
 	camera = new Camera();
-	shader = new Shader();
 
 
-	//controller = new Controller();
-	//rd1 = new RectData(0.0f, 0.0f, 4.0f, -4.0f);
-	//rd2 = new RectData(0.0f, 0.0f, 1.0f, -1.0f);
-	//rd3 = new RectData(2.0f, 0.0f, 3.0f, -1.0f);
-	//tex = new Texture(L"Bricks2");
+	dat = new Data();
+	dat->LoadData();
 
 	player = new Object;
 	tileBatch = new TileBatch;
 	tileBatch->LoadMap();
 
 	rd1 = new RectData(0, 0, 4, 4);
-	//shape01 = new ShapeRectangle(RectF{ 0.0f, 0.0f, 4.0f, -4.0f });
-	//shape02 = new ShapeRectangle(RectF{ 1.0f, -1.0f, 4.0f, -8.0f });
+
 	timer.Init();
 
 	cont0 = new Controller;
@@ -132,7 +127,7 @@ Game::~Game()
 	delete shape02;
 	delete rd1;
 	delete camera;
-	delete cont0, map01;
+	delete cont0;
 	//delete tex;
 
 	//delete controller;
@@ -151,7 +146,10 @@ void Game::Update() {
 	//rd1->Update();
 	//rd2->Update();
 	//rd3->Update();
+
 	player->Update();
+	map01->Update();
+	dat->Update();
 
 }
 void Game::Draw() {
@@ -163,26 +161,15 @@ void Game::Draw() {
 	//context->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 	context->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 	
-	camera->Draw();
+
 	
 
 
 
-	//rd1->Draw();
-	//rd2->Draw();
-	//rd3->Draw();
-
-	tileBatch->Draw();
-	//player->Draw();
-
-	//rd1->Draw();
+	//tileBatch->Draw();
 	player->Draw();
-	//shader->Draw();
-
-	rd1->Draw();
-	//shape01->Draw();
-	//shape02->Draw();
 	map01->Draw();
+
 	swapChain->Present(1, 0);
 
 
