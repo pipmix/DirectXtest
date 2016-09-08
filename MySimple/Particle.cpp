@@ -68,6 +68,10 @@ void Particle::SetResources() {
 	context->IASetInputLayout(vs->inputLayout.Get());
 	context->PSSetShaderResources(0, 1, texture->textureResource.GetAddressOf());
 
+	PS_C_BUFFER aatemp = { XMFLOAT2{ 0.0f, 0.0f } };
+
+	//context->UpdateSubresource(cbScreen.Get(), 0, 0, &aatemp, 0, 0);
+
 
 
 }
@@ -76,11 +80,6 @@ void Particle::Update() {
 
 
 
-	//position.x += 0.002f;
-	//position.y += 0.002f;
-	//XMMATRIX matRotate = XMMatrixRotationY(0.0f) * XMMatrixTranslation(position.x, position.y, position.z);
-
-	//XMStoreFloat4x4(&world, matRotate);
 
 
 }

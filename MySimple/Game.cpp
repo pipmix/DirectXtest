@@ -80,8 +80,40 @@ Game::Game() {
 
 
 
-	CD3D11_BUFFER_DESC constantBufferDesc(sizeof(VS_C_BUFFER), D3D11_BIND_CONSTANT_BUFFER);
-	device->CreateBuffer(&constantBufferDesc, nullptr, &constantBuffer_finalMatrix);
+	//CD3D11_BUFFER_DESC constantBufferDesc(sizeof(VS_C_BUFFER), D3D11_BIND_CONSTANT_BUFFER);
+	//device->CreateBuffer(&constantBufferDesc, nullptr, &constantBuffer_finalMatrix);
+
+
+
+
+	D3D11_BUFFER_DESC bd1 = { 0 };
+
+	bd1.Usage = D3D11_USAGE_DEFAULT;
+	bd1.ByteWidth = sizeof(VS_C_BUFFER);
+	bd1.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+
+	device->CreateBuffer(&bd1, nullptr, &constantBuffer_finalMatrix);
+	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+
+
+
+
+
+
+	D3D11_BUFFER_DESC bd = { 0 };
+
+	bd.Usage = D3D11_USAGE_DEFAULT;
+	bd.ByteWidth = sizeof(PS_C_BUFFER);
+	bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+
+	device->CreateBuffer(&bd, nullptr, &cbScreen);
+	context->PSSetConstantBuffers(1, 1, cbScreen.GetAddressOf());
+
+
+
+
+
+	/////
 
 
 	D3D11_RASTERIZER_DESC rd;
@@ -137,6 +169,9 @@ Game::~Game()
 
 
 void Game::Update() {
+
+
+
 
 	timer.Update();
 	cont0->Update();

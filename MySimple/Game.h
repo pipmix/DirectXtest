@@ -55,6 +55,8 @@ private:
 	ComPtr<ID3D11SamplerState>		samplerState;
 	ComPtr<ID3D11DepthStencilState> depthStencilState;
 
+	ComPtr<ID3D11Buffer>			cbScreen;
+
 	
 
 	D3D11_VIEWPORT viewport;

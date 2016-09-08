@@ -14,6 +14,10 @@ struct VS_C_BUFFER
 
 };
 
+struct PS_C_BUFFER {
+	XMFLOAT2 scr;
+};
+
 struct RectF {
 	float l;
 	float t;

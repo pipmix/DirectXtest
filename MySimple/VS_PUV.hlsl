@@ -1,4 +1,4 @@
-cbuffer constantBufferFinalMatrix {//: register(vs,b0) {
+cbuffer constantBufferFinalMatrix :register(b0) {
 	matrix finalMatrix;
 };
 
