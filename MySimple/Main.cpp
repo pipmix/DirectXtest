@@ -16,13 +16,8 @@ HWND hWnd = nullptr;
 HINSTANCE hInst = nullptr;
 
 Camera* camera;
-//XMMATRIX cameraMatrix;
-//XMMATRIX screenMatrix;
-//XMMATRIX cameraScreenMatrix;
 
-bool LL = 0;
-bool RR = 0;
-bool UU = 0;
+
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -84,6 +79,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		return DefWindowProc(hWnd, message, wParam, lParam);
 		break;
 	}
-	delete dat;
+	
 	return 0;
 }

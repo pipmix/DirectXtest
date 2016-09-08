@@ -3,6 +3,7 @@
 #include "Shader.h"
 #include "Texture.h"
 #include "Camera.h"
+#include "Data.h"
 
 
 extern Camera* camera;

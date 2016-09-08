@@ -11,9 +11,9 @@ public:
 	void				LoadData		();
 	void				Update			();
 	void				Draw			();
-	const Texture*		GetTexture		(int n);
-	const PixelShader*	GetPixelShader	(int n);
-	const VertexShader*	GetVertexShader	(int n);
+	Texture*		GetTexture		(int n);
+	PixelShader*	GetPixelShader	(int n);
+	VertexShader*	GetVertexShader	(int n);
 
 	
 
@@ -25,6 +25,7 @@ private:
 	PixelShader**		_PShaders;
 	VertexShader**		_VShaders;
 	void LoadShaders();
+	void LoadTextures();
 
 	int _numTex, _numPS, _numVS;
 

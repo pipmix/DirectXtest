@@ -3,8 +3,10 @@
 #include "Shader.h"
 #include "Texture.h"
 #include "Camera.h"
+#include "Data.h"
 
 extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
+extern Data* dat;
 
 extern Camera* camera;
 

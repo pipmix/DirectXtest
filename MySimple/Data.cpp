@@ -19,7 +19,7 @@ Data::~Data(){
 }
 
 void Data::LoadData(){
-	_numTex = 0;
+	_numTex = 3;
 	_numPS = 2;
 	_numVS = 3;
 	_Textures = new Texture*[_numTex];
@@ -27,7 +27,7 @@ void Data::LoadData(){
 	_VShaders = new VertexShader*[_numVS];
 
 	LoadShaders();
-
+	LoadTextures();
 }
 
 void Data::Update()
@@ -39,15 +39,15 @@ void Data::Draw()
 {
 }
 
-const Texture* Data::GetTexture(int n){
+Texture* Data::GetTexture(int n){
 	return _Textures[n];
 }
 
-const PixelShader * Data::GetPixelShader(int n){
+PixelShader * Data::GetPixelShader(int n){
 	return _PShaders[n];
 }
 
-const VertexShader * Data::GetVertexShader(int n){
+VertexShader * Data::GetVertexShader(int n){
 	return _VShaders[n];
 }
 
@@ -61,4 +61,12 @@ void Data::LoadShaders(){
 	_PShaders[D_PS_PUV] = new PixelShader(L"PS_PUV");
 
 
+}
+
+void Data::LoadTextures()
+{
+	_Textures[D_TEX_BOX1] = new Texture(L"box1");
+	_Textures[D_TEX_SET] = new Texture(L"set");
+	_Textures[D_TEX_SET]->SetInfo(7,6,16,16);
+	
 }

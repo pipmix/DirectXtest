@@ -128,6 +128,8 @@ Game::~Game()
 	delete rd1;
 	delete camera;
 	delete cont0;
+	delete dat;
+	dat = nullptr;
 	//delete tex;
 
 	//delete controller;
