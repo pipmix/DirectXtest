@@ -4,6 +4,7 @@
 #include "DataTypes.h"
 #include "Helpers.h"
 #include "Camera.h"
+#include "Data.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -12,7 +13,7 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 extern Camera* camera;
 extern HWND hWnd;
 extern HINSTANCE hInst;
-
+extern Data* dat;
 
 class Shape {
 
@@ -24,10 +25,12 @@ public:
 
 
 protected:
-	ComPtr<ID3D11VertexShader>	_vertexShader;
-	ComPtr<ID3D11PixelShader>	_pixelShader;
+	//ComPtr<ID3D11VertexShader>	_vertexShader;
+	//ComPtr<ID3D11PixelShader>	_pixelShader;
 	ComPtr<ID3D11Buffer>		_vertexBuffer;
-	ComPtr<ID3D11InputLayout>	_inputLayout;
+	PixelShader* ps;
+	VertexShader* vs;
+	//ComPtr<ID3D11InputLayout>	_inputLayout;
 	UINT						_numElements;
 	bool _Init = 0;
 
@@ -40,6 +43,7 @@ public:
 			ShapeRectangle();
 			void Create(float left, float top, float right, float bottom);
 			void SetDepth(float z);
+			XMFLOAT4 GetCollision();
 
 private:
 			float _left, _top, _right, _bottom, _depth;
@@ -74,7 +78,15 @@ private:
 	XMFLOAT3 _position;
 };
 
+class LineShape3d : Shape {
 
+public:
+	LineShape3d();
+	void Create();
+	void Draw();
+
+
+};
 
 
 

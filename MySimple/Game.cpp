@@ -3,13 +3,17 @@
 
 Game::Game() {
 
+	CreateEngine();
+	CreateGame();
 
+}
+
+void Game::CreateEngine() {
 
 	RECT rc = { 0,0,0,0 };
 	GetClientRect(hWnd, &rc);
 	mWindowWidth = rc.right - rc.left;
 	mWidowHeight = rc.bottom - rc.top;
-
 
 	// Create Device and Swapchain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc = { 0 };
@@ -24,21 +28,20 @@ Game::Game() {
 	swapChainDesc.Windowed = TRUE;
 	D3D11CreateDeviceAndSwapChain(0, D3D_DRIVER_TYPE_HARDWARE, 0, 0, 0, 0, D3D11_SDK_VERSION, &swapChainDesc, swapChain.GetAddressOf(), device.GetAddressOf(), NULL, context.GetAddressOf());
 
-
+	// Create Backbuffer
 	ComPtr<ID3D11Texture2D> backBuffer;
 	swapChain->GetBuffer(0, IID_PPV_ARGS(backBuffer.GetAddressOf()));
 	device->CreateRenderTargetView(backBuffer.Get(), nullptr, backBuffer_RT.ReleaseAndGetAddressOf());
 
-
-	viewport.Width = mWindowWidth;
-	viewport.Height = mWidowHeight;
+	// Create Viewport
+	viewport.Width = (float)mWindowWidth;
+	viewport.Height = (float)mWidowHeight;
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 	viewport.TopLeftX = 0;
 	viewport.TopLeftY = 0;
 
-
-	//ZBUFFER
+	// Create Zbuffer
 	D3D11_TEXTURE2D_DESC zBufferDesc = { 0 };
 	zBufferDesc.Width = mWindowWidth;
 	zBufferDesc.Height = mWidowHeight;
@@ -51,15 +54,12 @@ Game::Game() {
 	ComPtr<ID3D11Texture2D> zbuffertexture;
 	device->CreateTexture2D(&zBufferDesc, nullptr, &zbuffertexture);
 
-
 	D3D11_DEPTH_STENCIL_VIEW_DESC dsvd;
 	ZeroMemory(&dsvd, sizeof(dsvd));
 	dsvd.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 	device->CreateDepthStencilView(zbuffertexture.Get(), &dsvd, zbuffer.GetAddressOf());
-	// End Zbuffer
 
-
-	// SAMPLER STATE
+	// Create Samplers
 	D3D11_SAMPLER_DESC samplerDesc;
 	ZeroMemory(&samplerDesc, sizeof(samplerDesc));
 	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
@@ -70,22 +70,14 @@ Game::Game() {
 	samplerDesc.MinLOD = 0.0f;
 	samplerDesc.MaxLOD = 0.0f;
 	samplerDesc.MipLODBias = 0.0f;
-
 	samplerDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
 
 	device->CreateSamplerState(&samplerDesc, &samplerState);
 
-
-
-
-
+	// Create Constant buffers
 
 	//CD3D11_BUFFER_DESC constantBufferDesc(sizeof(VS_C_BUFFER), D3D11_BIND_CONSTANT_BUFFER);
 	//device->CreateBuffer(&constantBufferDesc, nullptr, &constantBuffer_finalMatrix);
-
-
-
-
 	D3D11_BUFFER_DESC bd1 = { 0 };
 
 	bd1.Usage = D3D11_USAGE_DEFAULT;
@@ -94,11 +86,6 @@ Game::Game() {
 
 	device->CreateBuffer(&bd1, nullptr, &constantBuffer_finalMatrix);
 	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
-
-
-
-
-
 
 	D3D11_BUFFER_DESC bd = { 0 };
 
@@ -109,25 +96,30 @@ Game::Game() {
 	device->CreateBuffer(&bd, nullptr, &cbScreen);
 	context->PSSetConstantBuffers(1, 1, cbScreen.GetAddressOf());
 
-
-
-
-
-	/////
-
-
+	// Create Rasterizers
 	D3D11_RASTERIZER_DESC rd;
-	rd.FillMode = D3D11_FILL_WIREFRAME;
+	rd.FillMode = D3D11_FILL_SOLID;
 	rd.CullMode = D3D11_CULL_BACK;
 	rd.FrontCounterClockwise = FALSE;
 	rd.DepthClipEnable = TRUE;
-	rd.ScissorEnable = FALSE;
+	rd.ScissorEnable = TRUE;
 	device->CreateRasterizerState(&rd, &RS_default);
+
+	D3D11_RASTERIZER_DESC rd_w;
+	rd_w.FillMode = D3D11_FILL_WIREFRAME;
+	rd_w.CullMode = D3D11_CULL_BACK;
+	rd_w.FrontCounterClockwise = FALSE;
+	rd_w.DepthClipEnable = TRUE;
+	rd_w.ScissorEnable = TRUE;
+	device->CreateRasterizerState(&rd_w, &RS_wireframe);
+
+}
+
+void Game::CreateGame() {
 
 
 	camera = new Camera();
-
-
+	// Shared textures and shaders
 	dat = new Data();
 	dat->LoadData();
 
@@ -144,6 +136,10 @@ Game::Game() {
 	map01 = new Map();
 	map01->LoadMap();
 
+	player->map01 = map01;
+
+	ls3 = new LineShape3d;
+	ls3->Create();
 }
 
 Game::~Game()
@@ -158,9 +154,11 @@ Game::~Game()
 	delete shape01;
 	delete shape02;
 	delete rd1;
+	delete ls3;
 	delete camera;
 	delete cont0;
 	delete dat;
+	
 	dat = nullptr;
 	//delete tex;
 
@@ -195,18 +193,18 @@ void Game::Draw() {
 
 	Clear();
 
-	//context->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 	context->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 	
-
-	
+	context->RSSetState(RS_default.Get());
 
 
 
 	//tileBatch->Draw();
 	player->Draw();
 	map01->Draw();
+	context->RSSetState(RS_wireframe.Get());
 
+	ls3->Draw();
 	swapChain->Present(1, 0);
 
 
@@ -221,7 +219,7 @@ void Game::Clear() {
 	context->OMSetRenderTargets(1, backBuffer_RT.GetAddressOf(), zbuffer.Get());
 
 	context->RSSetViewports(1, &viewport);
-
+	context->RSSetState(RS_wireframe.Get());
 	//context->RSSetState(RS_default.Get());
 
 }

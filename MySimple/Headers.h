@@ -8,7 +8,7 @@
 #include <wrl.h>
 #include <string>
 #include <memory>
-
+#include <fstream>
 #include <d3d11_1.h>
 #include <DirectXMath.h>
 #include <d3dcompiler.h>

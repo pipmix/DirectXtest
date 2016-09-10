@@ -6,6 +6,7 @@
 #include "Particle.h"
 #include "Controller.h"
 #include "Data.h"
+#include "Map.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -20,9 +21,9 @@ public:
 	void Update();
 	void Draw();
 
-	float x = 0, y = 0;
+	float x = 0.0f, y = 0.0f;
 	float  dx = 0.0f, dy = 0.0f;
-	RectF collision;
+	
 	RectI sourceRect = { 0 };
 
 	bool hasGravity = 0;
@@ -34,12 +35,14 @@ public:
 
 
 	bool canJump, dblJump, wallJump, wallslide;
-	float _jumpSpd = -3.3;
-	float _wallJumpSpd = -2.7;
-	float h_wjump = 2.4;
-	float v_fjump = -2.7; // -2.65
+	float _jumpSpd = -3.3f;
+	float _wallJumpSpd = -2.7f;
+	float h_wjump = 2.4f;
+	float v_fjump = -2.7f; // -2.65
 
 	float cMoveSpeedX = 0.2f;
 	float cFallSpeedY = -0.0005f;
 	float cRunSpeed = 1.8f;
+
+	Map* map01;
 };

@@ -8,6 +8,8 @@ Object::Object(){
 
 void Object::Update(){
 
+	XMFLOAT4 tCol = p->collision;
+
 	float time = timer.GetDelta();
 
 	if (cont0->isConnected) {
@@ -50,6 +52,10 @@ void Object::Update(){
 	if (y < -5) onGround = 1;
 
 
+
+
+
+	
 
 	x += dx;
 	y += dy;

@@ -33,3 +33,24 @@ void Error(LPCWSTR header, LPCWSTR info)
 
 	MessageBox(NULL, info, header, NULL);
 }
+
+bool IntersectsFloat(XMFLOAT4 & rectA, XMFLOAT4 & rectB){
+
+	return (rectA.z > rectB.x && rectA.x < rectB.z &&
+		rectA.w > rectB.y && rectA.y < rectB.w);
+
+
+}
+
+bool AABBIntersect2D(XMFLOAT4& rectA, XMFLOAT3 & pos, XMFLOAT3 & vel, XMFLOAT4& rectB ){
+	//Intersect(p->collision, p->velocity, p->position);
+
+
+
+
+
+
+}
+
+
+

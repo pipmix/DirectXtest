@@ -89,6 +89,12 @@
     <ClInclude Include="Controller.h">
       <Filter>headers\system</Filter>
     </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Shaders">

@@ -32,6 +32,9 @@ public:
 		Game();
 		~Game();
 
+		void CreateEngine();
+		void CreateGame();
+
 
 	void Update();
 	void Draw();
@@ -66,7 +69,7 @@ private:
 	//RectData* rd2;
 	//RectData* rd3;
 	//Particle* particle;
-
+	LineShape3d* ls3;
 
 	Shape* shape01;
 	Shape* shape02;

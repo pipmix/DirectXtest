@@ -62,6 +62,13 @@ struct RectI {
 
 struct VertexP {
 	XMFLOAT3 position;
+	VertexP() {};
+	VertexP(XMFLOAT3 p) : position(p) {};
+	VertexP(float x, float y, float z) {
+		position.x = x;
+		position.y = y;
+		position.z = z;
+	};
 };
 
 
@@ -109,3 +116,54 @@ const D3D11_INPUT_ELEMENT_DESC layoutPNU[] = {
 
 #define D_PS_PUV 0
 #define D_PS_BASIC 1
+
+
+struct ItemData {
+
+	const char* itemName;
+	float value;
+	float weight;
+
+} static const ItemTypes[] = {
+
+	{	"Gold",		10.0f,		10.0f	},
+	{	"Silver",	5.0f,		10.0f	},
+	{	"Bronze",	1.0f,		10.0f },
+},
+WeaponTypes[] = {
+
+	{ "Sword",		100.0f,		21.0f },
+	{ "Axe",		50.0f,		10.0f },
+	{ "Gun",		12.0f,		10.0f },
+};
+
+
+class GameObj {
+
+public:
+
+	XMFLOAT3	GetPosition		()						const	{ return _position; }
+	XMFLOAT3	GetVelocity		()						const	{ return _velocity; }
+	XMFLOAT4	GetCollision	()						const	{ return _collision; }
+
+	void		SetPosition		(XMFLOAT3 newPosition)			{ _position = newPosition; }
+	void		SetVelocity		(XMFLOAT3 newVelocity)			{ _velocity = newVelocity; }
+	void		SetCollision	(XMFLOAT4 newCollision)			{ _collision = newCollision; }
+
+protected:
+
+	XMFLOAT3	_position;
+	XMFLOAT3	_velocity;
+	XMFLOAT4	_collision;
+
+
+};
+
+class Anim2d {
+public:
+	char* name;
+	int numFrames;
+	int* frames;
+
+
+};
