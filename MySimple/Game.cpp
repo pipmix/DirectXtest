@@ -97,13 +97,31 @@ void Game::CreateEngine() {
 	context->PSSetConstantBuffers(1, 1, cbScreen.GetAddressOf());
 
 	// Create Rasterizers
+
+	D3D11_RASTERIZER_DESC rsd;
+	rsd.FillMode = D3D11_FILL_SOLID;
+	rsd.CullMode = D3D11_CULL_BACK;
+	rsd.FrontCounterClockwise = false;
+	rsd.DepthBias = false;
+	rsd.DepthBiasClamp = 0;
+	rsd.SlopeScaledDepthBias = 0;
+	rsd.DepthClipEnable = true;
+	rsd.ScissorEnable = true;
+	rsd.MultisampleEnable = false;
+	rsd.AntialiasedLineEnable = false;
+
+	device->CreateRasterizerState(&rsd, &RS_default);
+
+	rsd.FillMode = D3D11_FILL_WIREFRAME;
+	device->CreateRasterizerState(&rsd, &RS_wireframe);
+
 	D3D11_RASTERIZER_DESC rd;
 	rd.FillMode = D3D11_FILL_SOLID;
 	rd.CullMode = D3D11_CULL_BACK;
 	rd.FrontCounterClockwise = FALSE;
 	rd.DepthClipEnable = TRUE;
 	rd.ScissorEnable = TRUE;
-	device->CreateRasterizerState(&rd, &RS_default);
+	//device->CreateRasterizerState(&rd, &RS_default);
 
 	D3D11_RASTERIZER_DESC rd_w;
 	rd_w.FillMode = D3D11_FILL_WIREFRAME;
@@ -111,7 +129,7 @@ void Game::CreateEngine() {
 	rd_w.FrontCounterClockwise = FALSE;
 	rd_w.DepthClipEnable = TRUE;
 	rd_w.ScissorEnable = TRUE;
-	device->CreateRasterizerState(&rd_w, &RS_wireframe);
+	//device->CreateRasterizerState(&rd_w, &RS_wireframe);
 
 }
 
@@ -140,6 +158,9 @@ void Game::CreateGame() {
 
 	ls3 = new LineShape3d;
 	ls3->Create();
+
+	ls3o = new LineShape3dOutline;
+	ls3o->Create();
 }
 
 Game::~Game()
@@ -154,7 +175,7 @@ Game::~Game()
 	delete shape01;
 	delete shape02;
 	delete rd1;
-	delete ls3;
+	delete ls3, ls3o;
 	delete camera;
 	delete cont0;
 	delete dat;
@@ -202,9 +223,9 @@ void Game::Draw() {
 	//tileBatch->Draw();
 	player->Draw();
 	map01->Draw();
-	context->RSSetState(RS_wireframe.Get());
+	//context->RSSetState(RS_wireframe.Get());
 
-	ls3->Draw();
+	ls3o->Draw();
 	swapChain->Present(1, 0);
 
 

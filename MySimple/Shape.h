@@ -85,6 +85,15 @@ public:
 	void Create();
 	void Draw();
 
+};
+
+class LineShape3dOutline : Shape {
+
+public:
+	LineShape3dOutline();
+	void Create();
+	void Draw();
+
 
 };
 

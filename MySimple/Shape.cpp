@@ -190,3 +190,96 @@ void LineShape3d::Draw() {
 
 
 }
+
+LineShape3dOutline::LineShape3dOutline()
+{
+}
+
+void LineShape3dOutline::Create()
+{
+
+	float s = 10.0f;
+
+	vs = dat->GetVertexShader(D_VS_BASICMATRIX);
+	ps = dat->GetPixelShader(D_PS_BASIC);
+
+
+	float offset = 5.0f;
+	float origin = 0.0f;
+
+
+	VertexP* verts;
+
+	XMFLOAT2 points[] = {
+		{ 0.0f,	0.0f },
+		{ 1.0f,	1.0f },
+		{ 2.0f,	1.0f },
+		{ 3.0f,	0.0f },
+		{ 2.0f,	0.0f },
+		{ 1.0f,	0.0f },
+	}; int numPoints = ARRAYSIZE(points);
+
+	verts = new VertexP[numPoints * 4 * 2];
+
+	XMFLOAT2 point1;
+	XMFLOAT2 point2;
+
+	for (int i = 0; i < numPoints; i++) {
+
+		point1 = points[i];
+		if (i == (numPoints - 1)) point2 = points[0];
+		else point2 = points[i + 1];
+
+
+		verts[i * 8 + 0] = VertexP{ point1.x * s , point1.y * s , origin * s };
+		verts[i * 8 + 1] = VertexP{ point2.x * s , point2.y * s , origin * s };
+
+		verts[i * 8 + 2] = VertexP{ point2.x * s , point2.y * s , origin * s };
+		verts[i * 8 + 3] = VertexP{ point2.x * s , point2.y * s , offset * s };
+
+		verts[i * 8 + 4] = VertexP{ point2.x * s , point2.y * s , offset * s };
+		verts[i * 8 + 5] = VertexP{ point1.x * s , point1.y * s , offset * s };
+
+		verts[i * 8 + 6] = VertexP{ point1.x * s , point1.y * s , offset * s };
+		verts[i * 8 + 7] = VertexP{ point1.x * s , point1.y * s , origin * s };
+
+
+	};
+
+	_numElements = numPoints * 4 * 2;
+
+
+
+	D3D11_BUFFER_DESC bd;
+	ZeroMemory(&bd, sizeof(bd));
+	bd.Usage = D3D11_USAGE_DEFAULT;
+	bd.ByteWidth = sizeof(VertexP) * _numElements;
+	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+
+	D3D11_SUBRESOURCE_DATA InitData;
+	ZeroMemory(&InitData, sizeof(InitData));
+	InitData.pSysMem = verts;
+	device->CreateBuffer(&bd, &InitData, &_vertexBuffer);
+}
+
+void LineShape3dOutline::Draw()
+{
+
+	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
+
+	UINT stride = sizeof(VertexP);
+	UINT offset = 0;
+
+	context->VSSetShader(vs->vertexShader.Get(), 0, 0);
+	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+	context->PSSetShader(ps->pixelShader.Get(), 0, 0);
+	context->IASetVertexBuffers(0, 1, _vertexBuffer.GetAddressOf(), &stride, &offset);
+	context->IASetInputLayout(vs->inputLayout.Get());
+
+	XMMATRIX fMat = XMMatrixTranslation(0, 0, 0) * camera->GetCameraScreenMatrix();
+	VS_C_BUFFER cb;
+	XMStoreFloat4x4(&cb.wvp, fMat);
+	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
+	context->Draw(_numElements, 0);
+
+}

@@ -70,7 +70,7 @@ private:
 	//RectData* rd3;
 	//Particle* particle;
 	LineShape3d* ls3;
-
+	LineShape3dOutline* ls3o;
 	Shape* shape01;
 	Shape* shape02;
 
