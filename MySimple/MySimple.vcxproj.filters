@@ -35,6 +35,8 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Data.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h">
@@ -93,6 +95,12 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

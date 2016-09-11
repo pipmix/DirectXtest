@@ -130,7 +130,8 @@ void Game::CreateEngine() {
 	rd_w.DepthClipEnable = TRUE;
 	rd_w.ScissorEnable = TRUE;
 	//device->CreateRasterizerState(&rd_w, &RS_wireframe);
-
+	
+	
 }
 
 void Game::CreateGame() {
@@ -161,6 +162,11 @@ void Game::CreateGame() {
 
 	ls3o = new LineShape3dOutline;
 	ls3o->Create();
+
+	item01.Create(5.0f, 5.0f, 0.0f, OT_coin);
+
+	spr01.SetSourceRect(2, D_TEX_SET);
+	spr01.Create(D_TEX_SET, D_VS_PUV, D_PS_PUV);
 }
 
 Game::~Game()
@@ -222,10 +228,12 @@ void Game::Draw() {
 
 	//tileBatch->Draw();
 	player->Draw();
+	spr01.Draw(5.0f, 5.0f, 0.0f);
 	map01->Draw();
 	//context->RSSetState(RS_wireframe.Get());
 
 	ls3o->Draw();
+	
 	swapChain->Present(1, 0);
 
 

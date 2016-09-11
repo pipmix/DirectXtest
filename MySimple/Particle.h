@@ -34,3 +34,4 @@ public:
 	VertexShader* vs;
 	Texture* texture;
 };
+

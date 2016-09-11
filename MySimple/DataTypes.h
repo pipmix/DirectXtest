@@ -8,6 +8,13 @@ struct Box {
 	float h;
 };
 
+struct SourceRect {
+	float left;
+	float top;
+	float right;
+	float bottom;
+};
+
 struct Point {
 	float x;
 	float y;
@@ -19,7 +26,9 @@ struct Line {
 	Point B;
 };
 
-
+enum ObjectType {
+	OT_chest, OT_coin, OT_sword
+};
 
 enum VertexType {
 

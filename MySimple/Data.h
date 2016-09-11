@@ -15,7 +15,10 @@ public:
 	PixelShader*	GetPixelShader	(int n);
 	VertexShader*	GetVertexShader	(int n);
 
-	
+	int _curTex = -1;
+	int _curPS = -1;
+	int _curVS = -1;
+	int _curTopo = -1;
 
 
 
@@ -28,6 +31,7 @@ private:
 	void LoadTextures();
 
 	int _numTex, _numPS, _numVS;
+
 
 
 

@@ -12,6 +12,8 @@
 #include "TileBatch.h"
 #include "Map.h"
 #include "Data.h"
+#include "Item.h"
+#include "Sprite.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -64,6 +66,7 @@ private:
 
 	D3D11_VIEWPORT viewport;
 
+	Sprite spr01;
 
 	RectData* rd1;
 	//RectData* rd2;
@@ -76,6 +79,7 @@ private:
 
 	Map* map01;
 
+	Item item01;
 
 	Object* player;
 

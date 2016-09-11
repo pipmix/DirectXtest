@@ -23,4 +23,25 @@ void Texture::SetInfo(int columns, int rows, int width, int height) {
 
 }
 
+Box Texture::GetSourceRectIndex(int index){
+
+	_nW = 1.0f / _columns;
+	_nH = 1.0f / _rows;
+	_nX = (index % _columns) * _nW;
+	_nY = (index / _columns) * _nH;
+
+	return Box{ _nX, _nY, _nW, _nH };
+}
+
+Box Texture::GetSourceRectIndex(int index_X, int index_Y) {
+
+	_nW = 1.0f / _columns;
+	_nH = 1.0f / _rows;
+	_nX = index_X * _nW;
+	_nY = index_Y * _nH;
+
+	return Box{ _nX, _nY, _nW, _nH };
+}
+
+
 
