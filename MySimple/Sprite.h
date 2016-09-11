@@ -33,12 +33,8 @@ public:
 	UINT numElements;
 
 	ComPtr<ID3D11Buffer>		vertexBuffer;
-
-	XMFLOAT4X4 world;
 	XMFLOAT3 _position;
 
-	//PixelShader* ps;
-	//VertexShader* vs;
-	//Texture* texture;
+
 };
 

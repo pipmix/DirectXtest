@@ -1,6 +1,4 @@
-cbuffer constantBufferFinalMatrix :register(b0) {
-	matrix finalMatrix;
-};
+#include "Header.hlsli"
 
 
 struct VS_IN {

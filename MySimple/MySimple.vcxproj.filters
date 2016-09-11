@@ -115,4 +115,9 @@
       <UniqueIdentifier>{8e450389-24f8-4af9-ba48-7b0c47a5810d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Header.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
 </Project>

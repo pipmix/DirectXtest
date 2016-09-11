@@ -1,13 +1,4 @@
-Texture2D Texture : register(t0);
-SamplerState ss : register(s0);
-
-cbuffer cBufferFramePS : register(b1) {
-	float2 spos;
-};
-
-
-
-
+#include "Header.hlsli"
 
 float4 main(float4 position : SV_POSITION, float2 texcoord : TEXCOORD) : SV_TARGET
 {
