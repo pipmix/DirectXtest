@@ -54,3 +54,23 @@ bool AABBIntersect2D(XMFLOAT4& rectA, XMFLOAT3 & pos, XMFLOAT3 & vel, XMFLOAT4& 
 
 
 
+bool Overlap(GameObj * obj1, GameObj * obj2) {
+
+
+	Box b1 = obj1->GetCollision();
+	Box b2 = obj2->GetCollision();
+
+	bool overlapX = InRange(b1.x, b2.x, b2.x + b2.w) ||
+		InRange(b2.x, b1.x, b1.x + b1.w);
+
+	bool overlapY = InRange(b1.y, b2.y, b2.y + b2.h) ||
+		InRange(b2.y, b1.y, b1.y + b1.h);
+
+	return (overlapX && overlapY);
+
+}
+
+
+bool InRange(float value, float min, float max) {
+	return (value >= min) && (value <= max);
+}

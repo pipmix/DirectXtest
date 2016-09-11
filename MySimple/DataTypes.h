@@ -1,6 +1,25 @@
 #pragma once
 #include "Headers.h"
 
+struct Box {
+	float x;
+	float y;
+	float w;
+	float h;
+};
+
+struct Point {
+	float x;
+	float y;
+	float z;
+};
+
+struct Line {
+	Point A;
+	Point B;
+};
+
+
 
 enum VertexType {
 
@@ -142,19 +161,19 @@ class GameObj {
 
 public:
 
-	XMFLOAT3	GetPosition		()						const	{ return _position; }
-	XMFLOAT3	GetVelocity		()						const	{ return _velocity; }
-	XMFLOAT4	GetCollision	()						const	{ return _collision; }
+	XMFLOAT3	GetPosition		()							{ return _position; }
+	XMFLOAT3	GetVelocity		()							{ return _velocity; }
+	Box			GetCollision	()							{ return _collision; }
 
 	void		SetPosition		(XMFLOAT3 newPosition)			{ _position = newPosition; }
 	void		SetVelocity		(XMFLOAT3 newVelocity)			{ _velocity = newVelocity; }
-	void		SetCollision	(XMFLOAT4 newCollision)			{ _collision = newCollision; }
+	void		SetCollision	(Box newCollision)				{ _collision = newCollision; }
 
 protected:
 
 	XMFLOAT3	_position;
 	XMFLOAT3	_velocity;
-	XMFLOAT4	_collision;
+	Box			_collision;
 
 
 };
@@ -167,3 +186,4 @@ public:
 
 
 };
+
