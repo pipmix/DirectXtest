@@ -4,6 +4,7 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Data.h"
+extern Data* dat;
 
 
 extern Camera* camera;
@@ -27,13 +28,19 @@ public:
 	int arrNoColumns= 0, arrNoRows = 0, arrSize = 0, tileW= 0, tileH = 0, curRow = 0, curCol = 0;
 	int numElements;
 
-	ComPtr<ID3D11Buffer>		vBuffer;
+	ComPtr<ID3D11Buffer>		m_vertexBuffer;
 
-	PixelShader* ps;
-	VertexShader* vs;
-	Texture* texture;
+	//PixelShader* ps;
+	//VertexShader* vs;
+	//Texture* texture;
 
 	float x = 0,	y = 0,	z = 0.0f ;
+
+	UINT	m_textureID;
+	UINT	m_vsID;
+	UINT	m_psID;
+	UINT	m_topoID;
+
 	
 
 

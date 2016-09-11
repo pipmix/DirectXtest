@@ -137,6 +137,7 @@ const D3D11_INPUT_ELEMENT_DESC layoutPNU[] = {
 #define D_TEX_BRICK 0
 #define D_TEX_BOX1 1
 #define D_TEX_SET 2
+#define D_TEX_ITEMS 3
 
 #define D_VS_PUV 0
 #define D_VS_BASIC 1

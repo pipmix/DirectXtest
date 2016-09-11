@@ -7,10 +7,11 @@ TileBatch::TileBatch() {
 }
 
 void TileBatch::LoadMap(){
+	m_textureID = D_TEX_SET;
+	m_vsID = D_VS_PUV;
+	m_psID = D_PS_PUV;
+	m_topoID = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
-	texture = new Texture(L"set");
-	vs = new VertexShader(L"VS_PUV", VT_PU);
-	ps = new PixelShader(L"PS_PUV");
 
 	int mapArr[] = {
 
@@ -103,25 +104,26 @@ void TileBatch::LoadMap(){
 	D3D11_SUBRESOURCE_DATA InitData;
 	ZeroMemory(&InitData, sizeof(InitData));
 	InitData.pSysMem = verts;
-	device->CreateBuffer(&bd, &InitData, &vBuffer);
+	device->CreateBuffer(&bd, &InitData, &m_vertexBuffer);
 
 
 
 }
 
 void TileBatch::Create(int * dataArray, int columns, int rows){
-
-	texture = new Texture(L"set");
-	vs = new VertexShader(L"VS_PUV", VT_PU);
-	ps = new PixelShader(L"PS_PUV");
+	/*
+	m_textureID = D_TEX_SET;
+	m_vsID = D_VS_PUV;
+	m_psID = D_PS_PUV;
 
 	//7 6
 
-	texNoCol = texture->_columns;
-	texNoRow = texture->_rows;
+	
+	texNoCol = dat->GetTexture(m_textureID)->_columns;
+	texNoRow = dat->GetTexture(m_textureID)->_rows;
 
-	float cPiece = 1.0f / (float)texture->_columns;
-	float rPiece = 1.0f / (float)texture->_rows;
+	float cPiece = 1.0f / (float)texNoCol;
+	float rPiece = 1.0f / (float)texNoRow;
 
 	arrNoColumns = columns;
 	arrNoRows = rows;
@@ -196,29 +198,40 @@ void TileBatch::Create(int * dataArray, int columns, int rows){
 	D3D11_SUBRESOURCE_DATA InitData;
 	ZeroMemory(&InitData, sizeof(InitData));
 	InitData.pSysMem = verts;
-	device->CreateBuffer(&bd, &InitData, &vBuffer);
+	device->CreateBuffer(&bd, &InitData, &m_vertexBuffer);
 
 
-
+	*/
 
 }
 
 void TileBatch::SetResources(){
-	context->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	
 
+
+
+	//if (dat->_curTex != m_textureID) {
+	context->PSSetShaderResources(0, 1, dat->GetTexture(m_textureID)->textureResource.GetAddressOf());
+	dat->_curTex = m_textureID;
+	//}
+	//if (dat->_curVS != m_vsID) {
+	context->VSSetShader(dat->GetVertexShader(m_vsID)->vertexShader.Get(), 0, 0);
+	context->IASetInputLayout(dat->GetVertexShader(m_vsID)->inputLayout.Get());
+	dat->_curVS = m_vsID;
+	//}
+	//if (dat->_curPS != m_psID) {
+	context->PSSetShader(dat->GetPixelShader(m_psID)->pixelShader.Get(), 0, 0);
+	dat->_curPS = m_psID;
+	//}
+	//if (dat->_curTopo != m_topoID) {
+	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	dat->_curTopo = m_topoID;
+	//}
 
 	UINT stride = sizeof(VertexPU);
 	UINT offset = 0;
-
-	context->VSSetShader(vs->vertexShader.Get(), 0, 0);
-	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
-	context->PSSetShader(ps->pixelShader.Get(), 0, 0);
-
-	context->IASetVertexBuffers(0, 1, vBuffer.GetAddressOf(), &stride, &offset);
-	context->IASetInputLayout(vs->inputLayout.Get());
-	context->PSSetShaderResources(0, 1, texture->textureResource.GetAddressOf());
-
-
+	//context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+	context->IASetVertexBuffers(0, 1, m_vertexBuffer.GetAddressOf(), &stride, &offset);
 
 }
 
@@ -226,8 +239,9 @@ void TileBatch::SetResources(){
 
 
 void TileBatch::Draw() {
-
+	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
 	SetResources();
+
 	x = 0;
 	y = 0;
 	x = 0;
@@ -238,6 +252,7 @@ void TileBatch::Draw() {
 	XMStoreFloat4x4(&cb.wvp, fMat);
 
 	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
+	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
 
 	context->Draw(numElements, 0);
 
