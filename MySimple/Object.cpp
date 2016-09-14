@@ -82,7 +82,7 @@ void Object::Draw()
 	DirectX::XMMatrixInverse(&v1, camera->GetCameraMatrix());
 	DirectX::XMMatrixInverse(&v2, camera->GetCameraMatrix());
 
-	xmvectorno
+
 	
 	p->Draw((float)input.m_md.m_screenX, (float)input.m_md.m_screenY, -0.02f);
 
