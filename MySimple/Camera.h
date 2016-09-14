@@ -39,6 +39,8 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 		const XMMATRIX	GetCameraMatrix();
 		const XMMATRIX	GetScreenMatrix();
 
+		XMFLOAT2		ConvertMouseCoord(XMFLOAT2 mc);
+
  private:
 		// Camera Matrices
 		XMFLOAT4X4		_CameraScreenMatrix;

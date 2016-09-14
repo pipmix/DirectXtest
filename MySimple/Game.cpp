@@ -11,15 +11,15 @@ Game::Game() {
 void Game::CreateEngine() {
 
 	RECT rc = { 0,0,0,0 };
-	GetClientRect(hWnd, &rc);
+	GetWindowRect(hWnd, &rc);
 	mWindowWidth = rc.right - rc.left;
-	mWidowHeight = rc.bottom - rc.top;
+	mWindowHeight = rc.bottom - rc.top;
 
 	// Create Device and Swapchain
 	DXGI_SWAP_CHAIN_DESC swapChainDesc = { 0 };
 	swapChainDesc.BufferCount = 1;
 	swapChainDesc.BufferDesc.Width = mWindowWidth;
-	swapChainDesc.BufferDesc.Height = mWidowHeight;
+	swapChainDesc.BufferDesc.Height = mWindowHeight;
 	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;;
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	swapChainDesc.OutputWindow = hWnd;
@@ -35,7 +35,7 @@ void Game::CreateEngine() {
 
 	// Create Viewport
 	viewport.Width = (float)mWindowWidth;
-	viewport.Height = (float)mWidowHeight;
+	viewport.Height = (float)mWindowHeight;
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 	viewport.TopLeftX = 0;
@@ -44,7 +44,7 @@ void Game::CreateEngine() {
 	// Create Zbuffer
 	D3D11_TEXTURE2D_DESC zBufferDesc = { 0 };
 	zBufferDesc.Width = mWindowWidth;
-	zBufferDesc.Height = mWidowHeight;
+	zBufferDesc.Height = mWindowHeight;
 	zBufferDesc.ArraySize = 1;
 	zBufferDesc.MipLevels = 1;
 	zBufferDesc.SampleDesc.Count = 1;
@@ -94,7 +94,7 @@ void Game::CreateEngine() {
 	bd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 
 	device->CreateBuffer(&bd, nullptr, &cbScreen);
-	context->PSSetConstantBuffers(1, 1, cbScreen.GetAddressOf());
+	context->VSSetConstantBuffers(1, 1, cbScreen.GetAddressOf());
 
 	// Create Rasterizers
 
@@ -115,26 +115,30 @@ void Game::CreateEngine() {
 	rsd.FillMode = D3D11_FILL_WIREFRAME;
 	device->CreateRasterizerState(&rsd, &RS_wireframe);
 
-	D3D11_RASTERIZER_DESC rd;
-	rd.FillMode = D3D11_FILL_SOLID;
-	rd.CullMode = D3D11_CULL_BACK;
-	rd.FrontCounterClockwise = FALSE;
-	rd.DepthClipEnable = TRUE;
-	rd.ScissorEnable = TRUE;
-	//device->CreateRasterizerState(&rd, &RS_default);
 
-	D3D11_RASTERIZER_DESC rd_w;
-	rd_w.FillMode = D3D11_FILL_WIREFRAME;
-	rd_w.CullMode = D3D11_CULL_BACK;
-	rd_w.FrontCounterClockwise = FALSE;
-	rd_w.DepthClipEnable = TRUE;
-	rd_w.ScissorEnable = TRUE;
-	//device->CreateRasterizerState(&rd_w, &RS_wireframe);
+	// Blend States
+	D3D11_BLEND_DESC bsd;
+	ZeroMemory(&bsd, sizeof(D3D11_BLEND_DESC));
+
+	bsd.RenderTarget[0].BlendEnable = FALSE;
+	bsd.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+	device->CreateBlendState(&bsd, &blendS_solid);
+
+	// Post Process 
+	D3D11_BUFFER_DESC ppbd = { 0 };
+	
+	ppbd.BindFlags = D3D11_BIND_UNORDERED_ACCESS | D3D11_BIND_SHADER_RESOURCE;
+	ppbd.StructureByteStride = sizeof(float);
+	ppbd.ByteWidth = ( 4 * (mWindowWidth * mWindowHeight) ) / (16 * 1024);
+	ppbd.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
+	
 	
 	
 }
 
 void Game::CreateGame() {
+
+
 
 
 	camera = new Camera();
@@ -150,7 +154,7 @@ void Game::CreateGame() {
 
 	timer.Init();
 
-	cont0 = new Controller;
+	//cont0 = new Controller;
 
 	map01 = new Map();
 	map01->LoadMap();
@@ -183,7 +187,7 @@ Game::~Game()
 	delete rd1;
 	delete ls3, ls3o;
 	delete camera;
-	delete cont0;
+	//delete cont0;
 	delete dat;
 	
 	dat = nullptr;
@@ -199,7 +203,7 @@ void Game::Update() {
 
 
 	timer.Update();
-	cont0->Update();
+	input.Update();
 	//controller->Update();
 	camera->Update();
 	rd1->Update();
@@ -227,7 +231,7 @@ void Game::Draw() {
 
 
 
-	tileBatch->Draw();
+	//tileBatch->Draw();
 
 	player->Draw();
 	
@@ -254,6 +258,12 @@ void Game::Clear() {
 	context->RSSetState(RS_wireframe.Get());
 	//context->RSSetState(RS_default.Get());
 
+	PS_C_BUFFER tbuf;
+	tbuf.scr.x = mWindowWidth;
+	tbuf.scr.y = mWindowHeight;
+
+	//context->UpdateSubresource(cbScreen.Get(), 0, 0, &tbuf, 0, 0);
+	//context->VSSetConstantBuffers(1, 1, cbScreen.GetAddressOf());
 }
 
 void Game::Close()

@@ -11,7 +11,7 @@
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
 extern Timer timer;
-extern Controller* cont0;
+extern Controller input;
 
 class Object {
 

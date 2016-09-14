@@ -20,7 +20,7 @@ extern ComPtr<ID3D11DeviceContext>	context;
 extern Data* dat;
 
 extern Timer timer;
-extern Controller* cont0;
+extern Controller input;
 
 
 extern HWND hWnd;
@@ -61,8 +61,10 @@ private:
 	ComPtr<ID3D11DepthStencilState> depthStencilState;
 
 	ComPtr<ID3D11Buffer>			cbScreen;
+	ComPtr<ID3D11BlendState>		blendS_transparent;
+	ComPtr<ID3D11BlendState>		blendS_solid;
 
-	
+	ComPtr<ID3D11Buffer>			m_postProcessBuffer;
 
 	D3D11_VIEWPORT viewport;
 
@@ -89,7 +91,7 @@ private:
 	Controller* controller;
 
 	long mWindowWidth;
-	long mWidowHeight;
+	long mWindowHeight;
 
 
 };

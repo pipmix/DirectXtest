@@ -4,8 +4,8 @@
 Camera::Camera() {
 
 
-	RECT rc = { 0,0,0,0 };
-	GetClientRect(hWnd, &rc);
+	RECT rc = { 0 };
+	GetWindowRect(hWnd, &rc);
 
 	_IsCamPerspective	= true;
 	_IsCamLookAt		= true;
@@ -13,7 +13,7 @@ Camera::Camera() {
 	_CamLookAt			= XMFLOAT3(0.0f, 0.0f, 0.0f);
 	_CamUpVector		= XMFLOAT3(0.0f, 1.0f, 0.0f);
 	_CamFOVangle		= XMConvertToRadians(45);
-	_CamAspectRatio		= static_cast<float>(rc.right) / static_cast<float>(rc.bottom);
+	_CamAspectRatio		= static_cast<float>(rc.right - rc.left) / static_cast<float>(rc.bottom - rc.top);
 	_CamNearClip		= 0.01f;
 	_CamFarClip			= 1000.0f;
 
@@ -58,6 +58,23 @@ const XMMATRIX Camera::GetCameraMatrix(){
 const XMMATRIX Camera::GetScreenMatrix(){
 
 	return XMLoadFloat4x4(&_ScreenMatrix);
+
+}
+
+XMFLOAT2 Camera::ConvertMouseCoord(XMFLOAT2 mc){
+
+	RECT rc = { 0 };
+	GetWindowRect(hWnd, &rc);
+	float w2 = static_cast<float>(rc.right - rc.left) / 2;
+	float h2 = static_cast<float>(rc.bottom - rc.top);
+		
+
+	return XMFLOAT2{
+	tanf(_CamFOVangle*0.5f)*(mc.x / w2 - 1.0f) / _CamAspectRatio,
+	tanf(_CamFOVangle*0.5f)*(1.0f - mc.y / h2)
+
+	};
+
 
 }
 

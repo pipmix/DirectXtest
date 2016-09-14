@@ -11,6 +11,27 @@ enum bState{
 	down_, up_, released_, held_
 };
 
+struct MouseData {
+
+	float m_screenX;
+	float m_screenY;
+	int m_windowX;
+	int m_windowY;
+
+	int m_prevScreenX;
+	int m_prevScreenY;
+	int m_prevWindowX;
+	int m_prevWindowY;
+
+	bool m_buttonLeftPressed;
+	bool m_buttonMiddlePressed;
+	bool m_buttonRightPressed;
+
+	bool m_prevButtonLeftPressed;
+	bool m_prevButtonMiddlePressed;
+	bool m_prevButtonRightPressed;
+
+};
 
 struct ControllerButtons {
 
@@ -86,4 +107,9 @@ public:
 
 	float LX = 0.0f;
 	float LY = 0.0f;
+
+	// Mouse Stuff
+	MouseData m_md;
+
 };
+

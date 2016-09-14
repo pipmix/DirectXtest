@@ -6,7 +6,7 @@ ComPtr<ID3D11DeviceContext>		context = nullptr;
 ComPtr<ID3D11Buffer>			constantBuffer_finalMatrix = nullptr;
 Timer timer;
 
-Controller* cont0;
+Controller input;
 
 
 Data* dat ;
@@ -72,6 +72,26 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 
 	switch (message) {
+
+	case WM_MOUSEMOVE: {
+
+
+
+		long mx = LOWORD(lParam);
+		long my = HIWORD(lParam);
+
+
+		RECT re;
+		GetWindowRect(hWnd, &re);
+
+		input.m_md.m_screenX = (mx / ((re.right - re.left)*0.5f) - 1.0f) / ((re.right - re.left) / (re.bottom - re.top));
+		input.m_md.m_screenY = 1.0f - my / ((re.bottom - re.top) * 0.5f);
+
+
+	}
+
+
+		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
