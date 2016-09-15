@@ -37,4 +37,7 @@ public:
 
 	bool m_onGround = 0;
 
+	int colDir;
+	//0 - none, 1 - left, 2 - top, 4 - right, 8 - bottom
+
 };

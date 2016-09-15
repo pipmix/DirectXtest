@@ -15,6 +15,7 @@ public:
 	bool isAlive = 0;
 	bool isVisible = 0;
 
+	float lifeTime;
 
 
 	XMFLOAT3 pos;

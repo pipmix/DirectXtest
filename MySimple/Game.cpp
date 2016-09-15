@@ -223,7 +223,7 @@ void Game::Update() {
 	rArr[5] = { -15.0f, 14.0, -1.0f, -3 };
 
 
-
+	if (input.b.a)we.Reset();
 	
 	we.Update();
 
