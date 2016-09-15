@@ -29,6 +29,8 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 		void			MoveTo(float posX, float posY, float posZ);
 		void			MoveBy(float vecX, float vecY, float vecZ);
 
+		void			SetTarget(float tx, float ty, float tz);
+		void			MoveTowardsTarget();
 
 		void			UpdateCameraMatrix();
 		void			UpdateScreenMatrix();
@@ -57,6 +59,9 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 		float			_CamFarClip;
 		bool			_IsCamPerspective;
 		bool			_IsCamLookAt;
+
+		XMFLOAT3		_target;
+
 
  };
 

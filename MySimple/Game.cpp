@@ -206,6 +206,9 @@ Game::~Game()
 
 void Game::Update() {
 
+	camera->SetTarget(spr01.m_pos.x, spr01.m_pos.y, spr01.m_pos.z);
+	camera->MoveTowardsTarget();
+
 	int aS = 6;
 	Rect* rArr;
 	rArr = new Rect[aS];

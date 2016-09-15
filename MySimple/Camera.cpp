@@ -108,3 +108,40 @@ void Camera::MoveBy(float vecX, float vecY, float vecZ)
 	UpdateAllMatrices();
 }
 
+void Camera::SetTarget(float tx, float ty, float tz) {
+
+	_target = { tx, ty, tz };
+}
+void Camera::MoveTowardsTarget() {
+
+	float catchUpX;
+	float catchUpY;
+	float distanceX = roundf(abs(_CamPosition.x - _target.x));
+	float distanceY = roundf(abs(_CamPosition.y - _target.y));
+
+	if (distanceX >= 32)	catchUpX = 6.0f;
+	else if (distanceX >= 16)	catchUpX = 6.0f;
+	else if (distanceX >= 8)	catchUpX = 3.0f;
+	else if (distanceX >= 4)	catchUpX = 1.7f;
+	else if (distanceX >= 2)	catchUpX = 0.8f;
+	else						catchUpX = 0.0f;
+
+	if (distanceY >= 32)		catchUpY = 6.0f;
+	else if (distanceY >= 16)	catchUpY = 6.0f;
+	else if (distanceY >= 8)	catchUpY = 3.0f;
+	else if (distanceY >= 4)	catchUpY = 1.7f;
+	else if (distanceY >= 2)	catchUpY = 0.8f;
+	else						catchUpY = 0.0f;
+
+
+
+	if (_CamPosition.x < _target.x)_CamPosition.x += catchUpX;
+	else if (_CamPosition.x > _target.x)_CamPosition.x -= catchUpX;
+	if (_CamPosition.y < _target.y)_CamPosition.y += catchUpY;
+	else if (_CamPosition.y > _target.y)_CamPosition.y -= catchUpY;
+
+
+
+
+}
+
