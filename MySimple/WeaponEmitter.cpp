@@ -37,6 +37,7 @@ void WeaponEmitter::Draw() {
 	if (numDead == numPart) return;
 	for (int i = 0; i < numPart; i++) {
 		if (p[i].isAlive == 0)continue;
+		spr.SetResources();
 		spr.QuickDraw(p[i].pos);
 
 	}

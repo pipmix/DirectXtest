@@ -127,7 +127,7 @@ void Sprite::Draw(){
 
 void Sprite::QuickDraw(XMFLOAT3 p) {
 
-	SetResources();
+	
 
 	XMMATRIX fMat = XMMatrixTranslation(p.x, p.y, p.z) * camera->GetCameraScreenMatrix();
 

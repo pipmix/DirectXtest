@@ -18,6 +18,17 @@ const float cMoveSpeedX = 0.2f;
 const float cFallSpeedY = -0.0005f;
 const float cRunSpeed = 1.8f;
 
+struct PlayerVariables{
+	bool onGround;
+	bool cLeft;
+	bool cRight;
+	bool cTop;
+	bool cBottom;
+	bool canJump;
+	bool onWall;
+
+};
+
 
 class Player : public Sprite { 
 
@@ -34,10 +45,12 @@ public:
 	Rect m_collision = { 0.0f, 0.0f, 1.0f, -1.0f };
 	XMFLOAT3 m_vel = { 0.0f, 0.0f, 0.0f };
 
+	PlayerVariables pv;
 
-	bool m_onGround = 0;
-
-	int colDir;
-	//0 - none, 1 - left, 2 - top, 4 - right, 8 - bottom
+	bool jumpReset = 0;
+	bool wallJumpReset = 0;
+	bool wallTouchReset = 0;
+	bool canDoubleJump = 0;
+	bool jumping = 0;
 
 };

@@ -2,10 +2,23 @@
 
 
 
+void Player::Init()
+{
+	pv = { 0 };
+}
+
 void Player::Update(){
 
 
+
+
 	float time = timer.GetDelta();
+
+	if (pv.cBottom)pv.onGround = 1;
+	if (pv.cLeft || pv.cRight)pv.onWall = 1;
+	else wallTouchReset = 1;
+
+	if (pv.onGround)canDoubleJump = false;
 
 	if (input.isConnected) {
 
@@ -16,21 +29,52 @@ void Player::Update(){
 	}
 
 	if (input.b.a) {
+		if (pv.onGround && jumpReset ) {
+			m_vel.y = 0.22;
+			pv.onGround = false;
+			jumpReset = 0;
+			canDoubleJump = true;
+			jumping = true;
+		}
 
-		m_vel.y = 0.15;
-		//onGround = false;
 
+		if (pv.cLeft) {
+			if (!pv.onGround && wallJumpReset && wallTouchReset) {
+				m_vel.x = cMoveSpeedX * time ;
+				m_vel.y = 0.22f;
+				wallTouchReset = 0;
+			}
+
+		}
+		if (pv.cRight) {
+			if (!pv.onGround && wallJumpReset && wallTouchReset) {
+				m_vel.x = -(cMoveSpeedX * time);
+				m_vel.y = 0.22f;
+				wallTouchReset = 0;
+			}
+
+		}
+
+
+
+		
+	}
+	else {
+		jumpReset = 1;
+		wallJumpReset = 1;
 	}
 
 
 
 
 	m_vel.y += (cFallSpeedY*time);
+	if (pv.cLeft || pv.cRight)m_vel.y *= 0.75f;
 
 	//if (m_vel.y > (cFallSpeedY*time*40))m_vel.y = (cFallSpeedY*time);
 
 	// SlowDown
 	m_vel.x *= 0.02;
+
 
 	if (input.b.y) {
 
@@ -43,6 +87,8 @@ void Player::Update(){
 	m_pos.x += m_vel.x;
 	m_pos.y += m_vel.y;
 	UpdateCollision();
+
+	pv = { 0 };
 	
 
 }

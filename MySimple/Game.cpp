@@ -223,7 +223,7 @@ void Game::Update() {
 	rArr[5] = { -15.0f, 14.0, -1.0f, -3 };
 
 
-	if (input.b.a)we.Reset();
+	if (input.b.b)we.Reset();
 	
 	we.Update();
 
@@ -277,6 +277,7 @@ void Game::Update() {
 
 			if (abs(velocity.x) < abs(velocity.y)) {
 				velocity.y = 0.0f;
+
 				// wall jump
 				//spr01.m_vel.y = 0.0f;
 				//spr01.m_vel.x = 0.0f;
@@ -289,6 +290,17 @@ void Game::Update() {
 			}
 
 			//if (velocity.y > 0.0f )spr01.m_vel.y = 0.0f;
+			// means collision along x
+			if (velocity.x > 0.0f) {
+				spr01.pv.cLeft = 1;
+				spr01.m_vel.x = 0.0f;
+			}
+			else if (velocity.x < 0.0f) {
+				spr01.pv.cRight = 1;
+				spr01.m_vel.x = 0.0f;
+			}
+			if (velocity.y < 0.0f)spr01.pv.cTop = 1;
+			else if (velocity.y > 0.0f)spr01.pv.cBottom = 1;
 
 			spr01.MovePos(velocity.x, velocity.y, 0.0f);
 			spr01.UpdateCollision();
