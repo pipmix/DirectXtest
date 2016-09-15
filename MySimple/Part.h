@@ -8,9 +8,10 @@ class Part {
 
 public:
 			Part();
-	void	Update();
+	void	Update(float t);
 	void	SetSpeed(float spd);
 	void	SetAngle(float ang);
+	void	SetAcc(XMFLOAT3 acceleration);
 
 	bool isAlive = 0;
 	bool isVisible = 0;

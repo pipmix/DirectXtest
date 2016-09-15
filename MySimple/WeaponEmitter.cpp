@@ -20,10 +20,12 @@ void WeaponEmitter::Initialize(){
 void WeaponEmitter::Update() {
 
 	if (numDead == numPart)return;
-	t += timer.GetDelta();
+
+	float tmp = timer.GetDelta();
+	t += tmp;
 	for (int i = 0; i < 50; i++) {
 		if (p[i].isAlive) {
-			p[i].Update();
+			p[i].Update(tmp);
 			if (t > p[i].lifeTime) {
 				p[i].isAlive = 0;
 				numDead++;

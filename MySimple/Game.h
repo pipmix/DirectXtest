@@ -16,6 +16,8 @@
 #include "Sprite.h"
 #include "Player.h"
 #include "WeaponEmitter.h"
+#include "Gun.h"
+
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -80,6 +82,8 @@ private:
 	LineShape3dOutline* ls3o;
 	Shape* shape01;
 	Shape* shape02;
+
+	Gun gun;
 
 	Map* map01;
 

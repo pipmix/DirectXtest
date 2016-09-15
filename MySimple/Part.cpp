@@ -9,11 +9,11 @@ Part::Part() : pos(0.0f, 0.0f, 0.0f), vel(0.0f, 0.0f, 0.0f), acc(0.0f, -0.06f, 0
 
 
 
-void Part::Update()
+void Part::Update(float t)
 {
 
-	pos.x += vel.x * 0.1f;
-	pos.y += vel.y * 0.1f;
+	pos.x += vel.x * 0.01f * t;
+	pos.y += vel.y * 0.01f * t;
 
 	vel.x += acc.x;
 	vel.y += acc.y;
@@ -33,3 +33,7 @@ void Part::SetAngle(float ang) {
 
 }
 
+void Part::SetAcc(XMFLOAT3 acceleration) {
+	acc = acceleration;
+
+}

@@ -40,6 +40,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="WeaponEmitter.cpp" />
     <ClCompile Include="Part.cpp" />
+    <ClCompile Include="Gun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h">
@@ -113,6 +114,9 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Part.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

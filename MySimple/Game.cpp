@@ -180,6 +180,8 @@ void Game::CreateGame() {
 
 	we.Initialize();
 
+	gun.Init();
+
 }
 
 Game::~Game()
@@ -226,6 +228,7 @@ void Game::Update() {
 	if (input.b.b)we.Reset();
 	
 	we.Update();
+
 
 	timer.Update();
 	input.Update();
@@ -313,6 +316,10 @@ void Game::Update() {
 		}
 	}
 
+	gun.SetPos(spr01.m_pos);
+	gun.Update();
+
+	if (input.b.x)gun.Fire();
 	
 
 
@@ -334,6 +341,7 @@ void Game::Draw() {
 	map01->Draw();
 	
 	ls3o->Draw();
+	gun.Draw();
 	
 	swapChain->Present(1, 0);
 
