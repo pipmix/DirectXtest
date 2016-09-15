@@ -62,6 +62,8 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 
 		XMFLOAT3		_target;
 
+		long m_screenX, m_screenY;
+
 
  };
 

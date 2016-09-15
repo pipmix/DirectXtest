@@ -43,7 +43,7 @@ void Gun::Update(){
 
 	for (int i = 0; i < numBullets; i++) {
 		if (p[i].isAlive) {
-			if (totalTime > p[i].lifeTime)
+			//if (totalTime > p[i].lifeTime)
 			p[i].Update(tmp);
 		}
 	}

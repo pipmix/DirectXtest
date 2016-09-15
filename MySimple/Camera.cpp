@@ -7,6 +7,9 @@ Camera::Camera() {
 	RECT rc = { 0 };
 	GetWindowRect(hWnd, &rc);
 
+	m_screenX = rc.right - rc.left;
+	m_screenY = rc.bottom - rc.top;
+
 	_IsCamPerspective	= true;
 	_IsCamLookAt		= true;
 	_CamPosition		= XMFLOAT3(0.0f, 0.0f, -10.0f);
@@ -29,7 +32,7 @@ void Camera::UpdateCameraMatrix() {
 void Camera::UpdateScreenMatrix() {
 	
 	if (_IsCamPerspective) XMStoreFloat4x4(&_ScreenMatrix, XMMatrixPerspectiveFovLH(_CamFOVangle, _CamAspectRatio, _CamNearClip, _CamFarClip));
-	else XMStoreFloat4x4(&_ScreenMatrix, XMMatrixOrthographicLH(20, 10, _CamNearClip, _CamFarClip));
+	else XMStoreFloat4x4(&_ScreenMatrix, XMMatrixOrthographicLH(m_screenX, m_screenY, _CamNearClip, _CamFarClip));
 
 }
 
@@ -120,14 +123,14 @@ void Camera::MoveTowardsTarget() {
 	float distanceY = roundf(abs(_CamPosition.y - _target.y));
 
 
-	if (distanceX > 1.0f)catchUpX = 0.1f;
-	else if (distanceX > 0.5f)catchUpX = 0.01f;
-	else if (distanceX > 0.1f)catchUpX = 0.005f;
+	if (distanceX > 1.0f)catchUpX = 0.5f;
+	else if (distanceX > 0.5f)catchUpX = 0.1f;
+	else if (distanceX > 0.1f)catchUpX = 0.05f;
 	else catchUpX = 0.0f;
 
-	if (distanceY > 1.0f)catchUpY = 0.1f;
-	else if (distanceY > 0.5f)catchUpY = 0.01f;
-	else if (distanceY > 0.1f)catchUpY = 0.005f;
+	if (distanceY > 1.0f)catchUpY = 0.5f;
+	else if (distanceY > 0.5f)catchUpY = 0.1f;
+	else if (distanceY > 0.1f)catchUpY = 0.05f;
 	else catchUpY = 0.0f;
 
 
