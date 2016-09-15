@@ -1,13 +1,28 @@
 #include "Texture.h"
 
+Texture::Texture() {
 
-Texture::Texture(std::wstring fn){
+
+}
+
+void Texture::Load(std::wstring fn){
+
+
 
 
 	std::wstring s = gPath + L"Images/" + fn + L".dds";
 
-	HRESULT hr = CreateDDSTextureFromFile(device.Get(), s.c_str(), NULL, &textureResource, NULL);
+	HRESULT hr = CreateDDSTextureFromFile(device.Get(), s.c_str(), texRes.GetAddressOf(), &textureResource, DDS_ALPHA_MODE_PREMULTIPLIED);
 	if (hr) Error(L"Texture Load Error", s.c_str());
+
+	ComPtr<ID3D11Texture2D> tex2d;
+	texRes.As(&tex2d);
+
+	D3D11_TEXTURE2D_DESC td;
+	tex2d->GetDesc(&td);
+	pixelW = td.Width;
+	pixelH = td.Height;
+
 
 
 }
@@ -45,3 +60,15 @@ Box Texture::GetSourceRectIndex(int index_X, int index_Y) {
 
 
 
+void Texture::LoadAsync(std::wstring fn){
+	/*
+	//return type static task<void> 
+	return DX::ReadFileAsync(path)then([texture](const Array<byte>^ textureData)
+	{
+		ID3D11ShaderResourceView* srv = nullptr;
+		auto device = DX::GDevice.d3dDevice.Get();
+		CreateDDSTextureFromMemory(device, textureData->Data, textureData->Length, nullptr, &srv);
+		texture->Load(srv);
+	});
+	*/
+}

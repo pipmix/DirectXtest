@@ -158,7 +158,9 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="DDSTextureLoader.cpp" />
+    <ClCompile Include="Dx.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gme.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -185,7 +187,9 @@
     <ClInclude Include="Data.h" />
     <ClInclude Include="DataTypes.h" />
     <ClInclude Include="DDSTextureLoader.h" />
+    <ClInclude Include="Dx.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gme.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="Helpers.h" />

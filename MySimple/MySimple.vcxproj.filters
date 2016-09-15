@@ -41,6 +41,8 @@
     <ClCompile Include="WeaponEmitter.cpp" />
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="Dx.cpp" />
+    <ClCompile Include="Gme.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h">
@@ -117,6 +119,12 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Gun.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Dx.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Gme.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

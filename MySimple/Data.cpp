@@ -65,12 +65,18 @@ void Data::LoadShaders(){
 
 void Data::LoadTextures()
 {
-	_Textures[D_TEX_BOX1] = new Texture(L"box1");
-	_Textures[D_TEX_SET] = new Texture(L"set");
+	_Textures[D_TEX_BOX1] = new Texture();
+	_Textures[D_TEX_BOX1]->Load(L"box1");
+
+
+	_Textures[D_TEX_SET] = new Texture();
+	_Textures[D_TEX_SET]->Load(L"set");
 	_Textures[D_TEX_SET]->SetInfo(7,6,16,16);
 
 
-	_Textures[D_TEX_ITEMS] = new Texture(L"items_8c8r_16x16t");
+	_Textures[D_TEX_ITEMS] = new Texture();
+	_Textures[D_TEX_ITEMS]->Load(L"items_8c8r_16x16t");
+
 	_Textures[D_TEX_ITEMS]->SetInfo(8, 8, 16, 16);
 	
 	
