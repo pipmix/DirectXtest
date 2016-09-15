@@ -15,6 +15,7 @@
 #include "Item.h"
 #include "Sprite.h"
 #include "Player.h"
+#include "WeaponEmitter.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -90,6 +91,8 @@ private:
 	TileBatch* tileBatch;
 
 	Controller* controller;
+
+	WeaponEmitter we;
 
 	long mWindowWidth;
 	long mWindowHeight;

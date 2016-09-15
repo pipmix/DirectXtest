@@ -23,6 +23,7 @@ public:
 	void	SetResources		();
 
 	void	Draw				();
+	void	QuickDraw			(XMFLOAT3 pos);
 	void	SetPos				(float x, float y, float z);
 	void	MovePos				(float x, float y, float z);
 

@@ -123,7 +123,20 @@ void Sprite::Draw(){
 
 	context->Draw(numElements, 0);
 
-	r1->Draw();
+}
+
+void Sprite::QuickDraw(XMFLOAT3 p) {
+
+	SetResources();
+
+	XMMATRIX fMat = XMMatrixTranslation(p.x, p.y, p.z) * camera->GetCameraScreenMatrix();
+
+	VS_C_BUFFER cb;
+	XMStoreFloat4x4(&cb.wvp, fMat);
+	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
+
+	context->Draw(numElements, 0);
+
 }
 
 void Sprite::SetSourceRect(int i) {

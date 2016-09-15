@@ -119,26 +119,41 @@ void Camera::MoveTowardsTarget() {
 	float distanceX = roundf(abs(_CamPosition.x - _target.x));
 	float distanceY = roundf(abs(_CamPosition.y - _target.y));
 
-	if (distanceX >= 32)	catchUpX = 6.0f;
-	else if (distanceX >= 16)	catchUpX = 6.0f;
-	else if (distanceX >= 8)	catchUpX = 3.0f;
-	else if (distanceX >= 4)	catchUpX = 1.7f;
-	else if (distanceX >= 2)	catchUpX = 0.8f;
-	else						catchUpX = 0.0f;
 
-	if (distanceY >= 32)		catchUpY = 6.0f;
-	else if (distanceY >= 16)	catchUpY = 6.0f;
-	else if (distanceY >= 8)	catchUpY = 3.0f;
-	else if (distanceY >= 4)	catchUpY = 1.7f;
-	else if (distanceY >= 2)	catchUpY = 0.8f;
-	else						catchUpY = 0.0f;
+	if (distanceX > 1.0f)catchUpX = 0.1f;
+	else if (distanceX > 0.5f)catchUpX = 0.01f;
+	else if (distanceX > 0.1f)catchUpX = 0.005f;
+	else catchUpX = 0.0f;
+
+	if (distanceY > 1.0f)catchUpY = 0.1f;
+	else if (distanceY > 0.5f)catchUpY = 0.01f;
+	else if (distanceY > 0.1f)catchUpY = 0.005f;
+	else catchUpY = 0.0f;
 
 
 
-	if (_CamPosition.x < _target.x)_CamPosition.x += catchUpX;
-	else if (_CamPosition.x > _target.x)_CamPosition.x -= catchUpX;
-	if (_CamPosition.y < _target.y)_CamPosition.y += catchUpY;
-	else if (_CamPosition.y > _target.y)_CamPosition.y -= catchUpY;
+
+
+
+	if (_CamPosition.x < _target.x) {
+		_CamPosition.x += catchUpX;
+		_CamLookAt.x += catchUpX;
+		
+	}
+	else if (_CamPosition.x > _target.x) {
+		_CamPosition.x -= catchUpX;
+		_CamLookAt.x -= catchUpX;
+	}
+	if (_CamPosition.y < _target.y) {
+		_CamPosition.y += catchUpY;
+		_CamLookAt.y += catchUpY;
+	}
+	else if (_CamPosition.y > _target.y) {
+		_CamPosition.y -= catchUpY;
+		_CamLookAt.y -= catchUpY;
+	}
+
+
 
 
 

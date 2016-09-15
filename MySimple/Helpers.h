@@ -17,3 +17,9 @@ void CreateItem(float x, float y, float z, char* type);
 bool Overlap(GameObj* obj1, GameObj* obj2);
 
 bool InRange(float value, float min, float max);
+
+
+
+double GetNormalDist(double x, double y);
+double GetRealDist(double x, double y);
+

@@ -38,6 +38,8 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="WeaponEmitter.cpp" />
+    <ClCompile Include="Part.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h">
@@ -105,6 +107,12 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponEmitter.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Part.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

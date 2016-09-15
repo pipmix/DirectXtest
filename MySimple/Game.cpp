@@ -178,6 +178,8 @@ void Game::CreateGame() {
 
 	spr01.SetPos(2.0f, 10.0f, 0.0f);
 
+	we.Initialize();
+
 }
 
 Game::~Game()
@@ -223,7 +225,7 @@ void Game::Update() {
 
 
 	
-	
+	we.Update();
 
 	timer.Update();
 	input.Update();
@@ -311,7 +313,7 @@ void Game::Draw() {
 
 
 
-
+	we.Draw();
 	//tileBatch->Draw();
 
 	//player->Draw();

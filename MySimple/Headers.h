@@ -5,6 +5,9 @@
 #include <tchar.h>
 #include <string>
 #include <stdint.h>
+#include <random>
+#include <chrono>
+
 #include <wrl.h>
 #include <string>
 #include <memory>
@@ -15,6 +18,7 @@
 #include <DirectXCollision.h>
 #include <wrl\client.h>
 #include "DDSTextureLoader.h"
+
 
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "D3DCompiler.lib")
