@@ -20,6 +20,9 @@ public:
 	ShapeRectangle* r1;
 	ShapeRectangle* r2;
 	ShapeRectangle* r3;
+	ShapeRectangle* r4;
+	ShapeRectangle* r5;
+	ShapeRectangle* r6;
 
 
 

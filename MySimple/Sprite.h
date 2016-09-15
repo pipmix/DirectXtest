@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Data.h"
+#include "Shape.h"
 
 extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 extern Data* dat;
@@ -41,6 +42,7 @@ public:
 
 	ComPtr<ID3D11Buffer>		vertexBuffer;
 	XMFLOAT3					m_pos;
+	ShapeRectangle* r1;
 
 
 };

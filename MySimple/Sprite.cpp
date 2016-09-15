@@ -8,6 +8,9 @@ Sprite::Sprite(){
 }
 
 void Sprite::Create(){
+	r1 = new ShapeRectangle();
+	r1->SetDepth(0.0f);
+	r1->Create(0.0f, 0.0f, 1.0f, -1.0f);
 
 	
 	RectF dim;
@@ -120,6 +123,7 @@ void Sprite::Draw(){
 
 	context->Draw(numElements, 0);
 
+	r1->Draw();
 }
 
 void Sprite::SetSourceRect(int i) {

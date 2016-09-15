@@ -2,6 +2,7 @@
 #include "Sprite.h"
 #include "Timer.h"
 #include "Controller.h"
+#include "Shape.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -21,7 +22,7 @@ const float cRunSpeed = 1.8f;
 class Player : public Sprite { 
 
 public:
-
+	void	Init();
 	void	Update();
 	void	UpdateCollision();
 	Rect	GetCollision();

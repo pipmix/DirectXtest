@@ -1,5 +1,7 @@
 #include "Player.h"
 
+
+
 void Player::Update(){
 
 
@@ -13,22 +15,34 @@ void Player::Update(){
 
 	}
 
+	if (input.b.a) {
+
+		m_vel.y = 0.15;
+		//onGround = false;
+
+	}
+
+
+
+
 	m_vel.y += (cFallSpeedY*time);
+
+	//if (m_vel.y > (cFallSpeedY*time*40))m_vel.y = (cFallSpeedY*time);
 
 	// SlowDown
 	m_vel.x *= 0.02;
-	//m_vel.y *= 0.02;
-	//dy *= 0.5;
-	
-	// Gravity
-	//if (!m_onGround) dy += (cFallSpeedY*time);
-	//else dy = 0.0f;
+
+	if (input.b.y) {
+
+		SetPos(3.0f, 2.0f, 0.0f);
+		m_vel = { 0.0f,0.0f, 0.0f };
+	}
 
 
 
 	m_pos.x += m_vel.x;
 	m_pos.y += m_vel.y;
-
+	UpdateCollision();
 	
 
 }

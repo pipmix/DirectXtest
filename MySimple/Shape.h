@@ -33,6 +33,7 @@ protected:
 	//ComPtr<ID3D11InputLayout>	_inputLayout;
 	UINT						_numElements;
 	bool _Init = 0;
+	XMFLOAT3 m_pos;
 
 
 };

@@ -206,8 +206,21 @@ Game::~Game()
 
 void Game::Update() {
 
-	spr01.UpdateCollision();
-	Rect r2 = { 0.0f, -5.0f, 6.0f, -10.0f };
+	int aS = 6;
+	Rect* rArr;
+	rArr = new Rect[aS];
+	rArr [0] = { 0.0f, -5.0f, 6.0f, -10.0f };
+	rArr [1] = { 6.0f, -3.0f, 9.0f, -10 };
+	rArr [2] = { 10.0f, -6.0, 14.0f, -10 };
+
+	rArr[3] = { -10.0f, 11.0f, 22.0f, 2 };
+	rArr[4] = { 7.0f, 15.0f, 9.0f, -10 };
+	rArr[5] = { -15.0f, 14.0, -1.0f, -3 };
+
+
+
+	
+	
 
 	timer.Update();
 	input.Update();
@@ -235,39 +248,56 @@ void Game::Update() {
 	b1.h = -(r1.bottom - r1.top);
 
 	Box b2;
-	b2.x = r2.left;
-	b2.y = r2.top;
-	b2.w = r2.right - r2.left;
-	b2.h = -(r2.bottom - r2.top);
 
+	for (int i = 0; i < aS; i++) {
+		
+		float he = rArr[i].bottom - rArr[i].top;
+		b2.x = rArr[i].left;
+		b2.y = he + rArr[i].top;
+		b2.w = rArr[i].right - rArr[i].left;
+		b2.h = -(rArr[i].bottom - rArr[i].top);
 
-	
-	XMFLOAT2 velocity = { 0.0f, 0.0f };
-	float l = b2.x - (b1.x + b1.w);
-	float r = (b2.x + b2.w) - b1.x;
-	float t = b2.y - (b1.y + b1.h);
-	float b = (b2.y + b2.h) - b1.y;
-	if (l > 0 || r < 0 || t > 0 || b < 0) {
-		spr01.m_onGround = 0;
-	}
-	else {
-		velocity.x = abs(l) < r ? l : r;
-		velocity.y = abs(t) < b ? t : b;
-
-
-		if (abs(velocity.x) < abs(velocity.y)) {
-			velocity.y = 0.0f;
-			spr01.m_vel.x = 0.0f;
+		XMFLOAT2 velocity = { 0.0f, 0.0f };
+		float l = b2.x - (b1.x + b1.w);
+		float r = (b2.x + b2.w) - b1.x;
+		float t = b2.y - (b1.y + b1.h);
+		float b = (b2.y + b2.h) - b1.y;
+		if (l > 0 || r < 0 || t > 0 || b < 0) {
+			continue;
 		}
 		else {
-			velocity.x = 0.0f;
-			spr01.m_vel.y = 0.0f;
+			velocity.x = abs(l) < r ? l : r;
+			velocity.y = abs(t) < b ? t : b;
+
+
+			if (abs(velocity.x) < abs(velocity.y)) {
+				velocity.y = 0.0f;
+				// wall jump
+				//spr01.m_vel.y = 0.0f;
+				//spr01.m_vel.x = 0.0f;
+			}
+			else {
+				velocity.x = 0.0f;
+				// going up
+				if (!(spr01.m_vel.y > 0.0f))spr01.m_vel.y = 0.0f;
+				
+			}
+
+			//if (velocity.y > 0.0f )spr01.m_vel.y = 0.0f;
+
+			spr01.MovePos(velocity.x, velocity.y, 0.0f);
+			spr01.UpdateCollision();
+			r1 = spr01.GetCollision();
+			b1;
+			b1.x = r1.left;
+			b1.y = r1.top;
+			b1.w = r1.right - r1.left;
+			b1.h = -(r1.bottom - r1.top);
 		}
-
-		spr01.MovePos(velocity.x, velocity.y, 0.0f);
-		spr01.m_onGround = 1;
-
 	}
+
+	
+
 
 }
 void Game::Draw() {
@@ -281,7 +311,7 @@ void Game::Draw() {
 
 	//tileBatch->Draw();
 
-	player->Draw();
+	//player->Draw();
 	
 	spr01.Draw();
 	map01->Draw();

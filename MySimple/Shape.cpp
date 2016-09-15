@@ -6,11 +6,12 @@ ShapeRectangle::ShapeRectangle() :_depth(0.0f){
 
 void ShapeRectangle::Create(float left, float top, float right, float bottom){
 
+	m_pos = { left, top, 0.0f };
 
-	_left = left;
-	_top = top;
-	_right = right;
-	_bottom = bottom;
+	_left = 0.0f;
+	_top = 0.0f;
+	_right = abs(right - left);
+	_bottom = abs(bottom - top);
 	_Init = true;
 	
 	vs = dat->GetVertexShader(D_VS_BASICMATRIX);
@@ -56,6 +57,7 @@ void ShapeRectangle::Create(float left, float top, float right, float bottom){
 void ShapeRectangle::SetDepth(float z)
 {
 	_depth = z;
+	m_pos.z = z;
 }
 
 XMFLOAT4 ShapeRectangle::GetCollision()
