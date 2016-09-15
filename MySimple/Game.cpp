@@ -169,8 +169,13 @@ void Game::CreateGame() {
 
 	item01.Create(5.0f, 5.0f, 0.0f, OT_coin);
 
-	spr01.SetSourceRect(10, D_TEX_ITEMS);
-	spr01.Create(D_TEX_ITEMS, D_VS_PUV, D_PS_PUV);
+	
+	spr01.AssignResources(D_TEX_ITEMS, D_VS_PUV, D_PS_PUV);
+	spr01.SetSourceRect(10);
+	spr01.Create();
+
+	spr01.SetPos(0.0f, -2.0f, 0.0f);
+
 }
 
 Game::~Game()
@@ -235,7 +240,7 @@ void Game::Draw() {
 
 	player->Draw();
 	
-	spr01.Draw(-5.0f, 5.0f, 0.0f);
+	spr01.Draw();
 	map01->Draw();
 	//context->RSSetState(RS_wireframe.Get());
 	

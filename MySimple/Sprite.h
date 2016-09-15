@@ -17,11 +17,18 @@ class Sprite {
 public:
 
 			Sprite();
-	void	Create(UINT texID, UINT vsID, UINT psID);
-	void	SetSourceRect(int i, UINT t);
-	void	SetResources();
+	void	Create();
+	void	SetSourceRect(int i);
+	void	SetResources		();
 
-	void	Draw(float x, float y, float z);
+	void	Draw				();
+	void	SetPos				(float x, float y, float z);
+	void	MovePos				(float x, float y, float z);
+
+	void	AssignTexture		(UINT texID);
+	void	AssignVertextShader	(UINT vsID);
+	void	AssignPixelShader	(UINT psID);
+	void	AssignResources		(UINT texID, UINT vsID, UINT psID);
 
 
 	UINT	m_textureID;
@@ -30,10 +37,10 @@ public:
 	UINT	m_topoID;
 	Box		m_sourceRect;
 
-	UINT numElements;
+	UINT						numElements;
 
 	ComPtr<ID3D11Buffer>		vertexBuffer;
-	XMFLOAT3 _position;
+	XMFLOAT3					m_pos;
 
 
 };
