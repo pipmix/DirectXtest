@@ -40,6 +40,8 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 		const XMMATRIX	GetCameraScreenMatrix();
 		const XMMATRIX	GetCameraMatrix();
 		const XMMATRIX	GetScreenMatrix();
+		const XMMATRIX	GetUIScreenMatrix();
+		const XMMATRIX	GetUICameraMatrix();
 
 		XMFLOAT2		ConvertMouseCoord(XMFLOAT2 mc);
 
@@ -48,6 +50,9 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 		XMFLOAT4X4		_CameraScreenMatrix;
 		XMFLOAT4X4		_CameraMatrix;
 		XMFLOAT4X4		_ScreenMatrix;
+
+		XMFLOAT4X4		_UIScreenMatix;;
+		XMFLOAT4X4		_UICameraMatrix;
 
 		// Camera Settings
 		XMFLOAT3		_CamPosition;

@@ -27,6 +27,7 @@ void Game::CreateEngine() {
 	swapChainDesc.OutputWindow = hWnd;
 	swapChainDesc.SampleDesc.Count = 1;
 	swapChainDesc.SampleDesc.Quality = 0;
+	swapChainDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_CENTERED;
 	swapChainDesc.Windowed = TRUE;
 	D3D11CreateDeviceAndSwapChain(0, D3D_DRIVER_TYPE_HARDWARE, 0, 0, 0, 0, D3D11_SDK_VERSION, &swapChainDesc, swapChain.GetAddressOf(), device.GetAddressOf(), NULL, context.GetAddressOf());
 
@@ -134,8 +135,20 @@ void Game::CreateEngine() {
 	ppbd.ByteWidth = ( 4 * (mWindowWidth * mWindowHeight) ) / (16 * 1024);
 	ppbd.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
 	
+	CreateStates();
 	
-	
+}
+
+void Game::CreateStates() {
+	D3D11_DEPTH_STENCIL_DESC dsd = { 0 };
+	dsd.DepthEnable = true;
+	dsd.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	dsd.DepthFunc = D3D11_COMPARISON_LESS;
+	device->CreateDepthStencilState(&dsd, depthStencilState.GetAddressOf());
+
+	dsd.DepthEnable = false;;
+	device->CreateDepthStencilState(&dsd, depthStencilStateUI.GetAddressOf());
+
 }
 
 void Game::CreateGame() {
@@ -329,6 +342,7 @@ void Game::Draw() {
 	Clear();
 	context->PSSetSamplers(0, 1, samplerState.GetAddressOf());
 	context->RSSetState(RS_default.Get());
+	context->OMSetDepthStencilState(depthStencilState.Get(), 0);
 
 
 
@@ -342,7 +356,9 @@ void Game::Draw() {
 	
 	ls3o->Draw();
 	gun.Draw();
-	
+
+	//For UI
+	context->OMSetDepthStencilState(depthStencilStateUI.Get(), 0);
 	swapChain->Present(1, 0);
 
 

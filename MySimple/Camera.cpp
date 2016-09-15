@@ -22,6 +22,9 @@ Camera::Camera() {
 
 	UpdateAllMatrices();
 
+	XMStoreFloat4x4(&_UIScreenMatix, XMMatrixOrthographicLH(m_screenX, m_screenY, _CamNearClip, _CamFarClip));
+
+
 }
 
 void Camera::UpdateCameraMatrix() {
@@ -33,6 +36,7 @@ void Camera::UpdateScreenMatrix() {
 	
 	if (_IsCamPerspective) XMStoreFloat4x4(&_ScreenMatrix, XMMatrixPerspectiveFovLH(_CamFOVangle, _CamAspectRatio, _CamNearClip, _CamFarClip));
 	else XMStoreFloat4x4(&_ScreenMatrix, XMMatrixOrthographicLH(m_screenX, m_screenY, _CamNearClip, _CamFarClip));
+
 
 }
 
@@ -63,6 +67,15 @@ const XMMATRIX Camera::GetScreenMatrix(){
 	return XMLoadFloat4x4(&_ScreenMatrix);
 
 }
+
+const XMMATRIX Camera::GetUIScreenMatrix(){
+	return XMLoadFloat4x4(&_UIScreenMatix);
+}
+
+const XMMATRIX Camera::GetUICameraMatrix(){
+	return XMLoadFloat4x4(&_UICameraMatrix);
+}
+
 
 XMFLOAT2 Camera::ConvertMouseCoord(XMFLOAT2 mc){
 

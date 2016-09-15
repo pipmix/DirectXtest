@@ -178,6 +178,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileBatch.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="WeaponEmitter.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +209,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileBatch.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="WeaponEmitter.h" />
   </ItemGroup>
   <ItemGroup>

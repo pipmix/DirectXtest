@@ -40,6 +40,7 @@ public:
 
 		void CreateEngine();
 		void CreateGame();
+		void CreateStates();
 
 
 	void Update();
@@ -63,6 +64,7 @@ private:
 
 	ComPtr<ID3D11SamplerState>		samplerState;
 	ComPtr<ID3D11DepthStencilState> depthStencilState;
+	ComPtr<ID3D11DepthStencilState> depthStencilStateUI;
 
 	ComPtr<ID3D11Buffer>			cbScreen;
 	ComPtr<ID3D11BlendState>		blendS_transparent;

@@ -43,6 +43,7 @@
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Dx.cpp" />
     <ClCompile Include="Gme.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h">
@@ -125,6 +126,9 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Gme.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
