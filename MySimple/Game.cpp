@@ -20,6 +20,8 @@ void Game::CreateEngine() {
 	swapChainDesc.BufferCount = 1;
 	swapChainDesc.BufferDesc.Width = mWindowWidth;
 	swapChainDesc.BufferDesc.Height = mWindowHeight;
+	swapChainDesc.BufferDesc.RefreshRate.Numerator = 1;
+	swapChainDesc.BufferDesc.RefreshRate.Denominator = 10;
 	swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;;
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	swapChainDesc.OutputWindow = hWnd;
@@ -174,7 +176,7 @@ void Game::CreateGame() {
 	spr01.SetSourceRect(10);
 	spr01.Create();
 
-	spr01.SetPos(0.0f, -2.0f, 0.0f);
+	spr01.SetPos(2.0f, 10.0f, 0.0f);
 
 }
 
@@ -204,35 +206,76 @@ Game::~Game()
 
 void Game::Update() {
 
-
-
+	spr01.UpdateCollision();
+	Rect r2 = { 0.0f, -5.0f, 6.0f, -10.0f };
 
 	timer.Update();
 	input.Update();
-	//controller->Update();
 	camera->Update();
+
+	spr01.Update();
+
 	rd1->Update();
 	shape01->Update();
 	shape02->Update();
-	//rd1->Update();
-	//rd2->Update();
-	//rd3->Update();
+
 	tileBatch->Update();
 
 	player->Update();
 	map01->Update();
-	dat->Update();
+
+	spr01.UpdateCollision();
+	
+	
+	Rect r1 = spr01.GetCollision();
+	Box b1;
+	b1.x = r1.left;
+	b1.y = r1.top;
+	b1.w = r1.right - r1.left;
+	b1.h = -(r1.bottom - r1.top);
+
+	Box b2;
+	b2.x = r2.left;
+	b2.y = r2.top;
+	b2.w = r2.right - r2.left;
+	b2.h = -(r2.bottom - r2.top);
+
+
+	
+	XMFLOAT2 velocity = { 0.0f, 0.0f };
+	float l = b2.x - (b1.x + b1.w);
+	float r = (b2.x + b2.w) - b1.x;
+	float t = b2.y - (b1.y + b1.h);
+	float b = (b2.y + b2.h) - b1.y;
+	if (l > 0 || r < 0 || t > 0 || b < 0) {
+		spr01.m_onGround = 0;
+	}
+	else {
+		velocity.x = abs(l) < r ? l : r;
+		velocity.y = abs(t) < b ? t : b;
+
+
+		if (abs(velocity.x) < abs(velocity.y)) {
+			velocity.y = 0.0f;
+			spr01.m_vel.x = 0.0f;
+		}
+		else {
+			velocity.x = 0.0f;
+			spr01.m_vel.y = 0.0f;
+		}
+
+		spr01.MovePos(velocity.x, velocity.y, 0.0f);
+		spr01.m_onGround = 1;
+
+	}
 
 }
 void Game::Draw() {
 
-
-
 	Clear();
-
 	context->PSSetSamplers(0, 1, samplerState.GetAddressOf());
-	
 	context->RSSetState(RS_default.Get());
+
 
 
 
@@ -242,7 +285,6 @@ void Game::Draw() {
 	
 	spr01.Draw();
 	map01->Draw();
-	//context->RSSetState(RS_wireframe.Get());
 	
 	ls3o->Draw();
 	
@@ -253,22 +295,12 @@ void Game::Draw() {
 void Game::Clear() {
 
 	float fill[4] = { 0.0f, 0.2f, 0.25f, 1.0f };
-
 	context->ClearRenderTargetView(backBuffer_RT.Get(), fill);
 	context->ClearDepthStencilView(zbuffer.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-
 	context->OMSetRenderTargets(1, backBuffer_RT.GetAddressOf(), zbuffer.Get());
-
 	context->RSSetViewports(1, &viewport);
-	context->RSSetState(RS_wireframe.Get());
-	//context->RSSetState(RS_default.Get());
 
-	PS_C_BUFFER tbuf;
-	tbuf.scr.x = mWindowWidth;
-	tbuf.scr.y = mWindowHeight;
 
-	//context->UpdateSubresource(cbScreen.Get(), 0, 0, &tbuf, 0, 0);
-	//context->VSSetConstantBuffers(1, 1, cbScreen.GetAddressOf());
 }
 
 void Game::Close()

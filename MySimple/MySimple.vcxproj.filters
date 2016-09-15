@@ -37,6 +37,7 @@
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h">
@@ -101,6 +102,9 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

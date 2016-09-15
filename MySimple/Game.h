@@ -14,6 +14,7 @@
 #include "Data.h"
 #include "Item.h"
 #include "Sprite.h"
+#include "Player.h"
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
@@ -68,7 +69,7 @@ private:
 
 	D3D11_VIEWPORT viewport;
 
-	Sprite spr01;
+	Player spr01;
 
 	RectData* rd1;
 	//RectData* rd2;

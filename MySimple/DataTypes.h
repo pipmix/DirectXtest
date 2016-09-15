@@ -73,6 +73,13 @@ struct RectF {
 	};
 };
 
+struct Rect {
+	float left;
+	float top;
+	float right;
+	float bottom;
+};
+
 struct RectI {
 	int l;
 	int t;

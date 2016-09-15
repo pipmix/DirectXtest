@@ -16,9 +16,9 @@ class Sprite {
 
 public:
 
-			Sprite();
-	void	Create();
-	void	SetSourceRect(int i);
+			Sprite				();
+	void	Create				();
+	void	SetSourceRect		(int i);
 	void	SetResources		();
 
 	void	Draw				();
@@ -31,11 +31,11 @@ public:
 	void	AssignResources		(UINT texID, UINT vsID, UINT psID);
 
 
-	UINT	m_textureID;
-	UINT	m_vsID;
-	UINT	m_psID;
-	UINT	m_topoID;
-	Box		m_sourceRect;
+	UINT						m_textureID;
+	UINT						m_vsID;
+	UINT						m_psID;
+	UINT						m_topoID;
+	Box							m_sourceRect;
 
 	UINT						numElements;
 
