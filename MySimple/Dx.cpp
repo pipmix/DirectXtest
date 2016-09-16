@@ -1,5 +1,7 @@
 #include "Dx.h"
 
+
+
 Dx::Dx(HWND h) : m_hWnd(h) {}
 
 void Dx::Initialize() {
@@ -51,7 +53,7 @@ void Dx::Initialize() {
 
 
 void Dx::Update() {
-
+	//deltaTime = timer.GetDelta();
 	game.Update();
 }
 

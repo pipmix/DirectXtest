@@ -1,6 +1,8 @@
 
 #include "Timer.h"
 
+double Timer::deltaTime = 0.0f;
+
 Timer::Timer() {
 	QueryPerformanceFrequency((LARGE_INTEGER*)&m_frequency);
 	m_ticksPerMs = (float)(m_frequency / 1000);
@@ -18,4 +20,4 @@ void Timer::Update() {
 	m_frameTime = timeDifference / m_ticksPerMs;
 	m_startTime = currentTime;
 }
-float Timer::GetDelta() { return m_frameTime; }
+double Timer::GetDelta() { return m_frameTime; }

@@ -1,17 +1,14 @@
 #include "Gme.h"
 
-Gme::Gme()
-{
+Gme::Gme(){
 }
 
-void Gme::Load()
-{
+void Gme::Load(){
 }
 
-void Gme::Update()
-{
+void Gme::Update(){
+	double t = Timer::deltaTime;
 }
 
-void Gme::Draw()
-{
+void Gme::Draw(){
 }

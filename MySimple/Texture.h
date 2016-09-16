@@ -6,7 +6,7 @@
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
 
-extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
+extern ComPtr<ID3D11Buffer> cbPerMesh;
 extern XMMATRIX cameraMatrix;
 extern XMMATRIX screenMatrix;
 extern XMMATRIX cameraScreenMatrix;
@@ -32,6 +32,8 @@ public:
 	bool _IsTileMap;
 	int pixelW;
 	int pixelH;
+	bool hasAlpha;
+	bool usesPreMul;
 
 };
 

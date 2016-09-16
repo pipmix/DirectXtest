@@ -1,4 +1,8 @@
 #pragma once
+#include "Timer.h"
+#include "Controller.h"
+#include "Data.h"
+#include "Camera.h"
 
 
 class Gme {

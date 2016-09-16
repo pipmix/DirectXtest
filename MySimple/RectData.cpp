@@ -102,7 +102,7 @@ void RectData::Draw() {
 
 
 	context->VSSetShader(vs->vertexShader.Get(), 0, 0);
-	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+	context->VSSetConstantBuffers(0, 1, cbPerMesh.GetAddressOf());
 	context->PSSetShader(ps->pixelShader.Get(), 0, 0);
 	
 
@@ -114,7 +114,7 @@ void RectData::Draw() {
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);
 	
-	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
+	context->UpdateSubresource(cbPerMesh.Get(), 0, 0, &cb, 0, 0);
 
 
 

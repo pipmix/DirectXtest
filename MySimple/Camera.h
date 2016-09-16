@@ -14,7 +14,7 @@ extern HWND hWnd;
 extern HINSTANCE hInst;
 extern Timer timer;
 
-extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
+extern ComPtr<ID3D11Buffer> cbPerMesh;
 
 
 
@@ -37,10 +37,13 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 		void			UpdateScreenMatrix();
 		void			UpdateCameraScreenMatrix();
 		void			UpdateAllMatrices();
+		void			UpdateUIMatrices();
 		
 		const XMMATRIX	GetCameraScreenMatrix();
 		const XMMATRIX	GetCameraMatrix();
 		const XMMATRIX	GetScreenMatrix();
+
+		const XMMATRIX	GetUICameraScreenMatrix();
 		const XMMATRIX	GetUIScreenMatrix();
 		const XMMATRIX	GetUICameraMatrix();
 
@@ -52,6 +55,7 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 		XMFLOAT4X4		_CameraMatrix;
 		XMFLOAT4X4		_ScreenMatrix;
 
+		XMFLOAT4X4		_UICameraScreenMatrix;
 		XMFLOAT4X4		_UIScreenMatix;;
 		XMFLOAT4X4		_UICameraMatrix;
 
@@ -67,6 +71,7 @@ extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 		bool			_IsCamLookAt;
 
 		XMFLOAT3		_target;
+		XMFLOAT3		_vel;
 
 		long m_screenX, m_screenY;
 

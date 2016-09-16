@@ -8,11 +8,7 @@ Sprite::Sprite(){
 }
 
 void Sprite::Create(){
-	r1 = new ShapeRectangle();
-	r1->SetDepth(0.0f);
-	r1->Create(0.0f, 0.0f, 1.0f, -1.0f);
 
-	
 	RectF dim;
 	dim.l = 0.0f;
 	dim.t = 1.0f;
@@ -88,7 +84,7 @@ void Sprite::SetResources(){
 
 	UINT stride = sizeof(VertexPU);
 	UINT offset = 0;
-	//context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+	//context->VSSetConstantBuffers(0, 1, cbPerMesh.GetAddressOf());
 	context->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
 	
 
@@ -119,7 +115,7 @@ void Sprite::Draw(){
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);
 
-	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
+	context->UpdateSubresource(cbPerMesh.Get(), 0, 0, &cb, 0, 0);
 
 	context->Draw(numElements, 0);
 
@@ -133,7 +129,7 @@ void Sprite::QuickDraw(XMFLOAT3 p) {
 
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);
-	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
+	context->UpdateSubresource(cbPerMesh.Get(), 0, 0, &cb, 0, 0);
 
 	context->Draw(numElements, 0);
 

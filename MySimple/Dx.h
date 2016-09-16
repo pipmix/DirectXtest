@@ -39,6 +39,6 @@ private:
 
 	long m_clientW, m_clientH, m_windowH, m_windowW;
 
-
+	
 
 };

@@ -73,7 +73,7 @@ void Shape::Draw(){
 	UINT offset = 0;
 
 	context->VSSetShader(vs->vertexShader.Get(), 0, 0);
-	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+	context->VSSetConstantBuffers(0, 1, cbPerMesh.GetAddressOf());
 	context->PSSetShader(ps->pixelShader.Get(), 0, 0);
 	context->IASetVertexBuffers(0, 1, _vertexBuffer.GetAddressOf(), &stride, &offset);
 	context->IASetInputLayout(vs->inputLayout.Get());
@@ -81,7 +81,7 @@ void Shape::Draw(){
 	XMMATRIX fMat = XMMatrixTranslation(0, 0, 0) * camera->GetCameraScreenMatrix();
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);
-	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
+	context->UpdateSubresource(cbPerMesh.Get(), 0, 0, &cb, 0, 0);
 	context->Draw(_numElements, 0);
 
 
@@ -178,7 +178,7 @@ void LineShape3d::Draw() {
 	UINT offset = 0;
 
 	context->VSSetShader(vs->vertexShader.Get(), 0, 0);
-	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+	context->VSSetConstantBuffers(0, 1, cbPerMesh.GetAddressOf());
 	context->PSSetShader(ps->pixelShader.Get(), 0, 0);
 	context->IASetVertexBuffers(0, 1, _vertexBuffer.GetAddressOf(), &stride, &offset);
 	context->IASetInputLayout(vs->inputLayout.Get());
@@ -186,7 +186,7 @@ void LineShape3d::Draw() {
 	XMMATRIX fMat = XMMatrixTranslation(0, 0, 0) * camera->GetCameraScreenMatrix();
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);
-	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
+	context->UpdateSubresource(cbPerMesh.Get(), 0, 0, &cb, 0, 0);
 	context->Draw(_numElements, 0);
 
 
@@ -273,7 +273,7 @@ void LineShape3dOutline::Draw()
 	UINT offset = 0;
 
 	context->VSSetShader(vs->vertexShader.Get(), 0, 0);
-	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+	context->VSSetConstantBuffers(0, 1, cbPerMesh.GetAddressOf());
 	context->PSSetShader(ps->pixelShader.Get(), 0, 0);
 	context->IASetVertexBuffers(0, 1, _vertexBuffer.GetAddressOf(), &stride, &offset);
 	context->IASetInputLayout(vs->inputLayout.Get());
@@ -281,7 +281,7 @@ void LineShape3dOutline::Draw()
 	XMMATRIX fMat = XMMatrixTranslation(0, 0, 0) * camera->GetCameraScreenMatrix();
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);
-	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
+	context->UpdateSubresource(cbPerMesh.Get(), 0, 0, &cb, 0, 0);
 	context->Draw(_numElements, 0);
 
 }

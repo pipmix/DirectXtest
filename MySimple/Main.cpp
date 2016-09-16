@@ -1,21 +1,18 @@
 #include "Game.h"
-
+//#include "Dx.h"
 
 ComPtr<ID3D11Device>			device = nullptr;
 ComPtr<ID3D11DeviceContext>		context = nullptr;
-ComPtr<ID3D11Buffer>			constantBuffer_finalMatrix = nullptr;
+ComPtr<ID3D11Buffer>			cbPerMesh = nullptr;
 Timer timer;
-
 Controller input;
-
-
 Data* dat ;
+Camera* camera;
 
 
 HWND hWnd = nullptr;
 HINSTANCE hInst = nullptr;
 
-Camera* camera;
 
 
 
@@ -25,8 +22,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	static TCHAR szWindowClass[] = _T("MKii");
 
-	int screenW = 720;
-	int screenH = 480;
+	int screenW = 1600;
+	int screenH = 900;
 
 	WNDCLASSEX wcex;
 	wcex.cbSize = sizeof(WNDCLASSEX);
@@ -52,6 +49,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 
 	Game game;
+	//Dx dx(hWnd);
+	//dx.Initialize();
 
 
 	MSG msg = { 0 };

@@ -5,7 +5,7 @@
 #include "Camera.h"
 #include "Data.h"
 
-extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
+extern ComPtr<ID3D11Buffer> cbPerMesh;
 extern Data* dat;
 
 extern Camera* camera;

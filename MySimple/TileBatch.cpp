@@ -230,7 +230,7 @@ void TileBatch::SetResources(){
 
 	UINT stride = sizeof(VertexPU);
 	UINT offset = 0;
-	//context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+	//context->VSSetConstantBuffers(0, 1, cbPerMesh.GetAddressOf());
 	context->IASetVertexBuffers(0, 1, m_vertexBuffer.GetAddressOf(), &stride, &offset);
 
 }
@@ -239,7 +239,7 @@ void TileBatch::SetResources(){
 
 
 void TileBatch::Draw() {
-	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+	context->VSSetConstantBuffers(0, 1, cbPerMesh.GetAddressOf());
 	SetResources();
 
 	x = 0;
@@ -251,8 +251,8 @@ void TileBatch::Draw() {
 	VS_C_BUFFER cb;
 	XMStoreFloat4x4(&cb.wvp, fMat);
 
-	context->UpdateSubresource(constantBuffer_finalMatrix.Get(), 0, 0, &cb, 0, 0);
-	context->VSSetConstantBuffers(0, 1, constantBuffer_finalMatrix.GetAddressOf());
+	context->UpdateSubresource(cbPerMesh.Get(), 0, 0, &cb, 0, 0);
+	context->VSSetConstantBuffers(0, 1, cbPerMesh.GetAddressOf());
 
 	context->Draw(numElements, 0);
 

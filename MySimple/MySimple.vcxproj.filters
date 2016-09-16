@@ -44,6 +44,7 @@
     <ClCompile Include="Dx.cpp" />
     <ClCompile Include="Gme.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="AnimatedSprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTypes.h">
@@ -129,6 +130,15 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="UI.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Quest.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedSprite.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

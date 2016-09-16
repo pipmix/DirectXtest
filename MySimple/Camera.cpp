@@ -22,8 +22,7 @@ Camera::Camera() {
 
 	UpdateAllMatrices();
 
-	XMStoreFloat4x4(&_UIScreenMatix, XMMatrixOrthographicLH(m_screenX, m_screenY, _CamNearClip, _CamFarClip));
-
+	UpdateUIMatrices();
 
 }
 
@@ -52,10 +51,8 @@ void Camera::UpdateAllMatrices(){
 	UpdateCameraScreenMatrix();
 }
 
-const XMMATRIX Camera::GetCameraScreenMatrix(){
 
-	return XMLoadFloat4x4(&_CameraScreenMatrix);
-}
+
 
 const XMMATRIX Camera::GetCameraMatrix(){
 
@@ -68,6 +65,14 @@ const XMMATRIX Camera::GetScreenMatrix(){
 
 }
 
+const XMMATRIX Camera::GetCameraScreenMatrix() {
+
+	return XMLoadFloat4x4(&_CameraScreenMatrix);
+}
+
+
+
+// UI Matrices
 const XMMATRIX Camera::GetUIScreenMatrix(){
 	return XMLoadFloat4x4(&_UIScreenMatix);
 }
@@ -75,6 +80,17 @@ const XMMATRIX Camera::GetUIScreenMatrix(){
 const XMMATRIX Camera::GetUICameraMatrix(){
 	return XMLoadFloat4x4(&_UICameraMatrix);
 }
+
+const XMMATRIX	Camera::GetUICameraScreenMatrix() {
+	return XMLoadFloat4x4(&_UICameraScreenMatrix);
+
+}
+void Camera::UpdateUIMatrices() {
+	XMStoreFloat4x4(&_UIScreenMatix, XMMatrixOrthographicLH(m_screenX, m_screenY, 0.01f, 1000.0f));
+	XMStoreFloat4x4(&_UICameraMatrix, XMMatrixLookAtLH(XMLoadFloat3(&XMFLOAT3(0.0f, 0.0f, -10.0f)), XMLoadFloat3(&XMFLOAT3(0.0f, 0.0f, 0.0f)), XMLoadFloat3(&XMFLOAT3(0.0f, 1.0f, 0.0f))));
+	XMStoreFloat4x4(&_UICameraScreenMatrix, GetUICameraMatrix() * GetUIScreenMatrix());
+}
+// End UI
 
 
 XMFLOAT2 Camera::ConvertMouseCoord(XMFLOAT2 mc){
@@ -129,7 +145,7 @@ void Camera::SetTarget(float tx, float ty, float tz) {
 	_target = { tx, ty, tz };
 }
 void Camera::MoveTowardsTarget() {
-
+	
 	float t = timer.GetDelta();
 	float lerp = 0.005f;
 
@@ -138,6 +154,10 @@ void Camera::MoveTowardsTarget() {
 
 	_CamLookAt.x = _CamPosition.x;
 	_CamLookAt.y = _CamPosition.y;
+	
+
+
+
 
 }
 

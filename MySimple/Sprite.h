@@ -8,7 +8,10 @@
 #include "Data.h"
 #include "Shape.h"
 
-extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
+extern ComPtr<ID3D11Device>			device;
+extern ComPtr<ID3D11DeviceContext>	context;
+
+extern ComPtr<ID3D11Buffer> cbPerMesh;
 extern Data* dat;
 
 extern Camera* camera;
@@ -43,7 +46,7 @@ public:
 
 	ComPtr<ID3D11Buffer>		vertexBuffer;
 	XMFLOAT3					m_pos;
-	ShapeRectangle* r1;
+
 
 
 };
