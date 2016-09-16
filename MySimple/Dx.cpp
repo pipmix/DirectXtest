@@ -24,6 +24,8 @@ void Dx::Initialize() {
 	scd.Windowed = TRUE;
 	D3D11CreateDeviceAndSwapChain(0, D3D_DRIVER_TYPE_HARDWARE, 0, 0, 0, 0, D3D11_SDK_VERSION, &scd, m_swapChain.GetAddressOf(), device.GetAddressOf(), NULL, context.GetAddressOf());
 
+	device->CreateDeferredContext(0, &dContext);
+
 	// Backbuffer
 	ComPtr<ID3D11Texture2D> backBufferTexture;
 	m_swapChain->GetBuffer(0, IID_PPV_ARGS(backBufferTexture.GetAddressOf()));
@@ -62,6 +64,10 @@ void Dx::Draw() {
 
 	ClearFrame();
 	game.Draw();
+
+
+	dContext->FinishCommandList(FALSE, &m_commandList);
+	context->ExecuteCommandList(m_commandList.Get(), TRUE);
 	m_swapChain->Present(1, 0);
 
 
@@ -72,12 +78,12 @@ void Dx::ClearFrame() {
 
 	float fill[4] = { 0.0f, 0.2f, 0.25f, 1.0f };
 
-	context->ClearRenderTargetView(m_backBuffer.Get(), fill);
-	context->ClearDepthStencilView(m_zBuffer.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-	context->OMSetRenderTargets(1, m_backBuffer.GetAddressOf(), m_zBuffer.Get());
+	dContext->ClearRenderTargetView(m_backBuffer.Get(), fill);
+	dContext->ClearDepthStencilView(m_zBuffer.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	dContext->OMSetRenderTargets(1, m_backBuffer.GetAddressOf(), m_zBuffer.Get());
 
 	CD3D11_VIEWPORT viewport(0.0f, 0.0f, static_cast<float>(m_windowW), static_cast<float>(m_windowH));
-	context->RSSetViewports(1, &viewport);
+	dContext->RSSetViewports(1, &viewport);
 
 }
 

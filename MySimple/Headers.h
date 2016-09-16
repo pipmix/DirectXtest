@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include <random>
 #include <chrono>
-
+#include <vector>
 #include <wrl.h>
 #include <string>
 #include <memory>

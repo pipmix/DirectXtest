@@ -6,6 +6,7 @@ using Microsoft::WRL::ComPtr;
 
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
+extern ComPtr<ID3D11DeviceContext>	dContext;
 extern ComPtr<ID3D11Buffer>			gCBperMesh;
 
 class Dx {
@@ -26,12 +27,15 @@ public:
 private:
 
 
+
 	ComPtr<IDXGISwapChain>			m_swapChain;
 	ComPtr<ID3D11RenderTargetView>	m_backBuffer;
 	ComPtr<ID3D11DepthStencilView>	m_zBuffer;
 	ComPtr<ID3D11RasterizerState>	RS_default;
 	ComPtr<ID3D11SamplerState>		samplerState;
 	ComPtr<ID3D11DepthStencilState> depthStencilState;
+
+	ComPtr<ID3D11CommandList>		m_commandList;
 
 	Gme game;
 

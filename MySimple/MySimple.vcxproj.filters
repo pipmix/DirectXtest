@@ -141,6 +141,9 @@
     <ClInclude Include="Enemy.h">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Shaders">

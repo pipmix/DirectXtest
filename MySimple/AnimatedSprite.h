@@ -13,11 +13,12 @@ extern Camera* camera;
 
 class AnimatedSprite {
 public:
-	AnimatedSprite();
-	void Create();
-	void Update();
-	void Draw();
-	void UpdateVertexBuffer();
+	
+			AnimatedSprite();
+	void	Create();
+	void	Update();
+	void	Draw();
+	void	UpdateVertexBuffer();
 
 	UINT						m_textureID;
 	UINT						m_vsID;

@@ -3,6 +3,7 @@
 
 ComPtr<ID3D11Device>			device = nullptr;
 ComPtr<ID3D11DeviceContext>		context = nullptr;
+ComPtr<ID3D11DeviceContext>		dContext = nullptr;
 ComPtr<ID3D11Buffer>			cbPerMesh = nullptr;
 Timer timer;
 Controller input;
