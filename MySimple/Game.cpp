@@ -223,8 +223,12 @@ Game::~Game()
 
 void Game::Update() {
 
+	timer.Update();
+	input.Update();
 	camera->SetTarget(spr01.m_pos.x, spr01.m_pos.y, spr01.m_pos.z);
 	camera->MoveTowardsTarget();
+	camera->Update();
+	spr01.Update();
 
 	int aS = 6;
 	Rect* rArr;
@@ -243,11 +247,11 @@ void Game::Update() {
 	we.Update();
 
 
-	timer.Update();
-	input.Update();
-	camera->Update();
+	
+	
+	
 
-	spr01.Update();
+	
 
 	rd1->Update();
 	shape01->Update();

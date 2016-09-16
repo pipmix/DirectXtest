@@ -130,49 +130,14 @@ void Camera::SetTarget(float tx, float ty, float tz) {
 }
 void Camera::MoveTowardsTarget() {
 
-	float catchUpX;
-	float catchUpY;
-	float distanceX = roundf(abs(_CamPosition.x - _target.x));
-	float distanceY = roundf(abs(_CamPosition.y - _target.y));
+	float t = timer.GetDelta();
+	float lerp = 0.005f;
 
+	_CamPosition.x += (_target.x - _CamPosition.x) * lerp * t;
+	_CamPosition.y += (_target.y - _CamPosition.y) * lerp * t;
 
-	if (distanceX > 1.0f)catchUpX = 0.5f;
-	else if (distanceX > 0.5f)catchUpX = 0.1f;
-	else if (distanceX > 0.1f)catchUpX = 0.05f;
-	else catchUpX = 0.0f;
-
-	if (distanceY > 1.0f)catchUpY = 0.5f;
-	else if (distanceY > 0.5f)catchUpY = 0.1f;
-	else if (distanceY > 0.1f)catchUpY = 0.05f;
-	else catchUpY = 0.0f;
-
-
-
-
-
-
-	if (_CamPosition.x < _target.x) {
-		_CamPosition.x += catchUpX;
-		_CamLookAt.x += catchUpX;
-		
-	}
-	else if (_CamPosition.x > _target.x) {
-		_CamPosition.x -= catchUpX;
-		_CamLookAt.x -= catchUpX;
-	}
-	if (_CamPosition.y < _target.y) {
-		_CamPosition.y += catchUpY;
-		_CamLookAt.y += catchUpY;
-	}
-	else if (_CamPosition.y > _target.y) {
-		_CamPosition.y -= catchUpY;
-		_CamLookAt.y -= catchUpY;
-	}
-
-
-
-
-
+	_CamLookAt.x = _CamPosition.x;
+	_CamLookAt.y = _CamPosition.y;
 
 }
 

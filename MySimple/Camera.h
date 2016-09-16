@@ -3,6 +3,7 @@
 
 #include "Headers.h"
 #include "DataTypes.h"
+#include "Timer.h"
 
 
 extern ComPtr<ID3D11Device>			device;
@@ -11,7 +12,7 @@ extern ComPtr<ID3D11DeviceContext>	context;
 
 extern HWND hWnd;
 extern HINSTANCE hInst;
-
+extern Timer timer;
 
 extern ComPtr<ID3D11Buffer> constantBuffer_finalMatrix;
 
