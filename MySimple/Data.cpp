@@ -6,20 +6,33 @@ Data::Data(): _Textures(nullptr), _PShaders(nullptr), _VShaders(nullptr) {
 
 Data::~Data(){
 
-	for (int i = 0; i < _numTex; i++) delete _Textures[i];
+	for (int i = 0; i < _numTex; i++) {
+		delete _Textures[i];
+		_Textures[i] = nullptr;
+	}
 	delete [] _Textures;
+	_Textures = nullptr;
 
-	for (int i = 0; i < _numPS; i++) delete _PShaders[i];
+	for (int i = 0; i < _numPS; i++) {
+		delete _PShaders[i];
+		_PShaders[i] = nullptr;
+	}
+	
 	delete[] _PShaders;
+	_PShaders = nullptr;
 
-	for (int i = 0; i < _numVS; i++) delete _VShaders[i];
+	for (int i = 0; i < _numVS; i++) {
+		_VShaders[i] == nullptr;
+		delete _VShaders[i];
+	}
 	delete[] _VShaders;
+	_VShaders = nullptr;
 
 
 }
 
 void Data::LoadData(){
-	_numTex = 4;
+	_numTex = 5;
 	_numPS = 2;
 	_numVS = 3;
 	_Textures = new Texture*[_numTex];
@@ -30,14 +43,7 @@ void Data::LoadData(){
 	LoadTextures();
 }
 
-void Data::Update()
-{
 
-}
-
-void Data::Draw()
-{
-}
 
 Texture* Data::GetTexture(int n){
 	return _Textures[n];
@@ -78,6 +84,12 @@ void Data::LoadTextures()
 	_Textures[D_TEX_ITEMS]->Load(L"items_8c8r_16x16t");
 
 	_Textures[D_TEX_ITEMS]->SetInfo(8, 8, 16, 16);
+
+	_Textures[D_TEX_CHAR1] = new Texture();
+	_Textures[D_TEX_CHAR1]->Load(L"walkTest");
+	_Textures[D_TEX_CHAR1]->SetInfo(8, 8, 16, 16);
+	
+	
 	
 	
 }

@@ -155,7 +155,7 @@ void Camera::MoveTowardsTarget() {
 	_CamLookAt.x = _CamPosition.x;
 	_CamLookAt.y = _CamPosition.y;
 	
-
+	UpdateAllMatrices();
 
 
 

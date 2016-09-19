@@ -41,12 +41,18 @@ void AnimatedSprite::Create(){
 	device->CreateBuffer(&bd, &InitData, &vertexBuffer);
 }
 
-void AnimatedSprite::Update()
-{
+void AnimatedSprite::AssignResources(UINT texID, UINT vsID, UINT psID) {
+	m_textureID = texID;
+	m_vsID = vsID;
+	m_psID = psID;
 }
 
-void AnimatedSprite::Draw()
-{
+void AnimatedSprite::Update(){
+
+}
+
+void AnimatedSprite::Draw(){
+
 }
 
 void AnimatedSprite::UpdateVertexBuffer(){
@@ -71,5 +77,37 @@ void AnimatedSprite::UpdateVertexBuffer(){
 		memcpy(mappedResource.pData, verts, sizeof(VertexPU) * numElements);
 		context->Unmap(vertexBuffer.Get(), 0);
 	
+
+}
+
+void AnimatedSprite::SetResources() {
+
+	//if (dat->_curTex != m_textureID) {
+	context->PSSetShaderResources(0, 1, dat.GetTexture(m_textureID)->textureResource.GetAddressOf());
+	dat._curTex = m_textureID;
+	//}
+	//if (dat->_curVS != m_vsID) {
+	context->VSSetShader(dat.GetVertexShader(m_vsID)->vertexShader.Get(), 0, 0);
+	context->IASetInputLayout(dat.GetVertexShader(m_vsID)->inputLayout.Get());
+	dat._curVS = m_vsID;
+	//}
+	//if (dat->_curPS != m_psID) {
+	context->PSSetShader(dat.GetPixelShader(m_psID)->pixelShader.Get(), 0, 0);
+	dat._curPS = m_psID;
+	//}
+	//if (dat->_curTopo != m_topoID) {
+	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+	dat._curTopo = m_topoID;
+	//}
+
+	UINT stride = sizeof(VertexPU);
+	UINT offset = 0;
+	//context->VSSetConstantBuffers(0, 1, cbPerMesh.GetAddressOf());
+	context->IASetVertexBuffers(0, 1, vertexBuffer.GetAddressOf(), &stride, &offset);
+
+
+
+
+
 
 }

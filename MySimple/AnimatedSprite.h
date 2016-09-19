@@ -7,7 +7,7 @@
 extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
 extern ComPtr<ID3D11Buffer> cbPerMesh;
-extern Data* dat;
+extern Data dat;
 
 extern Camera* camera;
 
@@ -15,10 +15,14 @@ class AnimatedSprite {
 public:
 	
 			AnimatedSprite();
+	void	SetSourceRect(int i);
+	void	SetResources();
 	void	Create();
 	void	Update();
 	void	Draw();
 	void	UpdateVertexBuffer();
+	void	AssignResources(UINT texID, UINT vsID, UINT psID);
+
 
 	UINT						m_textureID;
 	UINT						m_vsID;

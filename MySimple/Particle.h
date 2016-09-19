@@ -6,7 +6,7 @@
 #include "Data.h"
 
 extern ComPtr<ID3D11Buffer> cbPerMesh;
-extern Data* dat;
+extern Data dat;
 
 extern Camera* camera;
 

@@ -211,21 +211,21 @@ void TileBatch::SetResources(){
 
 
 	//if (dat->_curTex != m_textureID) {
-	context->PSSetShaderResources(0, 1, dat->GetTexture(m_textureID)->textureResource.GetAddressOf());
-	dat->_curTex = m_textureID;
+	context->PSSetShaderResources(0, 1, dat.GetTexture(m_textureID)->textureResource.GetAddressOf());
+	dat._curTex = m_textureID;
 	//}
 	//if (dat->_curVS != m_vsID) {
-	context->VSSetShader(dat->GetVertexShader(m_vsID)->vertexShader.Get(), 0, 0);
-	context->IASetInputLayout(dat->GetVertexShader(m_vsID)->inputLayout.Get());
-	dat->_curVS = m_vsID;
+	context->VSSetShader(dat.GetVertexShader(m_vsID)->vertexShader.Get(), 0, 0);
+	context->IASetInputLayout(dat.GetVertexShader(m_vsID)->inputLayout.Get());
+	dat._curVS = m_vsID;
 	//}
 	//if (dat->_curPS != m_psID) {
-	context->PSSetShader(dat->GetPixelShader(m_psID)->pixelShader.Get(), 0, 0);
-	dat->_curPS = m_psID;
+	context->PSSetShader(dat.GetPixelShader(m_psID)->pixelShader.Get(), 0, 0);
+	dat._curPS = m_psID;
 	//}
 	//if (dat->_curTopo != m_topoID) {
 	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-	dat->_curTopo = m_topoID;
+	dat._curTopo = m_topoID;
 	//}
 
 	UINT stride = sizeof(VertexPU);

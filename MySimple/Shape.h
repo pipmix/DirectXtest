@@ -13,7 +13,7 @@ extern ComPtr<ID3D11Buffer> cbPerMesh;
 extern Camera* camera;
 extern HWND hWnd;
 extern HINSTANCE hInst;
-extern Data* dat;
+extern Data dat;
 
 class Shape {
 

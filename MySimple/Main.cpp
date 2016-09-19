@@ -7,7 +7,7 @@ ComPtr<ID3D11DeviceContext>		dContext = nullptr;
 ComPtr<ID3D11Buffer>			cbPerMesh = nullptr;
 Timer timer;
 Controller input;
-Data* dat ;
+Data dat ;
 Camera* camera;
 
 

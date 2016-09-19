@@ -12,7 +12,7 @@ extern ComPtr<ID3D11Device>			device;
 extern ComPtr<ID3D11DeviceContext>	context;
 
 extern ComPtr<ID3D11Buffer> cbPerMesh;
-extern Data* dat;
+extern Data dat;
 
 extern Camera* camera;
 

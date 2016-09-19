@@ -102,6 +102,7 @@ void Game::CreateEngine() {
 	// Create Rasterizers
 
 	D3D11_RASTERIZER_DESC rsd;
+	ZeroMemory(&rsd, sizeof(rsd));
 	rsd.FillMode = D3D11_FILL_SOLID;
 	rsd.CullMode = D3D11_CULL_BACK;
 	rsd.FrontCounterClockwise = false;
@@ -109,7 +110,7 @@ void Game::CreateEngine() {
 	rsd.DepthBiasClamp = 0;
 	rsd.SlopeScaledDepthBias = 0;
 	rsd.DepthClipEnable = true;
-	rsd.ScissorEnable = true;
+	rsd.ScissorEnable = false;
 	rsd.MultisampleEnable = false;
 	rsd.AntialiasedLineEnable = false;
 
@@ -158,8 +159,8 @@ void Game::CreateGame() {
 
 	camera = new Camera();
 	// Shared textures and shaders
-	dat = new Data();
-	dat->LoadData();
+
+	dat.LoadData();
 
 	player = new Object;
 	tileBatch = new TileBatch;
@@ -211,10 +212,7 @@ Game::~Game()
 	delete rd1;
 	delete ls3, ls3o;
 	delete camera;
-	//delete cont0;
-	delete dat;
-	
-	dat = nullptr;
+
 	//delete tex;
 
 	//delete controller;

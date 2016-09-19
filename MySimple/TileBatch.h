@@ -4,7 +4,7 @@
 #include "Texture.h"
 #include "Camera.h"
 #include "Data.h"
-extern Data* dat;
+extern Data dat;
 
 
 extern Camera* camera;

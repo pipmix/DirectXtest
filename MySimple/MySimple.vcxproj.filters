@@ -144,6 +144,9 @@
     <ClInclude Include="Animation.h">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="NewSprite.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Shaders">

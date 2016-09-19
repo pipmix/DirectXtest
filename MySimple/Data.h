@@ -9,8 +9,7 @@ public:
 						Data			();
 						~Data			();
 	void				LoadData		();
-	void				Update			();
-	void				Draw			();
+
 	Texture*		GetTexture		(int n);
 	PixelShader*	GetPixelShader	(int n);
 	VertexShader*	GetVertexShader	(int n);

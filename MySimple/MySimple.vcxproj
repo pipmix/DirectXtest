@@ -201,6 +201,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="NewSprite.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Part.h" />
     <ClInclude Include="Particle.h" />

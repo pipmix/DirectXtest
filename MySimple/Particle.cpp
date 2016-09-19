@@ -3,10 +3,10 @@
 
 Particle::Particle() {
 
-	texture = dat->GetTexture(D_TEX_BOX1);
+	texture = dat.GetTexture(D_TEX_BOX1);
 
-	vs = dat->GetVertexShader(D_VS_PUV);
-	ps = dat->GetPixelShader(D_PS_PUV);
+	vs = dat.GetVertexShader(D_VS_PUV);
+	ps = dat.GetPixelShader(D_PS_PUV);
 
 
 	position = { 0.0f, 0.0f, 0.0f };

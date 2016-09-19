@@ -14,8 +14,8 @@ void ShapeRectangle::Create(float left, float top, float right, float bottom){
 	_bottom = abs(bottom - top);
 	_Init = true;
 	
-	vs = dat->GetVertexShader(D_VS_BASICMATRIX);
-	ps = dat->GetPixelShader(D_PS_BASIC);
+	vs = dat.GetVertexShader(D_VS_BASICMATRIX);
+	ps = dat.GetPixelShader(D_PS_BASIC);
 
 
 
@@ -114,8 +114,8 @@ LineShape3d::LineShape3d()
 
 void LineShape3d::Create(){
 
-	vs = dat->GetVertexShader(D_VS_BASICMATRIX);
-	ps = dat->GetPixelShader(D_PS_BASIC);
+	vs = dat.GetVertexShader(D_VS_BASICMATRIX);
+	ps = dat.GetPixelShader(D_PS_BASIC);
 
 
 	float offset = 5.0f;
@@ -202,8 +202,8 @@ void LineShape3dOutline::Create()
 
 	float s = 10.0f;
 
-	vs = dat->GetVertexShader(D_VS_BASICMATRIX);
-	ps = dat->GetPixelShader(D_PS_BASIC);
+	vs = dat.GetVertexShader(D_VS_BASICMATRIX);
+	ps = dat.GetPixelShader(D_PS_BASIC);
 
 
 	float offset = 5.0f;
